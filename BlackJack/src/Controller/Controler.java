@@ -10,7 +10,7 @@ public class Controler implements IControler {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public Deck d;
+	public  Deck d;
 	//data structure to save the players details
 	public HashMap<String,String> Players;
 	

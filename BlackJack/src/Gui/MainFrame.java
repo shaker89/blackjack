@@ -11,6 +11,7 @@ import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import model.Deck;
 import Controller.Controler;
 
 public class MainFrame extends JFrame implements ActionListener{
@@ -36,7 +37,7 @@ public class MainFrame extends JFrame implements ActionListener{
 			jdp.setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
 			this.setContentPane(jdp);
 			this.setBounds(0, 0, 1367, 737);
-			JLabel bjImage = new JLabel(new ImageIcon("pictures/blackJack.jpg"));
+			JLabel bjImage = new JLabel(new ImageIcon("pictures/1.jpg"));
 			bjImage.setBounds(0,0,this.getWidth(),this.getHeight());
 			addButtons();
 
@@ -78,17 +79,17 @@ public class MainFrame extends JFrame implements ActionListener{
 		jdp.add(shuffle);
 		
 		
-		JButton exit = new JButton("exit the Game");
-		exit.setBounds(550,600,150,40);
-		exit.setFont(new Font("", Font.BOLD, 9));
-		exit.addActionListener(this);
-		jdp.add(exit);
+//		JButton exit = new JButton("exit the Game");
+//		exit.setBounds(550,600,150,40);
+//		exit.setFont(new Font("", Font.BOLD, 9));
+//		exit.addActionListener(this);
+//		jdp.add(exit);
 		
-		JLabel userName = new JLabel("the player is :");
-		userName.setBounds(400,600,150,20);
-		userName.setBackground(Color.WHITE);
-		//getContentPane().add(userName);
-		jdp.add(userName);
+//		JLabel userName = new JLabel("the player is :");
+//		userName.setBounds(400,600,150,20);
+//		userName.setBackground(Color.WHITE);
+//		//getContentPane().add(userName);
+//		jdp.add(userName);
 		
 		
 	}
@@ -97,10 +98,21 @@ public class MainFrame extends JFrame implements ActionListener{
 		// TODO Auto-generated method stub
 		String  cmd = e.getActionCommand();
 		
-		if(cmd.equals("startGame"))
+		if(cmd.equals("start Game"))
 		{
+			system.d.StartGame();
 			
-			System.out.println("Dddkjkkj");
+//			String x =  "pictures\52cards\2club.png";
+//			ImageIcon t =new ImageIcon(x);
+//			JLabel label = new JLabel(t);
+//			add(label);
+//			label.setBounds(500,200,150,40);
+			//getContentPane().add(label);
+//			jdp.add(label);
+			//getContentPane().add(userName);
+			
+			
+		
 		}
 		
 		 if(cmd.equals("hit")){
@@ -114,13 +126,13 @@ public class MainFrame extends JFrame implements ActionListener{
 			}
 		 
 		 
-		 if(cmd.equals("shuffle")){
+		 if(cmd.equals("shuffle cards")){
 				
 				
 			}
 		 
 		 
-		 if(cmd.equals("exit")){
+		 if(cmd.equals("exit the Game")){
 				
 				
 			}
