@@ -286,7 +286,7 @@ public class Deck {
 	}
 	
 
-	public String hit(boolean hitFlag1, boolean hitFlag2) {
+	public void hit(boolean hitFlag1, boolean hitFlag2) {
 	
 		int temp1 = -1;
 		int temp2 = -1;
@@ -307,7 +307,7 @@ public class Deck {
 			cards.remove(temp2);
 	}	
 	
-	return temp1+" "+temp2;
+	
 
 	
 

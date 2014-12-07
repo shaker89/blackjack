@@ -2,6 +2,7 @@ package Gui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Label;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
@@ -29,6 +30,7 @@ public class MainFrame extends JFrame implements ActionListener{
 	JButton hit;
 	JButton stand;
 	JButton shuffle;
+	
 	// declare the labels to put the images on it
 	Label whoBusted;
 	JLabel bjImage1p;
@@ -70,7 +72,12 @@ public class MainFrame extends JFrame implements ActionListener{
 
 		jdp.setVisible(true);
 		
-		
+		twoDPanel = new JPanel();
+		twoDPanel.setBounds(0,0,this.getWidth(),this.getHeight()-150);
+		//Color myColour = new Color(255, 255,255, 128 );
+		twoDPanel.setOpaque(false);
+		jdp.add(twoDPanel, new Integer(1), 0);
+
 		
 	}
 	private void addButtons() {
@@ -113,6 +120,9 @@ public class MainFrame extends JFrame implements ActionListener{
 		 		t.setBounds(700, 600, 80, 40);
 		 		t.setFont(new Font("", Font.BOLD, 9));
 		 		jdp.add(t);
+		 		
+		 		
+		 		
 	
 		
 //		JButton exit = new JButton("exit the Game");
@@ -133,14 +143,11 @@ public class MainFrame extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
-		 twoDPanel = new JPanel();
-		twoDPanel.setBounds(200, 100, 600, 480);
-		//Color myColour = new Color(255, 255,255, 128 );
-		twoDPanel.setOpaque(true);
 		//twoDPanel.setBackground(myColour);
-		jdp.add(twoDPanel, new Integer(1), 0);
+		 
 		String  cmd = e.getActionCommand();
-		twoDPanel.setOpaque(false);
+		//twoDPanel.setOpaque(false);
+		
 		if(cmd.equals("start Game"))
 		{startGame.setEnabled(false);
 			
@@ -151,17 +158,17 @@ public class MainFrame extends JFrame implements ActionListener{
 			twoDPanel.add(bjImage1p);
 		
 			bjImage2p = new JLabel(system.getD().getWael().getHandArray().get(1).getCardpic());
-			bjImage2p.setBounds(110,0,100,100);
+			bjImage2p.setBounds(100,0,100,100);
 			bjImage2p.setVisible(true);
 			twoDPanel.add(bjImage2p);
 			
 			bjImage1c = new JLabel(system.getD().getComputer().getHandArray().get(0).getCardpic());
-			bjImage1c.setBounds(320,100,100,100);
+			bjImage1c.setBounds(600,00,100,100);
 			bjImage1c.setVisible(true);
 			twoDPanel.add(bjImage1c);
 			
 			bjImage2c = new JLabel(system.getD().getComputer().getHandArray().get(1).getCardpic());
-			bjImage2c.setBounds(430,100,100,100);
+			bjImage2c.setBounds(700,00,100,100);
 			bjImage2c.setVisible(true);
 			twoDPanel.add(bjImage2c);
 			
@@ -171,37 +178,47 @@ public class MainFrame extends JFrame implements ActionListener{
 		
 		 if(cmd.equals("hit")){
 		
+			 int flag=system.hit();
 			 
-			 
-			 if(startGame.isEnabled()==false){
-			system.hit();
+			// if(startGame.isEnabled()==false){
+			
 			
 			bjImage3p = new JLabel(system.getD().getWael().getHandArray().get(system.getD().getWael().getHandArray().size()-1).getCardpic());
-			bjImage3p.setBounds(0,110,100,100);
+			bjImage3p.setBounds(100*(system.getD().getWael().getHandArray().size()-1),0,100,100);
 			bjImage3p.setVisible(true);
 			twoDPanel.add(bjImage3p);
 		
 	
 			
 			bjImage3c = new JLabel(system.getD().getComputer().getHandArray().get(system.getD().getWael().getHandArray().size()-1).getCardpic());
-			bjImage3c.setBounds(320,00,100,100);
+			bjImage3c.setBounds(600+100*(system.getD().getComputer().getHandArray().size()-1),00,100,100);
 			bjImage3c.setVisible(true);
 			twoDPanel.add(bjImage3c);
 			
 			
+			if(flag!=0){
+				hit.setEnabled(false);
+			startGame.setEnabled(true);
+			clear();
+			
+			}
 			
 			
 			
 			
 		}
 		
-		}
+		//}
 		
 		 if(cmd.equals("stand")){
 				
-				
-			}
-		 
+			/// twoDPanel=null;
+			 twoDPanel.removeAll(); 
+			// refresh the panel.
+			twoDPanel.updateUI();
+		
+		 }
+
 		 
 		 if(cmd.equals("shuffle cards")){
 				
@@ -215,6 +232,12 @@ public class MainFrame extends JFrame implements ActionListener{
 			}
 		 
 		 
+	}
+	private void clear() {
+		// TODO Auto-generated method stub
+		
+		
+		
 	}
 	  
 	  

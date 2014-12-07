@@ -14,7 +14,7 @@ public interface IControler  {
 	
 	
 	//using this function when clicking on hit button
-	public void hit();
+	public int hit();
 	
 	
 	//using this function when clicking on stand button

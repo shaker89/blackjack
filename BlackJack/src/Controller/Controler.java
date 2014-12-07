@@ -45,13 +45,13 @@ public class Controler implements IControler {
 	@Override
 	
 	///hit until someone get busted
-	public void hit() {
+	public int hit() {
 		// TODO Auto-generated method stub
-		String x = d.hit(true, true);
+		 d.hit(true, true);
 		
-		int t=chicking();
+		return chicking();
 			
-			System.out.println("$$$");
+			
 		
 			
 			
