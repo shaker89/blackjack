@@ -3,13 +3,37 @@ package model;
 import java.awt.Image;
 import java.util.Random;
 
+import javax.swing.ImageIcon;
+
 public class Card {
 private int number;
-private Suit suit;
+private String suit;
 private int value;
-private Image d;
+private ImageIcon cardpic;
+public String getSuit() {
+	return suit;
+}
+public void setSuit(String suit) {
+	this.suit = suit;
+}
+public ImageIcon getCardpic() {
+	return cardpic;
+}
+public void setCardpic(ImageIcon cardpic) {
+	this.cardpic = cardpic;
+}
+public void setValue(int value) {
+	this.value = value;
+}
 public int getValue() {
 	return value;
+}
+public Card(ImageIcon cardpic,int number, String suit, String value ) {
+	super();
+	this.number = number;
+	this.suit = suit;
+	SetValue();
+	this.cardpic = cardpic;
 }
 @Override
 public String toString() {
@@ -20,12 +44,8 @@ public String toString() {
 public int getNumber() {
 	return number;
 }
-public Card(int number, Suit suit) {
-	super();
-	this.number = number;
-	this.suit = suit;
-	SetValue();
-}
+
+
 private void SetValue() {
 	
 	// TODO Auto-generated method stub
@@ -55,11 +75,6 @@ public void setNumber(int number) {
 	this.number = number;
 }
 
-public Suit getSuit() {
-	return suit;
-}
-public void setSuit(Suit suit) {
-	this.suit = suit;
-}
+
 
 }

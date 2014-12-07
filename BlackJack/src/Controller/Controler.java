@@ -10,7 +10,13 @@ public class Controler implements IControler {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public  Deck d;
+	private Deck d;
+	public Deck getD() {
+		return d;
+	}
+	public void setD(Deck d) {
+		this.d = d;
+	}
 	//data structure to save the players details
 	public HashMap<String,String> Players;
 	
@@ -24,8 +30,9 @@ public class Controler implements IControler {
 	public  Controler(){
 		Players= new HashMap<String, String>();
 		addToPlayers("wael", "1234");
-		if(Players.containsKey("wael") && Players.containsValue( "1234"))
-		 d =new Deck();
+		if(Players.containsKey("wael") && Players.containsValue( "1234"));
+		d =new Deck();
+		
 			
 	}
 	
@@ -40,16 +47,15 @@ public class Controler implements IControler {
 	///hit until someone get busted
 	public void hit() {
 		// TODO Auto-generated method stub
-		d.hit(true, true);
+		String x = d.hit(true, true);
+		
 		int t=chicking();
-		System.out.println("%%%%");
-		while(t==0){
-			d.hit(true, true);
+			
 			System.out.println("$$$");
-			t=chicking();
+		
 			
 			
-		}
+		
 		
 		
 		
@@ -71,7 +77,7 @@ public class Controler implements IControler {
 	@Override
 	public int start() {
 		 
-		d.StartGame();
+		//d.StartGame();
 		int t= chicking();
 		if(t==0){
 			hit();
