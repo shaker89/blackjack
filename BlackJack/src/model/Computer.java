@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Computer {
 	private ArrayList<Card> HandArray;
-	private int sumOfCards=0;
+	protected int sumOfCards=0;
 	private String status;
 	public ArrayList<Card> getHandArray() {
 		return HandArray;

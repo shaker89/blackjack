@@ -14,17 +14,21 @@ public interface IControler  {
 	
 	
 	//using this function when clicking on hit button
-	public int hit();
+	public String hit();
 	
 	
 	//using this function when clicking on stand button
-	public void stand();
+	public String stand();
 	
 	
 	
 	//using this function when clicking on start button
-	public int start();
+	public void start();
 	
+	
+	// shuflle the cards
+	
+	public int shuffle();
 	
 	public void updateSumOFCards();
 	//this function chick if the sum of the plaey is over 21
@@ -33,7 +37,10 @@ public int chickIFOver21();
 
 //this function chick if the sum of the plaey is over 17
 
-public  int chickIfOver17();
+
+
+
+public int chickIFOverOrEqual21();
 	
 	
 	

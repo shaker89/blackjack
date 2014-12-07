@@ -3,7 +3,9 @@ package Gui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Label;
+import java.awt.Shape;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,6 +16,7 @@ import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.xml.soap.Text;
 
 import model.Deck;
@@ -26,11 +29,14 @@ public class MainFrame extends JFrame implements ActionListener{
 	 */
 	//declare the desktop pane
 	private JDesktopPane jdp = new JDesktopPane();
+	
+	JPanel twoDPanel = new JPanel();
+
 	JButton startGame;
 	JButton hit;
 	JButton stand;
 	JButton shuffle;
-	
+	JTextField theResult = new JTextField();;
 	// declare the labels to put the images on it
 	Label whoBusted;
 	JLabel bjImage1p;
@@ -47,9 +53,8 @@ public class MainFrame extends JFrame implements ActionListener{
 	JLabel bjImage6c;
 	
 	
-	JPanel twoDPanel;
 	
-	
+	JLabel bjImage;
 	
 	private static final long serialVersionUID = 1L;
      private Controler system;
@@ -64,19 +69,24 @@ public class MainFrame extends JFrame implements ActionListener{
 		jdp.setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
 			this.setContentPane(jdp);
 			this.setBounds(0, 0, 1367, 737);
-			JLabel bjImage = new JLabel(new ImageIcon("pictures/blackJack.jpg"));
+			 bjImage = new JLabel(new ImageIcon("pictures/blackJack.jpg"));
 			bjImage.setBounds(0,0,this.getWidth(),this.getHeight());
 			addButtons();
 
+			
+			
+			
+			
 			jdp.add(bjImage);
-
+			
+			twoDPanel.setBounds(0,0,this.getWidth(),this.getHeight()-150);
+			twoDPanel.setOpaque(false);
+			jdp.add(twoDPanel, new Integer(1), 0);
+		
+			
 		jdp.setVisible(true);
 		
-		twoDPanel = new JPanel();
-		twoDPanel.setBounds(0,0,this.getWidth(),this.getHeight()-150);
-		//Color myColour = new Color(255, 255,255, 128 );
-		twoDPanel.setOpaque(false);
-		jdp.add(twoDPanel, new Integer(1), 0);
+	
 
 		
 	}
@@ -116,20 +126,20 @@ public class MainFrame extends JFrame implements ActionListener{
 		 whoBusted.setFont(new Font("", Font.BOLD, 9));
 		 		 jdp.add(whoBusted);
 		 
-		 		TextField t = new TextField();
-		 		t.setBounds(700, 600, 80, 40);
-		 		t.setFont(new Font("", Font.BOLD, 9));
-		 		jdp.add(t);
+		 		
+		 		theResult.setBounds(700, 600, 80, 40);
+		 		theResult.setFont(new Font("", Font.BOLD, 9));
+		 		jdp.add(theResult);
 		 		
 		 		
 		 		
 	
 		
-//		JButton exit = new JButton("exit the Game");
-//		exit.setBounds(550,600,150,40);
-//		exit.setFont(new Font("", Font.BOLD, 9));
-//		exit.addActionListener(this);
-//		jdp.add(exit);
+		JButton exit = new JButton("exit the Game");
+		exit.setBounds(820,600,150,40);
+		exit.setFont(new Font("", Font.BOLD, 9));
+		exit.addActionListener(this);
+		jdp.add(exit);
 		
 //		JLabel userName = new JLabel("the player is :");
 //		userName.setBounds(400,600,150,20);
@@ -141,17 +151,23 @@ public class MainFrame extends JFrame implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		
-		//twoDPanel.setBackground(myColour);
-		 
-		String  cmd = e.getActionCommand();
-		//twoDPanel.setOpaque(false);
-		
+		String  cmd = e.getActionCommand();		
+int flag=-1;
 		if(cmd.equals("start Game"))
-		{startGame.setEnabled(false);
+		{
+if(hit.isEnabled()==false){
+				
+				twoDPanel.removeAll();
+				// refresh the panel.
+			twoDPanel.repaint();
+	
+				
+				
+			}
+			startGame.setEnabled(false);
 			
-			system.getD().StartGame();
+			system.start();
 			bjImage1p = new JLabel(system.getD().getWael().getHandArray().get(0).getCardpic());
 			bjImage1p.setBounds(0,0,100,100);
 			bjImage1p.setVisible(true);
@@ -171,35 +187,46 @@ public class MainFrame extends JFrame implements ActionListener{
 			bjImage2c.setBounds(700,00,100,100);
 			bjImage2c.setVisible(true);
 			twoDPanel.add(bjImage2c);
+			hit.setEnabled(true);
 			
+			stand.setEnabled(true);
+
+				theResult.setText("");
 		
+		
+			twoDPanel.repaint();
 		
 		}
 		
 		 if(cmd.equals("hit")){
 		
-			 int flag=system.hit();
-			 
-			// if(startGame.isEnabled()==false){
-			
+			String x=  system.hit();
+			  
+	 
 			
 			bjImage3p = new JLabel(system.getD().getWael().getHandArray().get(system.getD().getWael().getHandArray().size()-1).getCardpic());
 			bjImage3p.setBounds(100*(system.getD().getWael().getHandArray().size()-1),0,100,100);
 			bjImage3p.setVisible(true);
 			twoDPanel.add(bjImage3p);
-		
-	
+			if(!x.equals("the player is busted")){
 			
-			bjImage3c = new JLabel(system.getD().getComputer().getHandArray().get(system.getD().getWael().getHandArray().size()-1).getCardpic());
+			
+			bjImage3c = new JLabel(system.getD().getComputer().getHandArray().get(system.getD().getComputer().getHandArray().size()-1).getCardpic());
 			bjImage3c.setBounds(600+100*(system.getD().getComputer().getHandArray().size()-1),00,100,100);
 			bjImage3c.setVisible(true);
 			twoDPanel.add(bjImage3c);
+			}
+			twoDPanel.repaint();
 			
-			
-			if(flag!=0){
+			if(x!=""){
+				theResult.setText(x);
 				hit.setEnabled(false);
+				stand.setEnabled(false);
 			startGame.setEnabled(true);
-			clear();
+			 
+			
+		
+
 			
 			}
 			
@@ -208,20 +235,36 @@ public class MainFrame extends JFrame implements ActionListener{
 			
 		}
 		
-		//}
+	
 		
 		 if(cmd.equals("stand")){
+			 
+			 String x= system.stand();
+			 bjImage3c = new JLabel(system.getD().getComputer().getHandArray().get(system.getD().getComputer().getHandArray().size()-1).getCardpic());
+				bjImage3c.setBounds(600+100*(system.getD().getComputer().getHandArray().size()-1),00,100,100);
+				bjImage3c.setVisible(true);
+				twoDPanel.add(bjImage3c);
 				
-			/// twoDPanel=null;
-			 twoDPanel.removeAll(); 
-			// refresh the panel.
-			twoDPanel.updateUI();
-		
+				twoDPanel.repaint();
+				
+				if(!x.equals("")){
+					theResult.setText(x);
+					hit.setEnabled(false);
+					stand.setEnabled(false);
+				startGame.setEnabled(true);
+				 
+				
+			
+
+				
+				}
+				
+				
 		 }
 
 		 
 		 if(cmd.equals("shuffle cards")){
-				
+				system.shuffle();
 				
 			}
 		 
@@ -233,14 +276,7 @@ public class MainFrame extends JFrame implements ActionListener{
 		 
 		 
 	}
-	private void clear() {
-		// TODO Auto-generated method stub
-		
-		
-		
-	}
-	  
-	  
+	
 	
 	
 	

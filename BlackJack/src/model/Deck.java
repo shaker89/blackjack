@@ -34,7 +34,7 @@ public class Deck {
 		super();
 		this.cards = new ArrayList<Card>(52);
 		moreThan17=false;
-		rand=new Random();
+		
 		standFlag1=false;
 		standFlag2=false;
 		
@@ -71,6 +71,17 @@ public class Deck {
 				
 				
 //			}
+		
+		
+	}
+	
+	
+	
+	
+	
+	public Random shuffle(){
+		
+		return rand=new Random();
 		
 		
 	}
@@ -269,15 +280,9 @@ public class Deck {
 		
 	}
 	
-	//if this method get false ..that's mean that the player will not play this round
+	//if this method get false ..that's mean  the player will not play this round
 	public int getstand(boolean flg1,boolean flg2){
-		if(!flg1){
-			
-			
-		}
-		if(!flg2){
-			
-		}
+	hit(flg1, flg2);
 		return numberOfCards;
 		
 		
@@ -290,9 +295,18 @@ public class Deck {
 	
 		int temp1 = -1;
 		int temp2 = -1;
+		shuffle();
 		if(hitFlag1==true){
+			
 		 temp1=rand.nextInt(getNumberOfCards()-1);
-		wael.addToHandArray(cards.get(temp1));
+		 Card c= cards.get(temp1);
+		 //check if we have aces before
+		 if(c.getNumber()==11){
+		 for(int i = 0 ; i<wael.getHandArray().size();i++){
+			 if(wael.getHandArray().get(i).getNumber()==c.getNumber())
+			 c.setNumber(1);
+		 }}
+		wael.addToHandArray(c);
 		System.out.println("card :"+cards.get(temp1));
 		cards.remove(temp1);
 

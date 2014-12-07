@@ -70,7 +70,16 @@ private int numberOfRoundVectorirs;
 private int numberOfLossing;
 private int numberOfRoundsPLaying;
 */
-
+//	@override
+public int updateSomeOFCards(){
+		
+		for(Card i : getHandArray())
+		{
+			sumOfCards+=i.getValue();
+		}
+		System.out.println("sumOfCards:"+sumOfCards);
+		return sumOfCards;
+		}
 
 
 
