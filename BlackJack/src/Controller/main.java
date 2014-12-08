@@ -2,6 +2,7 @@ package Controller;
 
 
 import Gui.MainFrame;
+import Gui.gui_Main;
 
 public class main {
 
@@ -9,8 +10,8 @@ public class main {
  System.out.println("shakrer");
  int flag;
  final Controler system= new Controler();
- MainFrame mf = new MainFrame(system);
- mf.setVisible(true);
+ gui_Main gm = new gui_Main(system);
+ gm.setVisible(true);
  //flag=c.start();
  //System.out.println("end of the game");
 

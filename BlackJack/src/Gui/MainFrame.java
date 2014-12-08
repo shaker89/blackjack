@@ -171,7 +171,7 @@ if(hit.isEnabled()==false){
 
 
 
-			//startGame.setEnabled(false);
+			startGame.setEnabled(false);
 			
 			system.start();
 			bjImage1p = new JLabel(system.getD().getWael().getHandArray().get(0).getCardpic());

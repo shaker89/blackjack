@@ -34,15 +34,18 @@ public class Controler implements IControler {
 	public Controler() {
 		Players = new HashMap<String, String>();
 		addToPlayers("wael", "1234");
-		if (Players.containsKey("wael") && Players.containsValue("1234"))
-			;
-		d = new Deck();
+		
 
 	}
 
 	public void addToPlayers(String username, String Password) {
 		Players.put("wael", "1234");
 
+	}
+	
+	public void logInValid(){
+		
+		d = new Deck();
 	}
 
 	@Override
