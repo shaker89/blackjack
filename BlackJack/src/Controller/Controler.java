@@ -3,6 +3,7 @@ package Controller;
 import java.util.HashMap;
 
 import model.Deck;
+import model.Player;
 
 public class Controler implements IControler {
 
@@ -21,25 +22,34 @@ public class Controler implements IControler {
 	}
 
 	// data structure to save the players details
-	public HashMap<String, String> Players;
+	public HashMap<String, Player> Players;
 
-	public HashMap<String, String> getPlayers() {
+	
+
+
+
+	public HashMap<String, Player> getPlayers() {
 		return Players;
 	}
 
-	public void setPlayers(HashMap<String, String> players) {
+	public void setPlayers(HashMap<String, Player> players) {
 		Players = players;
 	}
 
 	public Controler() {
-		Players = new HashMap<String, String>();
-		addToPlayers("wael", "1234");
+		Players = new HashMap<String,Player >();
+		addToPlayers("", "");
 		
 
 	}
 
 	public void addToPlayers(String username, String Password) {
-		Players.put("wael", "1234");
+		
+		Player p = new Player(100);
+		p.setPassword("1234");
+		p.setUserName("wael");
+		Players.put("wael", p);
+		
 
 	}
 	
@@ -148,5 +158,17 @@ public class Controler implements IControler {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	public void UpdateCoinsOfPlayer(){
+		
+		d.getWael().setMoney(d.getWael().getMoney()+20);
+		
+	}
+	public void removeCoinsFromPlayer(){
+		
+		d.getWael().setMoney(d.getWael().getMoney()-20);
+		
+	}
+	
 
 }

@@ -21,6 +21,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import model.Player;
 import Controller.Controler;
 
 
@@ -52,12 +53,12 @@ private Controler system;
 	 * @param system 
 	 */
 	public gui_Main(Controler system) {
-super("LOG ME IN");
+super("LOG ME IN to play BlackJack");
 this.system=system;
 setSize(500,400);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		final JLabel img = new JLabel(new ImageIcon("picturddes/background1.jpg"));
+		final JLabel img = new JLabel(new ImageIcon("picturees/background1.jpg"));
 		img.setBounds(0,0,this.getWidth(),this.getHeight());
 		JDP.add(img); 
 		
@@ -102,15 +103,15 @@ setSize(500,400);
 	}
 public void log(){
 	int flag=0;
-	for(Map.Entry<String,String>  x : getSystem().getPlayers().entrySet())
+	for(Map.Entry<String,Player>  x : getSystem().getPlayers().entrySet())
 	{
-		if(x.getKey().equals(username.getText()) && x.getValue().equals(pas.getText()))
+		if(x.getKey().equals(username.getText()) && x.getValue().getPassword().equals(pas.getText()))
 		{system.logInValid();
 			this.setVisible(false);
-			MainFrame mf = new MainFrame(system);
+			MainFrame mf = new MainFrame(system,username.getText());
 			 mf.setVisible(true);
 			flag=1;
-			System.out.println("vvvvvv");
+			
 			break;
 		}
 		

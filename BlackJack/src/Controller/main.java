@@ -12,10 +12,13 @@ public class main {
  final Controler system= new Controler();
  gui_Main gm = new gui_Main(system);
  gm.setVisible(true);
+// MainFrame mf = new MainFrame(system);
+// mf.setVisible(true);
  //flag=c.start();
  //System.out.println("end of the game");
 
 
 	}
+	
 
 }

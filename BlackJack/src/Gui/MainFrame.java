@@ -52,8 +52,8 @@ public class MainFrame extends JFrame implements ActionListener{
 	JLabel bjImage5c;
 	JLabel bjImage6c;
 	
-	
-	
+	JTextField money ;
+	String userName;
 	JLabel bjImage;
 	
 	private static final long serialVersionUID = 1L;
@@ -61,10 +61,11 @@ public class MainFrame extends JFrame implements ActionListener{
 	public Controler getSystem() {
 		return system;
 	}
-	  public MainFrame(final Controler system) {
+	  public MainFrame(final Controler system, String userN) {
 		  super("***  Black Jack 2014  ***");
 			this.system = system;
 	setSize(200, 200);	
+	userName=userN;
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		jdp.setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
@@ -135,6 +136,13 @@ public class MainFrame extends JFrame implements ActionListener{
 		 		jdp.add(theResult);
 		 		
 		 		
+		 		money =  new JTextField();
+				
+		 		money.setBounds(500, 500, 80, 40);
+		 		money.setFont(new Font("", Font.BOLD, 9));
+		 		money.setText(system.getPlayers().get(userName).getMoney()+"");
+		 		money.setVisible(true);
+		 		jdp.add(money);		
 		 		
 	
 		
@@ -159,6 +167,9 @@ public class MainFrame extends JFrame implements ActionListener{
 int flag=-1;
 		if(cmd.equals("Deal"))
 		{
+		
+			
+			theResult.setText("");
 if(hit.isEnabled()==false){
 				
 				twoDPanel.removeAll();
@@ -209,13 +220,13 @@ if(hit.isEnabled()==false){
 		
 			String x=  system.hit();
 			  
-	 
+			theResult.setText("");
 		
 			bjImage3p = new JLabel(system.getD().getWael().getHandArray().get(system.getD().getWael().getHandArray().size()-1).getCardpic());
 			bjImage3p.setBounds(610+30*(system.getD().getWael().getHandArray().size()-2),470,100,100);
 			bjImage3p.setVisible(true);
 			twoDPanel.add(bjImage3p);
-			if(!x.equals("the player is busted")){
+			if(!x.equals("the player is busted") && !x.equals("the computer is busted")){
 			
 			
 			bjImage3c = new JLabel(system.getD().getComputer().getHandArray().get(system.getD().getComputer().getHandArray().size()-1).getCardpic());
@@ -224,36 +235,48 @@ if(hit.isEnabled()==false){
 			twoDPanel.add(bjImage3c);
 			}
 			twoDPanel.repaint();
-			
+			//if someone win
 			if(x!=""){
 				theResult.setText(x);
 				hit.setEnabled(false);
 				stand.setEnabled(false);
 			startGame.setEnabled(true);
+			
 			}
 			
-			
-			
-			
+			if(x.equals("the computer is busted"))
+			{
+				system.UpdateCoinsOfPlayer();
+				money.setText(system.getD().getWael().getMoney()+"");
+				money.repaint();
+				
+			}
+			else if(x.equals("the player is busted")){
+				system.removeCoinsFromPlayer();
+				money.setText(system.getD().getWael().getMoney()+"");
+				money.repaint();
+
+			}
 		}
 		
 	
 		
 		 if(cmd.equals("stand")){
 			 
-//			 String x= system.stand();
-//			 bjImage3c = new JLabel(system.getD().getComputer().getHandArray().get(system.getD().getComputer().getHandArray().size()-1).getCardpic());
-//				bjImage3c.setBounds(600+100*(system.getD().getComputer().getHandArray().size()-1),00,100,100);
-//				bjImage3c.setVisible(true);
-//				twoDPanel.add(bjImage3c);
-//				
-//				twoDPanel.repaint();
-//				
-//				if(!x.equals("")){
-//					theResult.setText(x);
-//					hit.setEnabled(false);
-//					stand.setEnabled(false);
-//				startGame.setEnabled(true);
+			 theResult.setText("");
+			 String x= system.stand();
+			 bjImage3c = new JLabel(system.getD().getComputer().getHandArray().get(system.getD().getComputer().getHandArray().size()-1).getCardpic());
+				bjImage3c.setBounds(610+30*(system.getD().getComputer().getHandArray().size()-2),00,100,100);
+				bjImage3c.setVisible(true);
+				twoDPanel.add(bjImage3c);
+				
+				twoDPanel.repaint();
+				
+				if(!x.equals("")){
+					theResult.setText(x);
+					hit.setEnabled(false);
+					stand.setEnabled(false);
+				startGame.setEnabled(true);
 				 
 			//	stand.setVisible(false);
 			//jdp.isVisible()(stand);
@@ -264,6 +287,20 @@ if(hit.isEnabled()==false){
 //				}
 				
 				
+				
+
+				}
+				if(x.equals("the computer is busted"))
+				{
+					system.UpdateCoinsOfPlayer();
+					money.setText(system.getD().getWael().getMoney()+"");
+					money.repaint();
+				}
+				else if(x.equals("the player is busted")){
+					system.removeCoinsFromPlayer();
+					money.setText(system.getD().getWael().getMoney()+"");
+					money.repaint();
+				}
 		 }
 
 		 
@@ -275,7 +312,7 @@ if(hit.isEnabled()==false){
 		 
 		 if(cmd.equals("exit the Game")){
 				
-				
+				this.setVisible(false);
 			}
 		 
 		 

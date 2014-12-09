@@ -3,10 +3,7 @@ package model;
 import java.util.ArrayList;
 
 public class Player extends Computer {
-	private String Name= "eee";
 	private int Money ;
-	
-	
 	private String userName;
 	private String Password;
 	public String getUserName() {
@@ -40,25 +37,20 @@ public class Player extends Computer {
 public Player(int i) {
 		// TODO Auto-generated constructor stub
 	super();
-	Money =i;
+	setMoney(i);
 	
 }
 
 
-public String getName() {
-		return Name;
-	}
 
-	public void setName(String name) {
-		Name = name;
-	}
 
+	
 	public int getMoney() {
 		return Money;
 	}
 
 	public void setMoney(int money) {
-		Money = money;
+		this.Money = money;
 	}
 
 /*	private String ID;
