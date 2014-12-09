@@ -44,6 +44,7 @@ public class gui_Main extends JFrame  {
 	private JPasswordField pas;
 private JTextField username;
 private JLabel lblInsertPassword;
+private JLabel lblInserthit;
 
 private Controler system;
 
@@ -99,7 +100,12 @@ setSize(500,400);
 		pas = new JPasswordField();
 		pas.setBounds(211, 115, 110, 20);
 		JDP.add(pas);
-
+	
+		lblInserthit = new JLabel("username = wael   pass = 1234");
+		lblInserthit.setBounds(50, 300, 350, 30);
+		lblInserthit.setVisible(true);
+		JDP.add(lblInserthit);
+		JDP.repaint();
 	}
 public void log(){
 	int flag=0;
