@@ -7,7 +7,7 @@ import Gui.gui_Main;
 public class main {
 
 	public static void main(String[] args) {
- System.out.println("shakrer");
+ System.out.println("Game Is Running");
  int flag;
  final Controler system= new Controler();
  gui_Main gm = new gui_Main(system);

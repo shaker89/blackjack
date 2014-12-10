@@ -78,6 +78,7 @@ setSize(500,400);
 
 		JDP.add(lblInsertPassword);
 		JDP.repaint();
+
 		JButton btnLogIn = new JButton ("",new ImageIcon("pictures/logIn.png"));
 		btnLogIn.addActionListener(new ActionListener() {
 			
