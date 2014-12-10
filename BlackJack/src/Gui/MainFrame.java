@@ -71,7 +71,8 @@ public class MainFrame extends JFrame implements ActionListener{
 		jdp.setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
 			this.setContentPane(jdp);
 			this.setBounds(0, 0, 1367, 737);
-			 bjImage = new JLabel(new ImageIcon("pictures/background.jpg"));
+			java.net.URL url = gui_Main.class.getResource("/pictures/background.jpg");
+			 bjImage = new JLabel(new ImageIcon(url));
 			bjImage.setBounds(0,0,this.getWidth(),this.getHeight());
 			addButtons();
 

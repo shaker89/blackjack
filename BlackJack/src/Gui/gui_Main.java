@@ -23,7 +23,7 @@ import javax.swing.border.EmptyBorder;
 
 import model.Player;
 import Controller.Controler;
-import Pictures.*;
+
 
 public class gui_Main extends JFrame  {
 	/**
@@ -47,7 +47,7 @@ private JLabel lblInsertPassword;
 private JLabel lblInserthit;
 
 private Controler system;
-private Cards cards;
+
 
 	/**
 	 * Create the frame.
@@ -78,8 +78,8 @@ setSize(500,400);
 
 		JDP.add(lblInsertPassword);
 		JDP.repaint();
-
-		JButton btnLogIn = new JButton ("",new ImageIcon("pictures/logIn.png"));
+		java.net.URL url = gui_Main.class.getResource("/pictures/logIn.png");
+		JButton btnLogIn = new JButton ("",new ImageIcon(url));
 		btnLogIn.addActionListener(new ActionListener() {
 			
 			@Override
