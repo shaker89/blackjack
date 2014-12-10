@@ -23,7 +23,7 @@ import javax.swing.border.EmptyBorder;
 
 import model.Player;
 import Controller.Controler;
-
+import Pictures.*;
 
 public class gui_Main extends JFrame  {
 	/**
@@ -47,7 +47,7 @@ private JLabel lblInsertPassword;
 private JLabel lblInserthit;
 
 private Controler system;
-
+private Cards cards;
 
 	/**
 	 * Create the frame.
