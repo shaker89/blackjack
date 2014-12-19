@@ -230,10 +230,10 @@ if(hit.isEnabled()==false){
 			if(!x.equals("the player is busted") && !x.equals("the computer is busted")){
 			
 			
-			bjImage3c = new JLabel(system.getD().getComputer().getHandArray().get(system.getD().getComputer().getHandArray().size()-1).getCardpic());
-			bjImage3c.setBounds(610+30*(system.getD().getComputer().getHandArray().size()-2),0,100,100);
-			bjImage3c.setVisible(true);
-			twoDPanel.add(bjImage3c);
+//			bjImage3c = new JLabel(system.getD().getComputer().getHandArray().get(system.getD().getComputer().getHandArray().size()-1).getCardpic());
+//			bjImage3c.setBounds(610+30*(system.getD().getComputer().getHandArray().size()-2),0,100,100);
+//			bjImage3c.setVisible(true);
+//			twoDPanel.add(bjImage3c);
 			}
 			twoDPanel.repaint();
 			//if someone win
