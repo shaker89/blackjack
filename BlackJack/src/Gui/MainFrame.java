@@ -9,12 +9,17 @@ import java.awt.Shape;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.xml.soap.Text;
@@ -89,10 +94,24 @@ public class MainFrame extends JFrame implements ActionListener{
 			
 		jdp.setVisible(true);
 		
+		this.addWindowListener(new WindowAdapter() {
+			public void windowClosing(final WindowEvent arg0) {
+				if(JOptionPane.showInternalConfirmDialog(jdp, 
+						"It is highly recommended that you save " +
+						"\nthe changes you made before leaving\n " +
+						"Do you want to save the changes ?", "Save",
+						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+					system.saveSystem();
+				}
+				dispose();
+			}
+		});
+
+	}
 	
 
 		
-	}
+	
 	private void addButtons() {
 		// TODO Auto-generated method stub
 		
@@ -318,7 +337,6 @@ if(hit.isEnabled()==false){
 		 
 		 
 	}
-	
 	
 	
 	

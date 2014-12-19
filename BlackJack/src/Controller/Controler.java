@@ -1,16 +1,22 @@
 package Controller;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.HashMap;
 
 import model.Deck;
 import model.Player;
 
-public class Controler implements IControler {
+public class Controler implements IControler,Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
 	private Deck d;
 
 	public Deck getD() {
@@ -170,6 +176,35 @@ public class Controler implements IControler {
 		
 		d.getWael().setMoney(d.getWael().getMoney()-20);
 		
+	}
+	
+	
+
+	/**
+	 * Saves the system's data into BlackJack.ser file
+	 */
+
+	public void saveSystem() {
+		FileOutputStream fos = null;
+		ObjectOutputStream oos = null;
+		try {
+			fos = new FileOutputStream("BlackJack.ser");
+			oos = new ObjectOutputStream(fos);
+			oos.writeObject(this);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (fos != null) {
+					fos.close();
+				}
+				if (oos != null) {
+					oos.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 

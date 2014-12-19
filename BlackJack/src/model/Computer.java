@@ -1,8 +1,13 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Computer {
+public class Computer implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Card> HandArray;
 	protected int sumOfCards=0;
 	private String status;

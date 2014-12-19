@@ -3,6 +3,7 @@
  */
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -15,8 +16,12 @@ import model.Constants;
  * @author wael
  *
  */
-public class Deck {
+public class Deck implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//  ArrayList<Card> deckSet = new ArrayList<Card>(); 
 	private  ArrayList<Card>  cards;
 	private  Player wael;

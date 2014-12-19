@@ -1,8 +1,13 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Player extends Computer {
+public class Player extends Computer implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int Money ;
 	private String userName;
 	private String Password;

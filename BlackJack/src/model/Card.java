@@ -1,11 +1,16 @@
 package model;
 
 import java.awt.Image;
+import java.io.Serializable;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
 
-public class Card {
+public class Card implements Serializable {
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 private int number;
 private String suit;
 private int value;

@@ -1,7 +1,9 @@
 package Gui;
 
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -75,7 +77,27 @@ setSize(500,400);
 		 lblInsertPassword = new JLabel("Password");
 		lblInsertPassword.setBounds(58, 115, 160, 30);
 		lblInsertPassword.setVisible(true);
-
+		
+		
+		JButton signup = new JButton("U don't got any account ? Click Here Now To Sign Up");
+        signup.setToolTipText("Sign Up");
+        signup.setBackground(Color.WHITE);
+        signup.setBorderPainted(false);
+        signup.setFont(new Font("", Font.BOLD, 12));
+		signup.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				SignUp_Frame m = new SignUp_Frame(system)
+;
+				m.setVisible(true);
+				
+			}
+		});
+		signup.setBounds(10, 200, 400, 50);
+		getContentPane().add(signup);
+		
+		
 		JDP.add(lblInsertPassword);
 		JDP.repaint();
 		java.net.URL url = gui_Main.class.getResource("/pictures/logIn.png");
@@ -108,7 +130,42 @@ setSize(500,400);
 		JDP.add(lblInserthit);
 		JDP.repaint();
 	}
+	
+	private static Controler readSavedData() {
+		FileInputStream fis = null;
+		ObjectInputStream ois = null;
+		try {
+			fis = new FileInputStream("BlackJack.ser");
+			ois = new ObjectInputStream(fis);
+			return (Controler) ois.readObject();
+		} catch (Exception e) {
+			return new Controler();
+		} finally {
+			try {
+				if (fis != null) {
+					fis.close();
+				}
+				if (ois != null) {
+					ois.close();
+				}
+			} catch (Exception e) {
+				return new Controler();
+			}
+		}
+	}
+	
+	
 public void log(){
+	//Controler system=Controler.getInstance(); 
+	Controler sys = null;
+	File f = new File("BlackJack.ser");
+	if (f.exists()) {
+		sys = readSavedData();
+	} else {
+		sys = new Controler();
+	}
+	
+	
 	int flag=0;
 	for(Map.Entry<String,Player>  x : getSystem().getPlayers().entrySet())
 	{
