@@ -8,7 +8,7 @@ public class main {
 
 	public static void main(String[] args) {
  System.out.println("Game Is Running");
- System.out.println("wa2eeeel al homo");
+ System.out.println("astgfr allah al3dem");
  int flag;
  final Controler system= new Controler();
  gui_Main gm = new gui_Main(system);

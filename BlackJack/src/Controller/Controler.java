@@ -62,6 +62,8 @@ public class Controler implements IControler {
 	// /hit until someone get busted
 	public String hit() {
 		// TODO Auto-generated method stub
+
+		
 		d.hit(true, false);
 		int temp = chicking();
 		if (temp == 1)
