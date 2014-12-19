@@ -3,13 +3,13 @@ package model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-<<<<<<< HEAD
+
 public class Player extends Computer implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-=======
+
 public class Player extends Computer {
 	private String firstName;
 	private String lastName;
