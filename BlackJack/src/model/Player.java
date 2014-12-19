@@ -3,14 +3,50 @@ package model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+<<<<<<< HEAD
 public class Player extends Computer implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+=======
+public class Player extends Computer {
+	private String firstName;
+	private String lastName;
+	public String getFirstName() {
+		return firstName;
+	}
+
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+
+	public Player(String firstName, String lastName, int money, String userName, String password) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		Money = money;
+		this.userName = userName;
+		Password = password;
+	}
+
+
+	public String getLastName() {
+		return lastName;
+	}
+
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+>>>>>>> branch 'master' of https://github.com/shaker89/blackjack
 	private int Money ;
 	private String userName;
 	private String Password;
+	
 	public String getUserName() {
 		return userName;
 	}

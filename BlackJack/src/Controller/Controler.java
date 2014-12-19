@@ -18,6 +18,7 @@ public class Controler implements IControler,Serializable {
 	 * 
 	 */
 	private Deck d;
+	
 
 	public Deck getD() {
 		return d;
@@ -42,6 +43,12 @@ public class Controler implements IControler,Serializable {
 		Players = players;
 	}
 
+	
+	
+	public void addPlayer(Player p){
+		
+		Players.put(p.getUserName(),p);
+	}
 	public Controler() {
 		Players = new HashMap<String,Player >();
 		addToPlayers("", "");
@@ -178,6 +185,7 @@ public class Controler implements IControler,Serializable {
 		
 	}
 	
+<<<<<<< HEAD
 	
 
 	/**
@@ -205,6 +213,14 @@ public class Controler implements IControler,Serializable {
 				e.printStackTrace();
 			}
 		}
+=======
+	public void addUser(String Firstname , String LastName , String user , String pass 
+			,int money){
+		Player p = new Player(Firstname, LastName, money, user, pass);
+		addPlayer(p);
+		
+		
+>>>>>>> branch 'master' of https://github.com/shaker89/blackjack
 	}
 	
 
