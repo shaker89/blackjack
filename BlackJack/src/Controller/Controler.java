@@ -12,6 +12,7 @@ public class Controler implements IControler {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Deck d;
+	
 
 	public Deck getD() {
 		return d;
@@ -36,6 +37,12 @@ public class Controler implements IControler {
 		Players = players;
 	}
 
+	
+	
+	public void addPlayer(Player p){
+		
+		Players.put(p.getUserName(),p);
+	}
 	public Controler() {
 		Players = new HashMap<String,Player >();
 		addToPlayers("", "");
@@ -169,6 +176,14 @@ public class Controler implements IControler {
 	public void removeCoinsFromPlayer(){
 		
 		d.getWael().setMoney(d.getWael().getMoney()-20);
+		
+	}
+	
+	public void addUser(String Firstname , String LastName , String user , String pass 
+			,int money){
+		Player p = new Player(Firstname, LastName, money, user, pass);
+		addPlayer(p);
+		
 		
 	}
 	
