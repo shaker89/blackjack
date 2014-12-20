@@ -8,12 +8,18 @@ import java.awt.event.ActionListener;
 
 
 
+
+
+
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 import Controller.Controler;
 
@@ -25,19 +31,20 @@ public class SignUp_Frame  extends JFrame implements ActionListener{
 	
 
 	private static final long serialVersionUID = 1L;	
-	private JTextField name = new JTextField();
-	private JTextField username = new JTextField();
-	private JTextField password= new JTextField();
-	private JTextField country = new JTextField();
-	private JTextField city= new JTextField();
-	private JTextField email = new JTextField();
+	private JTextField firstname = new JTextField();
+	private JTextField lastname = new JTextField();
+	private JTextField username= new JTextField();
+	private JTextField password = new JTextField();
+	private JTextField money= new JTextField();
 
 	protected JDesktopPane JDP = new JDesktopPane();
+	Controler  system;
 	/**
 	 * Constructor for AddNewSponser_Frame class 
 	 */
-	public  SignUp_Frame(final Controler system) {
+	public  SignUp_Frame( Controler sys) {
 		super("Sign Up Here");
+		system=sys;
 		this.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
 		this.setContentPane(JDP);
 	
@@ -57,57 +64,46 @@ public class SignUp_Frame  extends JFrame implements ActionListener{
 		name_lable.setBounds(10, 100, 137, 16);
 		getContentPane().add(name_lable);
 
-		name.setFont(new Font("", Font.BOLD, 12));
-		name.setBounds(141, 100, 169, 20);
-		getContentPane().add(name);
+		firstname.setFont(new Font("", Font.BOLD, 12));
+		firstname.setBounds(141, 100, 169, 20);
+		getContentPane().add(firstname);
 	
 
-		final JLabel pp_label = new JLabel("User Name:");
+		final JLabel pp_label = new JLabel("Last Name:");
 		pp_label.setFont(new Font("", Font.BOLD, 12));
 		pp_label.setBounds(10, 130, 137, 16);
 		getContentPane().add(pp_label);
 
+		lastname.setFont(new Font("", Font.BOLD, 12));
+		lastname.setBounds(141, 130, 169, 20);
+		getContentPane().add(lastname);
+		
+		final JLabel user_label = new JLabel("PassWord");
+		user_label.setFont(new Font("", Font.BOLD, 12));
+		user_label.setBounds(10, 160, 137, 16);
+		getContentPane().add(user_label);
+
 		username.setFont(new Font("", Font.BOLD, 12));
-		username.setBounds(141, 130, 169, 20);
+		username.setBounds(141, 160, 169, 20);
 		getContentPane().add(username);
-		
-		final JLabel pass_label = new JLabel("PassWord");
-		pass_label.setFont(new Font("", Font.BOLD, 12));
-		pass_label.setBounds(10, 160, 137, 16);
-		getContentPane().add(pass_label);
 
+		final JLabel password_label = new JLabel("Country:");
+		password_label.setFont(new Font("", Font.BOLD, 12));
+		password_label.setBounds(10, 190, 137, 16);
+		getContentPane().add(password_label);
+		
 		password.setFont(new Font("", Font.BOLD, 12));
-		password.setBounds(141, 160, 169, 20);
+		password.setBounds(141, 190, 169, 20);
 		getContentPane().add(password);
-
-		final JLabel country_label = new JLabel("Country:");
-		country_label.setFont(new Font("", Font.BOLD, 12));
-		country_label.setBounds(10, 190, 137, 16);
-		getContentPane().add(country_label);
 		
-		country.setFont(new Font("", Font.BOLD, 12));
-		country.setBounds(141, 190, 169, 20);
-		getContentPane().add(country);
+		final JLabel money_label = new JLabel("City:");
+		money_label.setFont(new Font("", Font.BOLD, 12));
+		money_label.setBounds(10, 220, 137, 16);
+		getContentPane().add(money_label);
 		
-		final JLabel city_label = new JLabel("City:");
-		city_label.setFont(new Font("", Font.BOLD, 12));
-		city_label.setBounds(10, 220, 137, 16);
-		getContentPane().add(city_label);
-		
-		city.setFont(new Font("", Font.BOLD, 12));
-		city.setBounds(141, 220, 169, 20);
-		getContentPane().add(city);
-		
-		final JLabel email_label = new JLabel("House Number:");
-		email_label.setFont(new Font("", Font.BOLD, 12));
-		email_label.setBounds(10, 250, 137, 16);
-		getContentPane().add(email_label);
-		
-		email.setFont(new Font("", Font.BOLD, 12));
-		email.setBounds(141, 250, 169, 20);
-		getContentPane().add(email);
-		
-		
+		money.setFont(new Font("", Font.BOLD, 12));
+		money.setBounds(141, 220, 169, 20);
+		getContentPane().add(money);
 	
 		
 		JButton addButton = new JButton("Add Player");
@@ -122,20 +118,24 @@ public class SignUp_Frame  extends JFrame implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-	/*	try {
+		try {
 			
-			if(manu != null && system.addManufacturer(name.getText(),Country.getText(), City.getText(), Street.getText(), Integer.parseInt(HouseNumber.getText()), ZipCode.getText(), Integer.parseInt(profitPercentage.getText()))) {
-				message.Information("The Manufacturer " + name.getText()+ 
-										"\nwas successfully added to the systemtem");
+			if(  system.addUser(firstname.getText(), lastname.getText(), username.getText(), password.getText(), Integer.parseInt(money.getText()) )){
+				JOptionPane.showInternalMessageDialog(this.getContentPane(), "The Manufacturer " +  firstname.getText() + lastname.getText()+
+						"\nwas successfully added to the systemtem", "Sign Up", JOptionPane.INFORMATION_MESSAGE);
+				
 			}
 			else {
-				message.Error("The Manufacturer" + name.getText() + 
-										"\nwas not added to the systemtem");
+				JOptionPane.showInternalMessageDialog(this.getContentPane(), "The Manufacturer" + firstname.getText() + lastname.getText()+ 
+						"\nwas not added to the systemtem", "", JOptionPane.ERROR_MESSAGE);
+				
+			
 			}
 		}
 		catch(Exception e) {
-			message.Error(e.getMessage());
-		}*/
+			JOptionPane.showInternalMessageDialog(this.getContentPane(), e.getMessage(), "", JOptionPane.ERROR_MESSAGE);
+		
+		}
 	}
 
 		}

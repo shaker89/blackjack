@@ -45,9 +45,11 @@ public class Controler implements IControler,Serializable {
 
 	
 	
-	public void addPlayer(Player p){
+	public boolean addPlayer(Player p){
 		
-		Players.put(p.getUserName(),p);
+		if(Players.put(p.getUserName(),p)!=null)
+			return true;
+		return false;
 	}
 	public Controler() {
 		Players = new HashMap<String,Player >();
@@ -185,7 +187,7 @@ public class Controler implements IControler,Serializable {
 		
 	}
 	
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	
 
 	/**
@@ -212,15 +214,17 @@ public class Controler implements IControler,Serializable {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-=======
-	public void addUser(String Firstname , String LastName , String user , String pass 
+		}}
+
+	public boolean addUser(String Firstname , String LastName , String user , String pass 
 			,int money){
+	
 		Player p = new Player(Firstname, LastName, money, user, pass);
-		addPlayer(p);
+		if(addPlayer(p)) return true;
+		return false;
 		
 		
->>>>>>> branch 'master' of https://github.com/shaker89/blackjack
+//>>>>>>> branch 'master' of https://github.com/shaker89/blackjack
 	}
 	
 

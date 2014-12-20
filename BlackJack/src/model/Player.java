@@ -10,7 +10,7 @@ public class Player extends Computer implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-public class Player extends Computer {
+
 	private String firstName;
 	private String lastName;
 	public String getFirstName() {
@@ -42,7 +42,7 @@ public class Player extends Computer {
 		this.lastName = lastName;
 	}
 
->>>>>>> branch 'master' of https://github.com/shaker89/blackjack
+//>>>>>>> branch 'master' of https://github.com/shaker89/blackjack
 	private int Money ;
 	private String userName;
 	private String Password;
