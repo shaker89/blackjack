@@ -9,6 +9,7 @@ public class main {
 	public static void main(String[] args) {
  System.out.println("Game Is Running");
  System.out.println("astgfr allah al3dem");
+ System.out.println("ya zlme le m5rbenhaaaaaa!!");
  int flag;
  final Controler system= new Controler();
  gui_Main gm = new gui_Main(system);
