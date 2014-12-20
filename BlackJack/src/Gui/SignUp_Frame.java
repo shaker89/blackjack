@@ -78,7 +78,7 @@ public class SignUp_Frame  extends JFrame implements ActionListener{
 		lastname.setBounds(141, 130, 169, 20);
 		getContentPane().add(lastname);
 		
-		final JLabel user_label = new JLabel("PassWord");
+		final JLabel user_label = new JLabel("User Name");
 		user_label.setFont(new Font("", Font.BOLD, 12));
 		user_label.setBounds(10, 160, 137, 16);
 		getContentPane().add(user_label);
@@ -87,7 +87,7 @@ public class SignUp_Frame  extends JFrame implements ActionListener{
 		username.setBounds(141, 160, 169, 20);
 		getContentPane().add(username);
 
-		final JLabel password_label = new JLabel("Country:");
+		final JLabel password_label = new JLabel("Password:");
 		password_label.setFont(new Font("", Font.BOLD, 12));
 		password_label.setBounds(10, 190, 137, 16);
 		getContentPane().add(password_label);
@@ -96,7 +96,7 @@ public class SignUp_Frame  extends JFrame implements ActionListener{
 		password.setBounds(141, 190, 169, 20);
 		getContentPane().add(password);
 		
-		final JLabel money_label = new JLabel("City:");
+		final JLabel money_label = new JLabel("Money");
 		money_label.setFont(new Font("", Font.BOLD, 12));
 		money_label.setBounds(10, 220, 137, 16);
 		getContentPane().add(money_label);
