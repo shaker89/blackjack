@@ -170,9 +170,9 @@ public void log(){
 	for(Map.Entry<String,Player>  x : getSystem().getPlayers().entrySet())
 	{
 		if(x.getKey().equals(username.getText()) && x.getValue().getPassword().equals(pas.getText()))
-		{system.logInValid();
+		{sys.logInValid();
 			this.setVisible(false);
-			MainFrame mf = new MainFrame(system,username.getText());
+			MainFrame mf = new MainFrame(sys,username.getText());
 			 mf.setVisible(true);
 			flag=1;
 			

@@ -121,13 +121,13 @@ public class SignUp_Frame  extends JFrame implements ActionListener{
 		try {
 			
 			if(  system.addUser(firstname.getText(), lastname.getText(), username.getText(), password.getText(), Integer.parseInt(money.getText()) )){
-				JOptionPane.showInternalMessageDialog(this.getContentPane(), "The Manufacturer " +  firstname.getText() + lastname.getText()+
-						"\nwas successfully added to the systemtem", "Sign Up", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showInternalMessageDialog(this.getContentPane(), "The user " +  firstname.getText() +" "+ lastname.getText()+
+						"\nwas successfully added to the system", "Sign Up", JOptionPane.INFORMATION_MESSAGE);
 				
 			}
 			else {
-				JOptionPane.showInternalMessageDialog(this.getContentPane(), "The Manufacturer" + firstname.getText() + lastname.getText()+ 
-						"\nwas not added to the systemtem", "", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showInternalMessageDialog(this.getContentPane(), "The user " + firstname.getText() +" "+ lastname.getText()+ 
+						"\nwas not added to the system", "", JOptionPane.ERROR_MESSAGE);
 				
 			
 			}

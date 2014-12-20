@@ -46,10 +46,11 @@ public class Controler implements IControler,Serializable {
 	
 	
 	public boolean addPlayer(Player p){
-		
-		if(Players.put(p.getUserName(),p)!=null)
+		if(p!=null ){
+		Players.put(p.getUserName(),p);
+		saveSystem();
 			return true;
-		return false;
+		}return false;
 	}
 	public Controler() {
 		Players = new HashMap<String,Player >();
