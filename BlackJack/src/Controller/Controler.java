@@ -17,9 +17,21 @@ public class Controler implements IControler,Serializable {
 	/**
 	 * 
 	 */
-	private Deck d;
 	
+	/** Singleton instance */
+	private static Controler instance;
+	
+	
+	
+	
+	private Deck d;
 
+	public static Controler getInstance() {
+		if (instance == null)
+			instance = new Controler();
+		return instance;
+	}
+	
 	public Deck getD() {
 		return d;
 	}
