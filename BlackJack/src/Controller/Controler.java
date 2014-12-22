@@ -66,7 +66,7 @@ public class Controler implements IControler,Serializable {
 	}
 	public Controler() {
 		Players = new HashMap<String,Player >();
-		addToPlayers("", "");
+	//	addToPlayers("", "");
 		
 
 	}

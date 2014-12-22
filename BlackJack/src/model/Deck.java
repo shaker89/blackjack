@@ -16,7 +16,7 @@ import model.Constants;
  * @author wael
  *
  */
-public class Deck implements Serializable {
+public class Deck  {
 	
 	/**
 	 * 

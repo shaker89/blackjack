@@ -3,7 +3,7 @@ package model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Computer implements Serializable{
+public class Computer {
 	/**
 	 * 
 	 */

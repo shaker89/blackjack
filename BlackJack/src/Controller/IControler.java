@@ -3,11 +3,13 @@
  */
 package Controller;
 
+import java.io.Serializable;
+
 /**
  * @author wael
  *
  */
-public interface IControler  {
+public interface IControler extends Serializable  {
 	
 	
 	

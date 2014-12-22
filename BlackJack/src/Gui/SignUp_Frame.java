@@ -35,7 +35,6 @@ public class SignUp_Frame  extends JFrame implements ActionListener{
 	private JTextField lastname = new JTextField();
 	private JTextField username= new JTextField();
 	private JTextField password = new JTextField();
-	private JTextField money= new JTextField();
 
 	protected JDesktopPane JDP = new JDesktopPane();
 	Controler  system;
@@ -96,14 +95,7 @@ public class SignUp_Frame  extends JFrame implements ActionListener{
 		password.setBounds(141, 190, 169, 20);
 		getContentPane().add(password);
 		
-		final JLabel money_label = new JLabel("Money");
-		money_label.setFont(new Font("", Font.BOLD, 12));
-		money_label.setBounds(10, 220, 137, 16);
-		getContentPane().add(money_label);
 		
-		money.setFont(new Font("", Font.BOLD, 12));
-		money.setBounds(141, 220, 169, 20);
-		getContentPane().add(money);
 	
 		
 		JButton addButton = new JButton("Add Player");
@@ -120,7 +112,7 @@ public class SignUp_Frame  extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent arg0) {
 		try {
 			
-			if(  system.addUser(firstname.getText(), lastname.getText(), username.getText(), password.getText(), Integer.parseInt(money.getText()) )){
+			if(  system.addUser(firstname.getText(), lastname.getText(), username.getText(), password.getText() ,100)){
 				JOptionPane.showInternalMessageDialog(this.getContentPane(), "The user " +  firstname.getText() +" "+ lastname.getText()+
 						"\nwas successfully added to the system", "Sign Up", JOptionPane.INFORMATION_MESSAGE);
 				

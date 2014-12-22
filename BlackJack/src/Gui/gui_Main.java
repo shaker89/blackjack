@@ -70,9 +70,6 @@ setSize(500,400);
 		JDP.setLayout(null);
 
 	//	JDP.repaint();
-	
-
-		
 
 		 lblInsertPassword = new JLabel("Password");
 		lblInsertPassword.setBounds(58, 115, 160, 30);
@@ -129,50 +126,17 @@ setSize(500,400);
 		lblInserthit.setVisible(true);
 		JDP.add(lblInserthit);
 		JDP.repaint();
+	
 	}
 	
-	private static Controler readSavedData() {
-		FileInputStream fis = null;
-		ObjectInputStream ois = null;
-		try {
-			fis = new FileInputStream("BlackJack.ser");
-			ois = new ObjectInputStream(fis);
-			return (Controler) ois.readObject();
-		} catch (Exception e) {
-			return new Controler();
-		} finally {
-			try {
-				if (fis != null) {
-					fis.close();
-				}
-				if (ois != null) {
-					ois.close();
-				}
-			} catch (Exception e) {
-				return new Controler();
-			}
-		}
-	}
-	
-	
-public void log(){
-	//Controler system=Controler.getInstance(); 
-	Controler sys = null;
-	File f = new File("BlackJack.ser");
-	if (f.exists()) {
-		sys = readSavedData();
-	} else {
-		sys = new Controler();
-	}
-	
-	
+public void	log(){
 	int flag=0;
-	for(Map.Entry<String,Player>  x : getSystem().getPlayers().entrySet())
+	for(Map.Entry<String,Player>  x : system.getPlayers().entrySet())
 	{
 		if(x.getKey().equals(username.getText()) && x.getValue().getPassword().equals(pas.getText()))
-		{sys.logInValid();
+		{system.logInValid();
 			this.setVisible(false);
-			MainFrame mf = new MainFrame(sys,username.getText());
+			MainFrame mf = new MainFrame(system,username.getText());
 			 mf.setVisible(true);
 			flag=1;
 			
@@ -187,5 +151,7 @@ public void log(){
 	username.setText("");
 	return;
 }}
+
+	
 
 }
