@@ -11,6 +11,8 @@ import java.awt.event.ActionListener;
 
 
 
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
@@ -46,8 +48,10 @@ public class SignUp_Frame  extends JFrame implements ActionListener{
 		system=sys;
 		this.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
 		this.setContentPane(JDP);
-	
-		getContentPane().setBackground(Color.LIGHT_GRAY);  
+		final JLabel img = new JLabel(new ImageIcon("black.jpg"));
+		img.setBounds(0,0,this.getWidth(),this.getHeight());
+		getContentPane().add(img);
+		//getContentPane().setBackground(Color.LIGHT_GRAY);  
 		this.setSize(450,450);
 		
 		final JLabel lable = new JLabel("Sign Up And Get Start To Play Black Jack!!!");
@@ -110,17 +114,22 @@ public class SignUp_Frame  extends JFrame implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		try {
-			
-			if(  system.addUser(firstname.getText(), lastname.getText(), username.getText(), password.getText() ,100)){
-				JOptionPane.showInternalMessageDialog(this.getContentPane(), "The user " +  firstname.getText() +" "+ lastname.getText()+
+		try {	if(firstname.getText()=="" || lastname.getText()=="" || username.getText()==""|| password.getText()=="")
+		{		JOptionPane.showInternalMessageDialog(this.getContentPane(), "u need to fill all the fields ! ", "", JOptionPane.ERROR_MESSAGE);
+		
+		return ; }
+		if(system.Players.containsKey(username.getText()))
+		{	JOptionPane.showInternalMessageDialog(this.getContentPane(), "User Name is already Exits! ", "", JOptionPane.ERROR_MESSAGE);
+		return;}
+		if(  system.addUser(firstname.getText(), lastname.getText(), username.getText(), password.getText() ,100)){
+					JOptionPane.showInternalMessageDialog(this.getContentPane(), "The user " +  firstname.getText() +" "+ lastname.getText()+
 						"\nwas successfully added to the system", "Sign Up", JOptionPane.INFORMATION_MESSAGE);
-				
+				dispose();
 			}
 			else {
 				JOptionPane.showInternalMessageDialog(this.getContentPane(), "The user " + firstname.getText() +" "+ lastname.getText()+ 
 						"\nwas not added to the system", "", JOptionPane.ERROR_MESSAGE);
-				
+						
 			
 			}
 		}
