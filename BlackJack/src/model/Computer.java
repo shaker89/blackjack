@@ -45,6 +45,10 @@ public class Computer implements Serializable {
 	HandArray.add(card);
 	}
 
+	public void setHandArray(ArrayList<Card> handArray) {
+		HandArray = handArray;
+	}
+
 	public int updateSomeOFCards(){
 		sumOfCards=0;
 		for(Card i : getHandArray())
