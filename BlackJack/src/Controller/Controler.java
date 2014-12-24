@@ -4,11 +4,12 @@ import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Map;
 
 import model.Deck;
 import model.Player;
 
-public class Controler implements IControler,Serializable {
+public final  class Controler implements IControler,Serializable {
 
 	/**
 	 * 
@@ -19,16 +20,19 @@ public class Controler implements IControler,Serializable {
 	 */
 	
 	/** Singleton instance */
-	private static Controler instance;
+	private static  Controler instance = null;
 	
 	
 	
 	
 	private Deck d;
+	private String user;
+	
 
 	public static Controler getInstance() {
 		if (instance == null)
 			instance = new Controler();
+		else System.out.println("haaaaaaahaaaa");
 		return instance;
 	}
 	
@@ -41,13 +45,13 @@ public class Controler implements IControler,Serializable {
 	}
 
 	// data structure to save the players details
-	public HashMap<String, Player> Players;
+	public   HashMap<String, Player>  Players ;
 
 	
 
 
 
-	public HashMap<String, Player> getPlayers() {
+	public  HashMap<String, Player> getPlayers()  {
 		return Players;
 	}
 
@@ -71,19 +75,11 @@ public class Controler implements IControler,Serializable {
 
 	}
 
-	public void addToPlayers(String username, String Password) {
-		
-		Player p = new Player(100);
-		p.setPassword("1234");
-		p.setUserName("wael");
-		Players.put("wael", p);
-		
 
-	}
 	
-	public void logInValid(){
+	public void logInValid(String user){
 		
-		d = new Deck();
+	this.user=user;
 	}
 
 	@Override
@@ -93,85 +89,91 @@ public class Controler implements IControler,Serializable {
 
 		
 		d.hit(true, false);
-		int temp = chicking();
-		if (temp == 1)
-			return "the player is busted";
-		if (temp == 2)
-			return "the computer is busted";
-		if (temp == 3)
-			return "the player win";
-		if (temp == 4)
-			return "the computer is win";
-		else
-			return "";
+		return  chickIFOverOrEqual21();
+		
 
 	}
 
 	@Override
-	// this method meaning :the player will not play in this round
+	// the method meaning :the player will not play in this round
 	public String stand() {
 		d.getstand(false, true);
-		int temp = chicking();
-		if (temp == 1)
-			return "the player is busted";
-		if (temp == 2)
-			return "the computer is busted";
-		if (temp == 3)
-			return "the player win";
-		if (temp == 4)
-			return "the computer is win";
-		else
-			return "";
+		return  chickIFOverOrEqual21();
+//		if (temp == 1)
+//			return "the player is busted";
+//		if (temp == 2)
+//			return "the player win";
+//		if (temp == 3)
+//			return "the computer busted";
+//		if (temp == 4)
+//			return "the computer win";
+//		else
+//			return "";
 
 	}
 
 	@Override
 	public void start() {
 
-		// d.StartGame();
-		getD().StartGame();
-
-	}
-
-	private int chicking() {
-		int t = chickIFOverOrEqual21();
-		if (t == 1)
-
-			return 1;
-
-		else if (t == 2)
-
-			return 2;
-		else {
-
+		
+		for(Map.Entry<String,Player>  x : getPlayers().entrySet())
+		{System.out.println(">>>>>>"+x.getKey() + x.getValue().getFirstName() +"  "+x.getValue().getMoney());
+			if(x.getKey().equals(user))
+			{
+			
+		d = new Deck(user,x.getValue().getMoney());
+			return;}
 		}
-		return 0;
 	}
+
+//	private String chicking() {
+//		System.out.println("$"+d.getchalenger().getMoney());
+//		//int t = chickIFOverOrEqual21();
+//		
+//		switch(t){
+//		case 1 : return "the player is busted";
+//		case 2 : return "the player win";
+//		case 3 : return "the computer busted";
+//		case 4: return "the computer win";
+//		
+//		}
+//		
+//		
+//		return 0;
+//	}
 
 	@Override
-	public int chickIFOverOrEqual21() {
-		int p;
-		int c;
-		if ((p = d.getWael().updateSomeOFCards()) > 21) {
+	public String chickIFOverOrEqual21() {
+		int p=d.getchalenger().updateSomeOFCards();
+		int c= d.getComputer().updateSomeOFCards();
+		if(p>17 && p<21 && p>c)
+			return "the player win";
+			if(c>17 && c<21 && c>p)
+				return "the computer win";
+			
+		if (p  > 21) {
 
-			return 1;
+			return "the player is busted";
 
 		}
+		
+		
 		if (p == 21)
-			return 3;
-		if ((c = d.getComputer().updateSomeOFCards()) > 21) {
+			return "the player win";
+		if (c  > 21) {
 
-			return 2;
+			return "the computer busted";
 		}
 		if (c == 21)
-			return 4;
-		return 0;
+			return "the computer win";
+		
+		return "";
 	}
 
 	@Override
 	public void updateSumOFCards() {
 		// TODO Auto-generated method stub
-		d.getWael().updateSomeOFCards();
+		d.getchalenger().updateSomeOFCards();
 		d.getComputer().updateSomeOFCards();
 	}
 
@@ -179,28 +181,32 @@ public class Controler implements IControler,Serializable {
 	public int shuffle() {
 		// TODO Auto-generated method stub
 
-		System.out.println("###" + d.shuffle().nextInt());
+		 d.shuffle();
 		return 0;
 	}
 
-	@Override
-	public int chickIFOver21() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	
 	
 	public void UpdateCoinsOfPlayer(){
-		
-		d.getWael().setMoney(d.getWael().getMoney()+20);
+		d.getchalenger().setMoney(d.getchalenger().getMoney()+20);
+		System.out.println("adding "+(d.getchalenger().getMoney()));
+		getPlayers().get(d.getchalenger().getUserName()).setMoney(d.getchalenger().getMoney());
+		System.out.println("**"+getPlayers().get(d.getchalenger().getUserName()).getMoney());
+
 		
 	}
 	public void removeCoinsFromPlayer(){
+		d.getchalenger().setMoney(d.getchalenger().getMoney()-20);
+System.out.println("removee "+(d.getchalenger().getMoney()));
 		
-		d.getWael().setMoney(d.getWael().getMoney()-20);
+getPlayers().get(d.getchalenger().getUserName()).setMoney(d.getchalenger().getMoney());
+System.out.println("**"+getPlayers().get(d.getchalenger().getUserName()).getMoney());
+
+
+		
 		
 	}
 	
-//<<<<<<< HEAD
 	
 
 	/**
@@ -237,7 +243,6 @@ public class Controler implements IControler,Serializable {
 		return false;
 		
 		
-//>>>>>>> branch 'master' of https://github.com/shaker89/blackjack
 	}
 	
 

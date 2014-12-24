@@ -3,7 +3,7 @@ package model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Computer {
+public class Computer implements Serializable {
 	/**
 	 * 
 	 */
@@ -14,10 +14,16 @@ public class Computer {
 	public ArrayList<Card> getHandArray() {
 		return HandArray;
 	}
-	public void setHandArray(ArrayList<Card> handArray) {
-		HandArray = handArray;
+	
+	public void removeHandArray(){
+		HandArray = new ArrayList<Card>();
+		
 	}
+//	public void setHandArray(ArrayList<Card> handArray) {
+//		HandArray = handArray;
+//	}
 	public int getSumOfCards() {
+		updateSomeOFCards();
 		return sumOfCards;
 	}
 	public Computer() {
@@ -40,7 +46,7 @@ public class Computer {
 	}
 
 	public int updateSomeOFCards(){
-		
+		sumOfCards=0;
 		for(Card i : getHandArray())
 		{
 			sumOfCards+=i.getValue();

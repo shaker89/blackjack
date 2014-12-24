@@ -29,7 +29,7 @@ public class ComputerTest {
 		ArrayList<Card> handArray = new ArrayList<Card>();
 		handArray.add(card1);
 		handArray.add(card2);
-		tester.setHandArray(handArray);
+		//tester.setHandArray(handArray);
 		assertEquals("Result", 17, tester.updateSomeOFCards());
 		
 	}

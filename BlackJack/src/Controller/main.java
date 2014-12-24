@@ -10,32 +10,33 @@ import javax.swing.JOptionPane;
 
 import model.Player;
 import Gui.MainFrame;
-import Gui.gui_Main;
+import Gui.LogIn_Frame;
 
 public class main {
 
 	public static void main(String[] args) {
  System.out.println("Game Is Running");
- System.out.println("astgfr allah al3dem");
- System.out.println("ya zlme le m5rbenhaaaaaa!!");
- int flag;
+// if(Controler.haveInstance()==false)
+//	 System.out.println("dont have instance");
+// else System.out.println("have instance");
+//final Controler system = Controler.getInstance();
  final Controler system= readSavedData();
- gui_Main gm = new gui_Main(system);
+ LogIn_Frame gm = LogIn_Frame.getInstance(system);
  gm.setVisible(true);
- system.saveSystem();
-// MainFrame mf = new MainFrame(system);
-// mf.setVisible(true);
- //flag=c.start();
- //System.out.println("end of the game");
+// system.saveSystem();
 
 
 	}
 	private static Controler readSavedData() {
+//		if(Controler.getInstance()==null)
+//			System.out.println("error");
 		FileInputStream fis = null;
 		ObjectInputStream ois = null;
 		try {
+		
 			fis = new FileInputStream("BlackJack.ser");
 			ois = new ObjectInputStream(fis);
+			
 			return (Controler) ois.readObject();
 		} catch (Exception e) {
 			return new Controler();

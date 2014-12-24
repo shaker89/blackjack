@@ -5,18 +5,18 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
 
 import Gui.MainFrame;
-import Gui.gui_Main;
 import model.Constants;
 /**
- * @author wael
+ * @author chalenger
  *
  */
-public class Deck  {
+public class Deck implements Serializable  {
 	
 	/**
 	 * 
@@ -24,9 +24,10 @@ public class Deck  {
 	private static final long serialVersionUID = 1L;
 	//  ArrayList<Card> deckSet = new ArrayList<Card>(); 
 	private  ArrayList<Card>  cards;
-	private  Player wael;
+	private  Player chalenger;
 	private Player computer;
 	int numberOfCards;
+	private int mony;
 	boolean moreThan17;
 	public Random rand ;
 	//hitFlag=true ;: the player will play
@@ -37,21 +38,25 @@ public class Deck  {
 	public boolean standFlag1;
 	//standFlag=false ;: the computer will play
 	public boolean standFlag2;
-	public Deck() {
+	private String userN;
+	public Deck(String user, int mony) {
 		super();
 		this.cards = new ArrayList<Card>(52);
 		moreThan17=false;
-		
+		userN=user;
 		standFlag1=false;
 		standFlag2=false;
 		
+		this.mony=mony;
+		
+		StartGame();
 	}
 	
-	public Player getWael() {
-		return wael;
+	public Player getchalenger() {
+		return chalenger;
 	}
-	public void setWael(Player wael) {
-		this.wael = wael;
+	public void setchalenger(Player chalenger) {
+		this.chalenger = chalenger;
 	}
 	public Player getComputer() {
 		return computer;
@@ -63,24 +68,7 @@ public class Deck  {
 	public void setNumberOfCards(int numberOfCards) {
 		this.numberOfCards = numberOfCards;
 	}
-	//make 52 cards when starting the game
-	private void make52Cards() {
-		// TODO Auto-generated method stub
-//		int counter=numberOfCards=Constants.NumberOFCardsPerDeck;
-//		for(int i=0;i<13;i++)
-//			for(int j=0;j<4;j++){
-//				if(counter--==0)
-//					return;
-//				cards.add(new Card(i, Suit.values()[j]));
-//				System.out.println("i : "+i+"="+Suit.values()[j]);
-//				
-//				
-				
-				
-//			}
-		
-		
-	}
+	
 	
 	
 	
@@ -102,7 +90,7 @@ public class Deck  {
 	//starting the game
 	public void StartGame(){
 		
-		
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 //		//make 52 cards
 //		make52Cards();
 //		//making two players
@@ -321,8 +309,8 @@ public class Deck  {
 	    
 	    
 	    
-		wael = new Player(100);
-		 computer= new Player(100);
+		chalenger = new Player(userN,mony);
+		 computer= new Player();
 		 
 	//give each players two cards
 		hit(true,true);
@@ -358,11 +346,11 @@ public class Deck  {
 		 Card c= cards.get(temp1);
 		 //check if we have aces before
 		 if(c.getNumber()==11){
-		 for(int i = 0 ; i<wael.getHandArray().size();i++){
-			 if(wael.getHandArray().get(i).getNumber()==c.getNumber())
+		 for(int i = 0 ; i<chalenger.getHandArray().size();i++){
+			 if(chalenger.getHandArray().get(i).getNumber()==c.getNumber())
 			 c.setNumber(1);
 		 }}
-		wael.addToHandArray(c);
+		chalenger.addToHandArray(c);
 		System.out.println("card :"+cards.get(temp1));
 		cards.remove(temp1);
 
@@ -375,14 +363,16 @@ public class Deck  {
 			computer.addToHandArray(cards.get(temp2));
 			System.out.println("card :"+cards.get(temp2));
 			cards.remove(temp2);
-	}	
+	}
+	
 	
 	
 
 	
 
 }
-	
+
+
 
 
 

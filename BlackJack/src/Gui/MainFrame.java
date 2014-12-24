@@ -13,6 +13,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -24,6 +25,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.xml.soap.Text;
 
+import model.Card;
 import model.Deck;
 import Controller.Controler;
 
@@ -36,7 +38,7 @@ public class MainFrame extends JFrame implements ActionListener{
 	private JDesktopPane jdp = new JDesktopPane();
 	
 	JPanel twoDPanel = new JPanel();
-
+	JLabel ima;
 	JButton startGame;
 	JButton hit;
 	JButton stand;
@@ -44,39 +46,29 @@ public class MainFrame extends JFrame implements ActionListener{
 	JTextField theResult = new JTextField();;
 	// declare the labels to put the images on it
 	Label whoBusted;
-	JLabel bjImage1p;
-	JLabel bjImage2p;
-	JLabel bjImage3p;
-	JLabel bjImage4p;
-	JLabel bjImage5p;
-	JLabel bjImage6p;
-	JLabel bjImage1c;
-	JLabel bjImage2c;
-	JLabel bjImage3c;
-	JLabel bjImage4c;
-	JLabel bjImage5c;
-	JLabel bjImage6c;
-	
+
+	ArrayList<JLabel> arrayOfPictures = new ArrayList<JLabel>();; 
 	JTextField money ;
 	String userName;
 	JLabel bjImage;
-	
+	int monee;
 	private static final long serialVersionUID = 1L;
-     private Controler system;
-	public Controler getSystem() {
-		return system;
-	}
-	  public MainFrame(final Controler system, String userN) {
+     private final Controler system;
+//	public Controler getSystem() {
+//		return system;
+//	}
+	  public MainFrame(final Controler system, String userN, int money1) {
 		  super("***  Black Jack 2014  ***");
 			this.system = system;
 	setSize(200, 200);	
 	userName=userN;
+	monee= money1;
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+jdp.setLayout(null);
 		jdp.setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
 			this.setContentPane(jdp);
 			this.setBounds(0, 0, 1367, 737);
-			java.net.URL url = gui_Main.class.getResource("/pictures/background.jpg");
+			java.net.URL url = LogIn_Frame.class.getResource("/pictures/background.jpg");
 			 bjImage = new JLabel(new ImageIcon(url));
 			bjImage.setBounds(0,0,this.getWidth(),this.getHeight());
 			addButtons();
@@ -89,20 +81,22 @@ public class MainFrame extends JFrame implements ActionListener{
 			
 			twoDPanel.setBounds(0,0,this.getWidth(),this.getHeight()-150);
 			twoDPanel.setOpaque(false);
+			twoDPanel.setLayout(null);
+
 			jdp.add(twoDPanel, new Integer(1), 0);
 		
-			
 		jdp.setVisible(true);
 		
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(final WindowEvent arg0) {
 				if(JOptionPane.showInternalConfirmDialog(jdp, 
-						"It is highly recommended that you save " +
-						"\nthe changes you made before leaving\n " +
-						"Do you want to save the changes ?", "Save",
+						"you are sure you want to exit " 
+						, "",
 						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
-					system.saveSystem();
+					
 				}
+				 system.saveSystem();
+
 				dispose();
 			}
 		});
@@ -171,156 +165,178 @@ public class MainFrame extends JFrame implements ActionListener{
 		exit.setFont(new Font("", Font.BOLD, 9));
 		exit.addActionListener(this);
 		jdp.add(exit);
-		
-//		JLabel userName = new JLabel("the player is :");
-//		userName.setBounds(400,600,150,20);
-//		userName.setBackground(Color.WHITE);
-//		//getContentPane().add(userName);
-//		jdp.add(userName);
-		
-		
+	
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
 		String  cmd = e.getActionCommand();		
-int flag=-1;
+// if we press deal 
 		if(cmd.equals("Deal"))
-		{
-		
+		{	hit.setVisible(true);
+		stand.setVisible(true);
+		system.start();
+		//if not the first round
+		if (arrayOfPictures.size()!=0)
+			{
+			ima.setVisible(false);
+
+			ima=new JLabel();
+			
+			for(int i=0;i<arrayOfPictures.size();)
+			{
+				//hide the cards and remove the pictures
+				arrayOfPictures.get(i).setVisible(false);
+				arrayOfPictures.remove(i);
+			}
+				
+				
+				twoDPanel.repaint();
+			}
 			
 			theResult.setText("");
-if(hit.isEnabled()==false){
-				
-				twoDPanel.removeAll();
-				// refresh the panel.
+			startGame.setVisible(false);
+			
+			//make the pictures 
+			//two pictures for the computer and two pictures for the user
+			
+			arrayOfPictures.add(new JLabel(system.getD().getchalenger().getHandArray().get(0).getCardpic()));
+			arrayOfPictures.get(0).setBounds(580,470,100,100);
 			twoDPanel.repaint();
-	
-				
-				
-			}
+			arrayOfPictures.get(0).setVisible(true);
+			twoDPanel.add(arrayOfPictures.get(0));
+			twoDPanel.repaint();
 
+			
+			arrayOfPictures.add(new JLabel(system.getD().getchalenger().getHandArray().get(1).getCardpic()));
+			arrayOfPictures.get(1).setBounds(610,470,100,100);
+			arrayOfPictures.get(0).setVisible(false);
+			twoDPanel.repaint();
+			arrayOfPictures.get(1).setVisible(true);
+			arrayOfPictures.get(0).setVisible(true);
+			twoDPanel.add(arrayOfPictures.get(1));
+			twoDPanel.repaint();
 
+		    java.net.URL hide = MainFrame.class.getResource("/pictures/cardd.jpg");
+		    ImageIcon hidden = new ImageIcon(hide);
+			ima = new JLabel(hidden);
+			ima.setBounds(580,00,100,100);
+			ima.setVisible(true);
+			twoDPanel.add(ima);
+			twoDPanel.repaint();
 
-			startGame.setEnabled(false);
+	arrayOfPictures.add(new JLabel(system.getD().getComputer().getHandArray().get(0).getCardpic()));
+
 			
-			system.start();
-			bjImage1p = new JLabel(system.getD().getWael().getHandArray().get(0).getCardpic());
-			bjImage1p.setBounds(580,470,100,100);
-			bjImage1p.setVisible(true);
-			twoDPanel.add(bjImage1p);
-		
-			bjImage2p = new JLabel(system.getD().getWael().getHandArray().get(1).getCardpic());
-			bjImage2p.setBounds(610,470,100,100);
-			bjImage2p.setVisible(true);
-			twoDPanel.add(bjImage2p);
-			
-			bjImage1c = new JLabel(system.getD().getComputer().getHandArray().get(0).getCardpic());
-			bjImage1c.setBounds(580,00,100,100);
-			bjImage1c.setVisible(true);
-			twoDPanel.add(bjImage1c);
-			
-			bjImage2c = new JLabel(system.getD().getComputer().getHandArray().get(1).getCardpic());
-			bjImage2c.setBounds(610,00,100,100);
-			bjImage2c.setVisible(true);
-			twoDPanel.add(bjImage2c);
-			hit.setEnabled(true);
-			
-			stand.setEnabled(true);
+			arrayOfPictures.add(new JLabel(system.getD().getComputer().getHandArray().get(1).getCardpic()));
+			arrayOfPictures.get(3).setBounds(610,00,100,100);
+			arrayOfPictures.get(2).setVisible(false);
+			twoDPanel.repaint();
+			arrayOfPictures.get(3).setVisible(true);
+			arrayOfPictures.get(2).setVisible(true);
+
+			twoDPanel.add(arrayOfPictures.get(3));
+			twoDPanel.repaint();
 
 				theResult.setText("");
 		
 		
-			twoDPanel.repaint();
+		//	twoDPanel.repaint();
 			
 		
 		}
 		
 		 if(cmd.equals("hit")){
-		
+		//the method return "" if no one won
 			String x=  system.hit();
 			  
+			// show the card that the user play it
 			theResult.setText("");
-		
-			bjImage3p = new JLabel(system.getD().getWael().getHandArray().get(system.getD().getWael().getHandArray().size()-1).getCardpic());
-			bjImage3p.setBounds(610+30*(system.getD().getWael().getHandArray().size()-2),470,100,100);
-			bjImage3p.setVisible(true);
-			twoDPanel.add(bjImage3p);
-			if(!x.equals("the player is busted") && !x.equals("the computer is busted")){
-			
-			
-//			bjImage3c = new JLabel(system.getD().getComputer().getHandArray().get(system.getD().getComputer().getHandArray().size()-1).getCardpic());
-//			bjImage3c.setBounds(610+30*(system.getD().getComputer().getHandArray().size()-2),0,100,100);
-//			bjImage3c.setVisible(true);
-//			twoDPanel.add(bjImage3c);
-			}
+			arrayOfPictures.add(new JLabel(system.getD().getchalenger().getHandArray().get(system.getD().getchalenger().getHandArray().size()-1).getCardpic()));
+			arrayOfPictures.get(arrayOfPictures.size()-1).setBounds(610+30*(system.getD().getchalenger().getHandArray().size()-2),470,100,100);
+			arrayOfPictures.get(arrayOfPictures.size()-1).setVisible(true);
+			twoDPanel.add(arrayOfPictures.get(arrayOfPictures.size()-1));
 			twoDPanel.repaint();
-			//if someone win
+			//if the computer won 
+			
 			if(x!=""){
 				theResult.setText(x);
-				hit.setEnabled(false);
-				stand.setEnabled(false);
-			startGame.setEnabled(true);
-			
-			}
-			
-			if(x.equals("the computer is busted"))
-			{
-				system.UpdateCoinsOfPlayer();
-				money.setText(system.getD().getWael().getMoney()+"");
+
+				hit.setVisible(false);
+	stand.setVisible(false);
+				startGame.setVisible(true);
+				if(x.equals("the computer busted") || x.equals("the player win"))
+				{
+					system.UpdateCoinsOfPlayer();
+					money.setText(system.getD().getchalenger().getMoney()+"");
+	
+					TurnTheCard();
+					JOptionPane.showInternalMessageDialog(this.getContentPane(), x+"");
+
+				}
+				else if(x.equals("the player is busted") || x.equals("the computer win")){
+					system.removeCoinsFromPlayer();
+					money.setText(system.getD().getchalenger().getMoney()+"");
+	
+					TurnTheCard();
+					JOptionPane.showInternalMessageDialog(this.getContentPane(), x+"");
+
+
+				}
 				money.repaint();
+				system.getD().getComputer().removeHandArray();
+				system.getD().getchalenger().removeHandArray();
 				
 			}
-			else if(x.equals("the player is busted")){
-				system.removeCoinsFromPlayer();
-				money.setText(system.getD().getWael().getMoney()+"");
-				money.repaint();
-
-			}
+			
+			
+			
 		}
 		
 	
 		
 		 if(cmd.equals("stand")){
 			 
+			 while(true){
 			 theResult.setText("");
 			 String x= system.stand();
-			 bjImage3c = new JLabel(system.getD().getComputer().getHandArray().get(system.getD().getComputer().getHandArray().size()-1).getCardpic());
-				bjImage3c.setBounds(610+30*(system.getD().getComputer().getHandArray().size()-2),00,100,100);
-				bjImage3c.setVisible(true);
-				twoDPanel.add(bjImage3c);
+				arrayOfPictures.add(new JLabel(system.getD().getComputer().getHandArray().get(system.getD().getComputer().getHandArray().size()-1).getCardpic()));
+				arrayOfPictures.get(arrayOfPictures.size()-1).setBounds(610+30*(system.getD().getComputer().getHandArray().size()-2),0,100,100);
+				arrayOfPictures.get(arrayOfPictures.size()-1).setVisible(true);
+				twoDPanel.add(arrayOfPictures.get(arrayOfPictures.size()-1));
 				
 				twoDPanel.repaint();
 				
 				if(!x.equals("")){
 					theResult.setText(x);
-					hit.setEnabled(false);
-					stand.setEnabled(false);
-				startGame.setEnabled(true);
-				 
-			//	stand.setVisible(false);
-			//jdp.isVisible()(stand);
-		//	twoDPanel.revalidate();
-		//	twoDPanel.repaint();
-
+					hit.setVisible(false);
+					stand.setVisible(false);
+				startGame.setVisible(true);
+			
 				
 //				}
 				
-				
-				
-
-				}
-				if(x.equals("the computer is busted"))
+				if(x.equals("the computer busted") || x.equals("the player win"))
 				{
 					system.UpdateCoinsOfPlayer();
-					money.setText(system.getD().getWael().getMoney()+"");
-					money.repaint();
+					money.setText(system.getD().getchalenger().getMoney()+"");
+					
+					TurnTheCard();
 				}
-				else if(x.equals("the player is busted")){
+				else if(x.equals("the player is busted") || x.equals("the computer win")){
 					system.removeCoinsFromPlayer();
-					money.setText(system.getD().getWael().getMoney()+"");
-					money.repaint();
+					money.setText(system.getD().getchalenger().getMoney()+"");
+					
+					TurnTheCard();
 				}
+				money.repaint();
+				system.getD().getComputer().removeHandArray();
+				system.getD().getchalenger().removeHandArray();
+				return;
+			}
+			 }	
+
+				
 		 }
 
 		 
@@ -331,8 +347,9 @@ if(hit.isEnabled()==false){
 		 
 		 
 		 if(cmd.equals("exit the Game")){
-				
+			 system.saveSystem();
 				this.setVisible(false);
+				
 			}
 		 
 		 
@@ -342,7 +359,14 @@ if(hit.isEnabled()==false){
 	
 	
 	
-	
+	public void TurnTheCard(){
+		
+		ima.setVisible(false);
+		arrayOfPictures.get(2).setBounds(580,00,100,100);
+		arrayOfPictures.get(2).setVisible(true);
+		twoDPanel.add(arrayOfPictures.get(2));
+		twoDPanel.repaint();
+	}
 	
 	
 	

@@ -6,7 +6,7 @@ import java.util.Random;
 
 import javax.swing.ImageIcon;
 
-public class Card  {
+public class Card implements Serializable  {
 /**
 	 * 
 	 */

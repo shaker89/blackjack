@@ -33,8 +33,7 @@ public interface IControler extends Serializable  {
 	public int shuffle();
 	
 	public void updateSumOFCards();
-	//this function chick if the sum of the plaey is over 21
-public int chickIFOver21();
+	
 
 
 //this function chick if the sum of the plaey is over 17
@@ -42,7 +41,7 @@ public int chickIFOver21();
 
 
 
-public int chickIFOverOrEqual21();
+public String chickIFOverOrEqual21();
 	
 	
 	

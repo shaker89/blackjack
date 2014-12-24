@@ -13,6 +13,11 @@ public class Player extends Computer implements Serializable{
 
 	private String firstName;
 	private String lastName;
+	
+	private int Money ;
+	private String userName;
+	private String Password;
+	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -27,7 +32,7 @@ public class Player extends Computer implements Serializable{
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
-		Money = money;
+		this.Money = money;
 		this.userName = userName;
 		Password = password;
 	}
@@ -43,9 +48,7 @@ public class Player extends Computer implements Serializable{
 	}
 
 //>>>>>>> branch 'master' of https://github.com/shaker89/blackjack
-	private int Money ;
-	private String userName;
-	private String Password;
+	
 	
 	public String getUserName() {
 		return userName;
@@ -75,17 +78,22 @@ public class Player extends Computer implements Serializable{
 
 
 	
-public Player(int i) {
+public Player(String us,int i) {
 		// TODO Auto-generated constructor stub
 	super();
 	setMoney(i);
-	
+this.userName=us;	
 }
 
 
 
 
 	
+	public Player() {
+	// TODO Auto-generated constructor stub
+}
+
+
 	public int getMoney() {
 		return Money;
 	}
@@ -104,15 +112,6 @@ private int numberOfLossing;
 private int numberOfRoundsPLaying;
 */
 //	@override
-public int updateSomeOFCards(){
-		
-		for(Card i : getHandArray())
-		{
-			sumOfCards+=i.getValue();
-		}
-		System.out.println("sumOfCards:"+sumOfCards);
-		return sumOfCards;
-		}
 
 
 
