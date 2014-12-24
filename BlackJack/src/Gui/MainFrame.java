@@ -265,21 +265,24 @@ jdp.setLayout(null);
 				hit.setVisible(false);
 	stand.setVisible(false);
 				startGame.setVisible(true);
+				
+				
+				TurnTheCard();
+
+					JOptionPane.showInternalMessageDialog(this.getContentPane(), x+"");
 				if(x.equals("the computer busted") || x.equals("the player win"))
 				{
 					system.UpdateCoinsOfPlayer();
 					money.setText(system.getD().getchalenger().getMoney()+"");
 	
-					TurnTheCard();
-					JOptionPane.showInternalMessageDialog(this.getContentPane(), x+"");
+					
 
 				}
 				else if(x.equals("the player is busted") || x.equals("the computer win")){
 					system.removeCoinsFromPlayer();
 					money.setText(system.getD().getchalenger().getMoney()+"");
 	
-					TurnTheCard();
-					JOptionPane.showInternalMessageDialog(this.getContentPane(), x+"");
+					
 
 
 				}
@@ -312,22 +315,23 @@ jdp.setLayout(null);
 					hit.setVisible(false);
 					stand.setVisible(false);
 				startGame.setVisible(true);
-			
+				TurnTheCard();
+
+				JOptionPane.showInternalMessageDialog(this.getContentPane(), x+"");
+
 				
-//				}
+
 				
 				if(x.equals("the computer busted") || x.equals("the player win"))
 				{
 					system.UpdateCoinsOfPlayer();
 					money.setText(system.getD().getchalenger().getMoney()+"");
 					
-					TurnTheCard();
 				}
 				else if(x.equals("the player is busted") || x.equals("the computer win")){
 					system.removeCoinsFromPlayer();
 					money.setText(system.getD().getchalenger().getMoney()+"");
 					
-					TurnTheCard();
 				}
 				money.repaint();
 				system.getD().getComputer().removeHandArray();
@@ -347,7 +351,18 @@ jdp.setLayout(null);
 		 
 		 
 		 if(cmd.equals("exit the Game")){
-			 system.saveSystem();
+			 
+			 if(JOptionPane.showInternalConfirmDialog(jdp, 
+						"you are sure you want to exit " 
+						, "",
+						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+					
+				}
+				 system.saveSystem();
+
+				dispose();
+
+			
 				this.setVisible(false);
 				
 			}
