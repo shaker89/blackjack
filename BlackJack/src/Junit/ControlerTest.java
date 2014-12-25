@@ -1,4 +1,5 @@
-package tests;
+package Junit;
+
 
 import static org.junit.Assert.*;
 import model.Computer;
@@ -10,12 +11,7 @@ import org.junit.Test;
 import Controller.Controler;
 
 public class ControlerTest {
-	@Test
-	public void testAddPlayer() {
-		Controler tester = new Controler();
-		Player p = new Player("shaker", "Khateeb", 40 , "shaker89", "1234");
-		assertEquals("Result", true, tester.addPlayer(p));
-	}
+	
 
 	@Test
 	public void testStand() {
@@ -24,13 +20,11 @@ public class ControlerTest {
 
 	@Test
 	public void testChickIFOverOrEqual21() {
-//		Controler tester = new Controler();
-//		Deck d =new Deck();
-//		Player wael =new Player("shaker", "Khateeb", 40 , "shaker89", "1234");
-//		d.setWael(wael);
-//		d.setComputer(wael);
-//		tester.setD(d);
-//		assertEquals("Result", 0, tester.chickIFOverOrEqual21());
+		Controler tester = new Controler();
+		Deck d =new Deck("shaker",20);
+		
+		tester.setD(d);
+		assertEquals("Result", 0, tester.chickIFOverOrEqual21());
 	}
 
 	

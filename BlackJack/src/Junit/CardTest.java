@@ -1,4 +1,4 @@
-package tests;
+package Junit;
 
 import static org.junit.Assert.*;
 
@@ -23,3 +23,4 @@ public class CardTest {
 	
 
 }
+
