@@ -237,9 +237,7 @@ System.out.println("**"+getPlayers().get(d.getchalenger().getUserName()).getMone
 
 	public boolean addUser(String Firstname , String LastName , String user , String pass 
 			,int money){
-	if(getPlayers().containsKey(user))
-return false;
-		
+	
 		Player p = new Player(Firstname, LastName, money, user, pass);
 		if(addPlayer(p)) return true;
 		return false;

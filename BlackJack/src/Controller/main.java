@@ -27,7 +27,7 @@ public class main {
 
 
 	}
-	public static Controler readSavedData() {
+	private static Controler readSavedData() {
 //		if(Controler.getInstance()==null)
 //			System.out.println("error");
 		FileInputStream fis = null;
