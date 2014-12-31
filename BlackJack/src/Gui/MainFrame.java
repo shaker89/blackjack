@@ -43,11 +43,12 @@ public class MainFrame extends JFrame implements ActionListener{
 	JButton hit;
 	JButton stand;
 	JButton shuffle;
-	JTextField theResult = new JTextField();;
+	//JTextField theResult = new JTextField();;
 	// declare the labels to put the images on it
-	Label whoBusted;
-
-	ArrayList<JLabel> arrayOfPictures = new ArrayList<JLabel>();; 
+	//Label whoBusted;
+	ArrayList<JLabel> arrayOfPicturesForPlayer = new ArrayList<JLabel>();;
+	ArrayList<JLabel> arrayOfPicturesForDealer = new ArrayList<JLabel>();;
+	//ArrayList<JLabel> arrayOfPictures = new ArrayList<JLabel>();; 
 	JTextField money ;
 	String userName;
 	JLabel bjImage;
@@ -139,15 +140,15 @@ jdp.setLayout(null);
 		shuffle.addActionListener(this);
 		jdp.add(shuffle);
 		
-		 whoBusted = new Label("the result");
-		 whoBusted.setBounds(550, 600, 80, 40);
-		 whoBusted.setFont(new Font("", Font.BOLD, 9));
-		 		 jdp.add(whoBusted);
-		 
-		 		
-		 		theResult.setBounds(700, 600, 80, 40);
-		 		theResult.setFont(new Font("", Font.BOLD, 9));
-		 		jdp.add(theResult);
+//		 whoBusted = new Label("the result");
+//		 whoBusted.setBounds(550, 600, 80, 40);
+//		 whoBusted.setFont(new Font("", Font.BOLD, 9));
+//		 		 jdp.add(whoBusted);
+//		 
+//		 		
+//		 		theResult.setBounds(700, 600, 80, 40);
+//		 		theResult.setFont(new Font("", Font.BOLD, 9));
+//		 		jdp.add(theResult);
 		 		
 		 		
 		 		money =  new JTextField();
@@ -165,6 +166,8 @@ jdp.setLayout(null);
 		exit.setFont(new Font("", Font.BOLD, 9));
 		exit.addActionListener(this);
 		jdp.add(exit);
+		hit.setVisible(false);
+		stand.setVisible(false);
 	
 	}
 	@Override
@@ -177,46 +180,63 @@ jdp.setLayout(null);
 		stand.setVisible(true);
 		system.start();
 		//if not the first round
-		if (arrayOfPictures.size()!=0)
+		if (arrayOfPicturesForDealer.size()!=0)
 			{
 			ima.setVisible(false);
-
+			
 			ima=new JLabel();
 			
-			for(int i=0;i<arrayOfPictures.size();)
+			for(int i=0;i<arrayOfPicturesForDealer.size();)
 			{
 				//hide the cards and remove the pictures
-				arrayOfPictures.get(i).setVisible(false);
-				arrayOfPictures.remove(i);
+				arrayOfPicturesForDealer.get(i).setVisible(false);
+				arrayOfPicturesForDealer.remove(i);
+			}
+			for(int i=0;i<arrayOfPicturesForPlayer.size();)
+			{
+				//hide the cards and remove the pictures
+				arrayOfPicturesForPlayer.get(i).setVisible(false);
+				arrayOfPicturesForPlayer.remove(i);
 			}
 				
 				
 				twoDPanel.repaint();
 			}
 			
-			theResult.setText("");
+			//theResult.setText("");
 			startGame.setVisible(false);
 			
 			//make the pictures 
 			//two pictures for the computer and two pictures for the user
 			
-			arrayOfPictures.add(new JLabel(system.getD().getchalenger().getHandArray().get(0).getCardpic()));
-			arrayOfPictures.get(0).setBounds(580,470,100,100);
+			arrayOfPicturesForPlayer.add(new JLabel(system.getD().getchalenger().getHandArray().get(0).getCardpic()));
+			arrayOfPicturesForPlayer.get(0).setBounds(580,470,100,100);
 			twoDPanel.repaint();
-			arrayOfPictures.get(0).setVisible(true);
-			twoDPanel.add(arrayOfPictures.get(0));
+			arrayOfPicturesForPlayer.get(0).setVisible(true);
+			twoDPanel.add(arrayOfPicturesForPlayer.get(0));
+			
 			twoDPanel.repaint();
 
 			
-			arrayOfPictures.add(new JLabel(system.getD().getchalenger().getHandArray().get(1).getCardpic()));
-			arrayOfPictures.get(1).setBounds(610,470,100,100);
-			arrayOfPictures.get(0).setVisible(false);
-			twoDPanel.repaint();
-			arrayOfPictures.get(1).setVisible(true);
-			arrayOfPictures.get(0).setVisible(true);
-			twoDPanel.add(arrayOfPictures.get(1));
-			twoDPanel.repaint();
-
+			arrayOfPicturesForPlayer.add(new JLabel(system.getD().getchalenger().getHandArray().get(1).getCardpic()));
+			arrayOfPicturesForPlayer.get(1).setBounds(610,470,100,100);
+//			arrayOfPicturesForPlayer.get(0).setVisible(false);
+//			twoDPanel.repaint();
+			arrayOfPicturesForPlayer.get(1).setVisible(true);
+//			arrayOfPicturesForPlayer.get(0).setVisible(true);
+			new java.util.Timer().schedule( 
+			        new java.util.TimerTask() {
+			            @Override
+			            public void run() {
+			                // your code here
+			            	twoDPanel.add(arrayOfPicturesForPlayer.get(1));
+			    			twoDPanel.add(arrayOfPicturesForPlayer.get(0));
+			    			twoDPanel.repaint();
+			            }
+			        }, 
+			        500			);
+		
+			
 		    java.net.URL hide = MainFrame.class.getResource("/pictures/cardd.jpg");
 		    ImageIcon hidden = new ImageIcon(hide);
 			ima = new JLabel(hidden);
@@ -225,20 +245,31 @@ jdp.setLayout(null);
 			twoDPanel.add(ima);
 			twoDPanel.repaint();
 
-	arrayOfPictures.add(new JLabel(system.getD().getComputer().getHandArray().get(0).getCardpic()));
+	arrayOfPicturesForDealer.add(new JLabel(system.getD().getComputer().getHandArray().get(0).getCardpic()));
 
 			
-			arrayOfPictures.add(new JLabel(system.getD().getComputer().getHandArray().get(1).getCardpic()));
-			arrayOfPictures.get(3).setBounds(610,00,100,100);
-			arrayOfPictures.get(2).setVisible(false);
+			arrayOfPicturesForDealer.add(new JLabel(system.getD().getComputer().getHandArray().get(1).getCardpic()));
+			arrayOfPicturesForDealer.get(1).setBounds(610,00,100,100);
+			arrayOfPicturesForDealer.get(0).setVisible(false);
 			twoDPanel.repaint();
-			arrayOfPictures.get(3).setVisible(true);
-			arrayOfPictures.get(2).setVisible(true);
+			arrayOfPicturesForDealer.get(1).setVisible(true);
+			arrayOfPicturesForDealer.get(0).setVisible(true);
 
-			twoDPanel.add(arrayOfPictures.get(3));
-			twoDPanel.repaint();
+			
+			new java.util.Timer().schedule( 
+			        new java.util.TimerTask() {
+			            @Override
+			            public void run() {
+			                // your code here
+			            	twoDPanel.add(arrayOfPicturesForDealer.get(1));
+			    			twoDPanel.add(ima);
+			    			twoDPanel.repaint();
+			            }
+			        }, 
+			        500
+			);
 
-				theResult.setText("");
+				
 		
 		
 		//	twoDPanel.repaint();
@@ -251,16 +282,28 @@ jdp.setLayout(null);
 			String x=  system.hit();
 			  
 			// show the card that the user play it
-			theResult.setText("");
-			arrayOfPictures.add(new JLabel(system.getD().getchalenger().getHandArray().get(system.getD().getchalenger().getHandArray().size()-1).getCardpic()));
-			arrayOfPictures.get(arrayOfPictures.size()-1).setBounds(610+30*(system.getD().getchalenger().getHandArray().size()-2),470,100,100);
-			arrayOfPictures.get(arrayOfPictures.size()-1).setVisible(true);
-			twoDPanel.add(arrayOfPictures.get(arrayOfPictures.size()-1));
-			twoDPanel.repaint();
+		///	theResult.setText("");
+			arrayOfPicturesForPlayer.add(new JLabel(system.getD().getchalenger().getHandArray().get(system.getD().getchalenger().getHandArray().size()-1).getCardpic()));
+	arrayOfPicturesForPlayer.get(arrayOfPicturesForPlayer.size()-1).setBounds(610+30*(system.getD().getchalenger().getHandArray().size()-2),470,100,100);
+//			arrayOfPicturesForPlayer.get(arrayOfPicturesForPlayer.size()-2).setVisible(false);
+//			arrayOfPicturesForPlayer.get(arrayOfPicturesForPlayer.size()-1).setVisible(true);
+//			arrayOfPicturesForPlayer.get(arrayOfPicturesForPlayer.size()-2).setVisible(true);
+	new java.util.Timer().schedule( 
+	        new java.util.TimerTask() {
+	            @Override
+	            public void run() {
+	                // your code here
+	            	twoDPanel.add(arrayOfPicturesForPlayer.get(arrayOfPicturesForPlayer.size()-1));
+	    			arrangeTheCardsOfPlayer();
+	    			twoDPanel.repaint();
+	            }
+	        }, 
+	        500			);
+			
 			//if the computer won 
 			
 			if(x!=""){
-				theResult.setText(x);
+			//	theResult.setText(x);
 
 				hit.setVisible(false);
 	stand.setVisible(false);
@@ -301,22 +344,33 @@ jdp.setLayout(null);
 		 if(cmd.equals("stand")){
 			 
 			 while(true){
-			 theResult.setText("");
+			// theResult.setText("");
 			 String x= system.stand();
-				arrayOfPictures.add(new JLabel(system.getD().getComputer().getHandArray().get(system.getD().getComputer().getHandArray().size()-1).getCardpic()));
-				arrayOfPictures.get(arrayOfPictures.size()-1).setBounds(610+30*(system.getD().getComputer().getHandArray().size()-2),0,100,100);
-				arrayOfPictures.get(arrayOfPictures.size()-1).setVisible(true);
-				twoDPanel.add(arrayOfPictures.get(arrayOfPictures.size()-1));
+				arrayOfPicturesForDealer.add(new JLabel(system.getD().getComputer().getHandArray().get(system.getD().getComputer().getHandArray().size()-1).getCardpic()));
+				arrayOfPicturesForDealer.get(arrayOfPicturesForDealer.size()-1).setBounds(610+30*(system.getD().getComputer().getHandArray().size()-2),0,100,100);
+				arrayOfPicturesForDealer.get(arrayOfPicturesForDealer.size()-1).setVisible(true);
 				
-				twoDPanel.repaint();
 				
+				
+				new java.util.Timer().schedule( 
+				        new java.util.TimerTask() {
+				            @Override
+				            public void run() {
+				                // your code here
+				            	twoDPanel.add(arrayOfPicturesForDealer.get(arrayOfPicturesForDealer.size()-1));
+								arrangeTheCardsOfDealer("end");
+								twoDPanel.repaint();
+				            }
+				        }, 
+				        500			);
 				if(!x.equals("")){
-					theResult.setText(x);
+			//		theResult.setText(x);
 					hit.setVisible(false);
 					stand.setVisible(false);
 				startGame.setVisible(true);
+				
 				TurnTheCard();
-
+				arrangeTheCardsOfDealer("end");
 				JOptionPane.showInternalMessageDialog(this.getContentPane(), x+"");
 
 				
@@ -377,14 +431,41 @@ jdp.setLayout(null);
 	public void TurnTheCard(){
 		
 		ima.setVisible(false);
-		arrayOfPictures.get(2).setBounds(580,00,100,100);
-		arrayOfPictures.get(2).setVisible(true);
-		twoDPanel.add(arrayOfPictures.get(2));
+		arrayOfPicturesForDealer.get(0).setBounds(580,00,100,100);
+		arrayOfPicturesForDealer.get(0).setVisible(true);
+		
+		twoDPanel.add(arrayOfPicturesForDealer.get(0));
+		arrangeTheCardsOfDealer("notTheEnd");
 		twoDPanel.repaint();
 	}
 	
+	public void arrangeTheCardsOfDealer(String string){
+	int v=0;
+		if(string.equals("end"))
+		v=-1;
+		for(int i=arrayOfPicturesForDealer.size()-1;i>v;i--)
+		{
+			
+			twoDPanel.add(arrayOfPicturesForDealer.get(i));
+		}
+		
+	}
+	public void arrangeTheCardsOfPlayer(){
+	for(int i=arrayOfPicturesForPlayer.size()-1;i>=0;i--)
+	{
+		
+		twoDPanel.add(arrayOfPicturesForPlayer.get(i));
+	}
+		
 	
+	}
 	
-	
+	private void timeBetweenCardsPlay(int time)
+	{
+		
+		
+		
+		
+	}
 	
 }
