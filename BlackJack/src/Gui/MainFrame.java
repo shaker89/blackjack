@@ -52,6 +52,13 @@ public class MainFrame extends JFrame implements ActionListener{
 	JTextField money ;
 	String userName;
 	JLabel bjImage;
+	JLabel Image5;
+	JLabel Image10;
+	JLabel bjImage25;
+	JLabel bjImage500;
+	JLabel bjImage100;
+	JLabel bjImage5000;
+
 	int monee;
 	private static final long serialVersionUID = 1L;
      private final Controler system;
@@ -92,11 +99,11 @@ jdp.setLayout(null);
 						"you are sure you want to exit " 
 						, "",
 						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
-					
+					dispose();	
 				}
 				 system.saveSystem();
 
-				dispose();
+				
 			}
 		});
 
@@ -119,21 +126,21 @@ jdp.setLayout(null);
 		
 
 		 hit = new JButton("hit");
-		hit.setBounds(200,600,80,40);
+		hit.setBounds(200,200,80,40);
 		hit.setFont(new Font("", Font.BOLD, 9));
 		hit.addActionListener(this);
 		jdp.add(hit);
 		
 		
 		 stand = new JButton("stand");
-		stand.setBounds(300,600,80,40);
+		stand.setBounds(200,250,80,40);
 		stand.setFont(new Font("", Font.BOLD, 9));
 		stand.addActionListener(this);
 		jdp.add(stand);
 
 		
 		 shuffle = new JButton("shuffle cards");
-		shuffle.setBounds(400,600,140,40);
+		shuffle.setBounds(200,300,140,40);
 		shuffle.setFont(new Font("", Font.BOLD, 9));
 		shuffle.addActionListener(this);
 		jdp.add(shuffle);
@@ -151,18 +158,36 @@ jdp.setLayout(null);
 		 		
 		 		money =  new JTextField();
 				
-		 		money.setBounds(500, 500, 80, 40);
+		 		money.setBounds(650, 600, 80, 40);
 		 		money.setFont(new Font("", Font.BOLD, 9));
 		 		money.setText(system.getPlayers().get(userName).getMoney()+"");
 		 		money.setVisible(true);
 		 		jdp.add(money);		
 		 		
-	
+		 		java.net.URL url = MainFrame.class.getResource("/pictures/exxit.png");
+				JButton exit = new JButton ("",new ImageIcon(url));
 		
-		JButton exit = new JButton("exit the Game");
-		exit.setBounds(820,600,150,40);
+		exit.setBounds(1000,600,90,80);
 		exit.setFont(new Font("", Font.BOLD, 9));
-		exit.addActionListener(this);
+		exit.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				 if(JOptionPane.showInternalConfirmDialog(jdp, 
+							"you are sure you want to exit " 
+							, "",
+							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+					 dispose();	
+					}
+					 system.saveSystem();
+
+					
+
+				
+					
+						
+			}
+		});
 		jdp.add(exit);
 		hit.setVisible(false);
 		stand.setVisible(false);
@@ -402,22 +427,7 @@ jdp.setLayout(null);
 			}
 		 
 		 
-		 if(cmd.equals("exit the Game")){
-			 
-			 if(JOptionPane.showInternalConfirmDialog(jdp, 
-						"you are sure you want to exit " 
-						, "",
-						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
-					
-				}
-				 system.saveSystem();
-
-				dispose();
-
-			
-				this.setVisible(false);
-				
-			}
+	
 		 
 		 
 	}
