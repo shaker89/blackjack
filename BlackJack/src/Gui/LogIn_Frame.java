@@ -1,9 +1,11 @@
 package Gui;
 import java.applet.AudioClip;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Desktop;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedInputStream;
@@ -18,6 +20,7 @@ import java.net.*;
 
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -99,22 +102,23 @@ setSize(500,400);
 		lblInsertPassword.setVisible(true);
 		
 		
-		JButton signup = new JButton("U don't have account ? Click Here Now To Sign Up");
+		JButton signup = new JButton("", new ImageIcon("signupnow.png")); 
+			
+			
+		
         signup.setToolTipText("Sign Up");
-        signup.setBackground(Color.WHITE);
         signup.setBorderPainted(false);
         signup.setFont(new Font("", Font.BOLD, 12));
 		signup.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				SignUp_Frame m = new SignUp_Frame(system)
-;
+				SignUp_Frame m = new SignUp_Frame(system);
 				m.setVisible(true);
 				
 			}
 		});
-		signup.setBounds(10, 280, 400, 50);
+		signup.setBounds(10, 280, 350, 60);
 		getContentPane().add(signup);
 		
 		
