@@ -82,8 +82,9 @@ super("LOG ME IN to play BlackJack");
 this.system=system;
 setSize(500,400);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		final JLabel img = new JLabel(new ImageIcon("picturees/background1.jpg"));
+		JLabel bjImage;
+	
+		final JLabel img = new JLabel(new ImageIcon("picturees/black.jpg"));
 		img.setBounds(0,0,this.getWidth(),this.getHeight());
 		JDP.add(img); 
 		
@@ -92,9 +93,9 @@ setSize(500,400);
 		JDP.setLayout(null);
 
 	//	JDP.repaint();
-
+	
 		 lblInsertPassword = new JLabel("Password");
-		lblInsertPassword.setBounds(58, 115, 160, 30);
+		lblInsertPassword.setBounds(58, 50, 160, 30);
 		lblInsertPassword.setVisible(true);
 		
 		
@@ -113,7 +114,7 @@ setSize(500,400);
 				
 			}
 		});
-		signup.setBounds(10, 200, 400, 50);
+		signup.setBounds(10, 280, 400, 50);
 		getContentPane().add(signup);
 		
 		
@@ -132,27 +133,27 @@ setSize(500,400);
 				log();				
 			}
 		});
-		btnLogIn.setBounds(139, 171, 89, 23);
+		btnLogIn.setBounds(50, 100, 89, 23);
 		JDP.add(btnLogIn);
 		JLabel user= new JLabel("UserName");
 	
-		user.setBounds(58, 85, 160, 14);
+		user.setBounds(58, 20, 160, 14);
 		JDP.add(user);
 		user.setVisible(true);
 		username = new JTextField();
-		username.setBounds(211,85, 110, 20);
+		username.setBounds(211,20, 110, 20);
 		JDP.add(username);
 		
 		pas = new JPasswordField();
-		pas.setBounds(211, 115, 110, 20);
+		pas.setBounds(211, 50, 110, 20);
 		JDP.add(pas);
 	
-		lblInserthit = new JLabel("username = wael   pass = 1234");
-		lblInserthit.setBounds(50, 300, 350, 30);
-		lblInserthit.setVisible(true);
-		JDP.add(lblInserthit);
+		
 		JDP.repaint();
-	
+		java.net.URL url1 = LogIn_Frame.class.getResource("/pictures/blackjack.jpg");
+		 bjImage = new JLabel(new ImageIcon(url1));
+			bjImage.setBounds(0,0,this.getWidth(),this.getHeight());
+			JDP.add(bjImage);
 	}
 	
 public void	log(){

@@ -14,6 +14,8 @@ import java.awt.event.ActionListener;
 
 
 
+
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
@@ -48,15 +50,15 @@ public class SignUp_Frame  extends JFrame implements ActionListener{
 	 */
 	public  SignUp_Frame( Controler sys) {
 		super("Sign Up Here");
+	JLabel bjImage;
 		system=sys;
 		this.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
 		this.setContentPane(JDP);
-		final JLabel img = new JLabel(new ImageIcon("black.jpg"));
-		img.setBounds(0,0,this.getWidth(),this.getHeight());
-		getContentPane().add(img);
+	
 		//getContentPane().setBackground(Color.LIGHT_GRAY);  
-		this.setSize(450,450);
 		
+		this.setSize(500,500);
+	
 		final JLabel lable = new JLabel("Sign Up And Get Start To Play Black Jack!!!");
 		lable.setFont(new Font("", Font.BOLD, 20));
 		lable.setBounds(10, 20, 500, 25);
@@ -104,37 +106,45 @@ public class SignUp_Frame  extends JFrame implements ActionListener{
 		
 		
 	
-		
-		JButton addButton = new JButton("Add Player");
+		JButton addButton = new JButton ("",new ImageIcon("aad.png"));
+
         addButton.setToolTipText("Add User");
-        addButton.setBackground(Color.white);
         addButton.setBorderPainted(false);
         addButton.setFont(new Font("", Font.BOLD, 12));
 		addButton.addActionListener(this);
-		addButton.setBounds(141, 320, 120, 50);
+		addButton.setBounds(200,320,55,55);
 		getContentPane().add(addButton);
-	}
+
+     
+		
+	
+	
+		java.net.URL url1 = LogIn_Frame.class.getResource("/pictures/black.jpg");
+		 bjImage = new JLabel(new ImageIcon(url1));
+			bjImage.setBounds(0,0,this.getWidth(),this.getHeight());
+			getContentPane().add(bjImage);
+			
+	
+	
+		
+			}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 	
 			// give the new member 100 shekel
-			if(  system.addUser(firstname.getText(), lastname.getText(), username.getText(), password.getText() ,100)){
+
+		
+		
+		 if(  system.addUser(firstname.getText(), lastname.getText(), username.getText(), password.getText() ,100)){
 				JOptionPane.showInternalMessageDialog(this.getContentPane(), "The user " +  firstname.getText() +" "+ lastname.getText()+
 						"\nwas succesfully added to the system", "Sign Up", JOptionPane.INFORMATION_MESSAGE);
-				this.setVisible(false);
-			if(firstname.getText()=="" || lastname.getText()=="" || username.getText()==""|| password.getText()=="")
-		{		JOptionPane.showInternalMessageDialog(this.getContentPane(), "u need to fill all the fields ! ", "", JOptionPane.ERROR_MESSAGE);
+			dispose();}
 		
-		return ; }
-		if(system.Players.containsKey(username.getText()))
+			else	if(system.Players.containsKey(username.getText()))
 		{	JOptionPane.showInternalMessageDialog(this.getContentPane(), "User Name is already Exits! ", "", JOptionPane.ERROR_MESSAGE);
 		return;}
-		if(  system.addUser(firstname.getText(), lastname.getText(), username.getText(), password.getText() ,100)){
-					JOptionPane.showInternalMessageDialog(this.getContentPane(), "The user " +  firstname.getText() +" "+ lastname.getText()+
-						"\nwas successfully added to the system", "Sign Up", JOptionPane.INFORMATION_MESSAGE);
-				dispose();
-			}
+		
 			else {
 				JOptionPane.showInternalMessageDialog(this.getContentPane(), "The user " + firstname.getText() +" "+ lastname.getText()+ 
 						"\nwas not added to the system", "", JOptionPane.ERROR_MESSAGE);
@@ -150,4 +160,4 @@ public class SignUp_Frame  extends JFrame implements ActionListener{
 	
 		
 		}
-}
+

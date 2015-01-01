@@ -55,9 +55,7 @@ public class MainFrame extends JFrame implements ActionListener{
 	int monee;
 	private static final long serialVersionUID = 1L;
      private final Controler system;
-//	public Controler getSystem() {
-//		return system;
-//	}
+
 	  public MainFrame(final Controler system, String userN, int money1) {
 		  super("***  Black Jack 2014  ***");
 			this.system = system;
