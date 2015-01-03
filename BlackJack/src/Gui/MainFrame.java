@@ -52,12 +52,12 @@ public class MainFrame extends JFrame implements ActionListener{
 	JTextField money ;
 	String userName;
 	JLabel bjImage;
-	JLabel Image5;
-	JLabel Image10;
-	JLabel bjImage25;
-	JLabel bjImage500;
-	JLabel bjImage100;
-	JLabel bjImage5000;
+	JButton Image5;
+	JButton Image10;
+	JButton bjImage25;
+	JButton bjImage500;
+	JButton bjImage100;
+	JButton bjImage5000;
 
 	int monee;
 	private static final long serialVersionUID = 1L;
@@ -163,6 +163,18 @@ jdp.setLayout(null);
 		 		money.setText(system.getPlayers().get(userName).getMoney()+"");
 		 		money.setVisible(true);
 		 		jdp.add(money);		
+		 		
+		
+		 		java.net.URL url1 = MainFrame.class.getResource("/pictures/10.jpg");
+				JButton chip10 = new JButton ("",new ImageIcon(url1));
+		
+		chip10.setBounds(1000,100,120,120);
+		chip10.setFont(new Font("", Font.BOLD, 9));
+		chip10.addActionListener(this);
+		jdp.add(chip10);
+		 		
+		 		
+		 		
 		 		
 		 		java.net.URL url = MainFrame.class.getResource("/pictures/exxit.png");
 				JButton exit = new JButton ("",new ImageIcon(url));
