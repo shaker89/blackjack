@@ -74,9 +74,21 @@ public class Deck implements Serializable  {
 	
 	
 	
-	public Random shuffle(){
+	public void shuffle(){
 		
-		return rand=new Random();
+		rand=new Random();
+		
+		for (int i = 0; i < cards.size(); i++)
+		{
+			//Randomly choose index j from the remainder of the array
+			int randomNumber = rand.nextInt(cards.size()-i); //Fischer Yates shuffle
+			int j = i + randomNumber;
+			
+			//Swap array[i] with array[j] (i being the current position in the array, j being the random number)
+			Card temp = cards.get(i);
+			cards.set(i, cards.get(j)) ;
+			cards.set(j, temp);
+		}
 		
 		
 	}
