@@ -102,6 +102,7 @@ public class Deck implements Serializable  {
 	//starting the game
 	public void StartGame(){
 		
+
 		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 //		//make 52 cards
 //		make52Cards();
@@ -320,7 +321,6 @@ public class Deck implements Serializable  {
 	    System.out.println("ddddd");
 	    
 	    
-	    
 		chalenger = new Player(userN,mony);
 		 computer= new Player();
 		 
@@ -351,7 +351,7 @@ public class Deck implements Serializable  {
 	
 		int temp1 = -1;
 		int temp2 = -1;
-		shuffle();
+	shuffle();
 		if(hitFlag1==true){
 			
 		 temp1=rand.nextInt(getNumberOfCards()-1);
