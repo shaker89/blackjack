@@ -3,6 +3,8 @@ package Controller;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,7 +29,7 @@ public final  class Controler implements IControler,Serializable {
 	
 	private Deck d;
 	private String user;
-	
+	private int moneyForGambling;
 
 	public static Controler getInstance() {
 		if (instance == null)
@@ -99,16 +101,6 @@ public final  class Controler implements IControler,Serializable {
 	public String stand() {
 		d.getstand(false, true);
 		return  chickIFOverOrEqual21();
-//		if (temp == 1)
-//			return "the player is busted";
-//		if (temp == 2)
-//			return "the player win";
-//		if (temp == 3)
-//			return "the computer busted";
-//		if (temp == 4)
-//			return "the computer win";
-//		else
-//			return "";
 
 	}
 
@@ -126,21 +118,6 @@ public final  class Controler implements IControler,Serializable {
 		}
 	}
 
-//	private String chicking() {
-//		System.out.println("$"+d.getchalenger().getMoney());
-//		//int t = chickIFOverOrEqual21();
-//		
-//		switch(t){
-//		case 1 : return "the player is busted";
-//		case 2 : return "the player win";
-//		case 3 : return "the computer busted";
-//		case 4: return "the computer win";
-//		
-//		}
-//		
-//		
-//		return 0;
-//	}
 
 	@Override
 	public String chickIFOverOrEqual21() {
@@ -244,6 +221,33 @@ System.out.println("**"+getPlayers().get(d.getchalenger().getUserName()).getMone
 		
 		
 	}
+	
+	public void MoneyForGambling(String user,int GamblingMoney){
+		moneyForGambling=GamblingMoney;
+		if(getPlayers().containsKey(user))
+		{
+			
+			getPlayers().get(user).setMoney(getPlayers().get(user).getMoney()-GamblingMoney);
+			
+		}
+	}
+		
+	public ArrayList< Player> WhosBest(){
+		ArrayList< Player > play = new ArrayList<Player>(Players.values());
+		Collections.sort(play);
+		return play;
+	
+	}
+	public void addMoney(String usr , int sum){
+			
+			
+		}
+		
+public void deleteMoney(String usr , int sum){
+			
+			
+		}
+	
 	
 
 }

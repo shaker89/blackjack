@@ -1,10 +1,11 @@
 package model;
 
 import java.io.Serializable;
+import java.nio.file.CopyOption;
 import java.util.ArrayList;
 
 
-public class Player extends Computer implements Serializable{
+public class Player extends Computer implements Serializable,Comparable<Player>{
 	/**
 	 * 
 	 */
@@ -100,6 +101,16 @@ this.userName=us;
 
 	public void setMoney(int money) {
 		this.Money = money;
+	}
+
+
+	@Override
+	public int compareTo(Player o) {
+		if(this.Money<o.Money)
+			return 1;
+		if(this.Money>o.Money)
+			return -1;
+		return 0;
 	}
 
 /*	private String ID;

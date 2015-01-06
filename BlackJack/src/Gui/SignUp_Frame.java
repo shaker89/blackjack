@@ -61,6 +61,7 @@ public class SignUp_Frame  extends JFrame implements ActionListener{
 	
 		final JLabel lable = new JLabel("Sign Up And Get Start To Play Black Jack!!!");
 		lable.setFont(new Font("", Font.BOLD, 20));
+		lable.setForeground(Color.BLACK);
 		lable.setBounds(10, 20, 500, 25);
 		getContentPane().add(lable);
 		
@@ -70,6 +71,7 @@ public class SignUp_Frame  extends JFrame implements ActionListener{
 		final JLabel name_lable = new JLabel("Name:");
 		name_lable.setFont(new Font("", Font.BOLD, 12));
 		name_lable.setBounds(10, 100, 137, 16);
+		name_lable.setForeground(Color.BLACK);
 		getContentPane().add(name_lable);
 
 		firstname.setFont(new Font("", Font.BOLD, 12));
@@ -81,7 +83,9 @@ public class SignUp_Frame  extends JFrame implements ActionListener{
 		pp_label.setFont(new Font("", Font.BOLD, 12));
 		pp_label.setBounds(10, 130, 137, 16);
 		getContentPane().add(pp_label);
-
+		pp_label.setForeground(Color.BLACK);
+		
+		
 		lastname.setFont(new Font("", Font.BOLD, 12));
 		lastname.setBounds(141, 130, 169, 20);
 		getContentPane().add(lastname);
@@ -90,7 +94,9 @@ public class SignUp_Frame  extends JFrame implements ActionListener{
 		user_label.setFont(new Font("", Font.BOLD, 12));
 		user_label.setBounds(10, 160, 137, 16);
 		getContentPane().add(user_label);
-
+		user_label.setForeground(Color.BLACK);
+		
+		
 		username.setFont(new Font("", Font.BOLD, 12));
 		username.setBounds(141, 160, 169, 20);
 		getContentPane().add(username);
@@ -98,6 +104,8 @@ public class SignUp_Frame  extends JFrame implements ActionListener{
 		final JLabel password_label = new JLabel("Password:");
 		password_label.setFont(new Font("", Font.BOLD, 12));
 		password_label.setBounds(10, 190, 137, 16);
+		password_label.setForeground(Color.BLACK);
+		
 		getContentPane().add(password_label);
 		
 		password.setFont(new Font("", Font.BOLD, 12));
@@ -134,16 +142,21 @@ public class SignUp_Frame  extends JFrame implements ActionListener{
 	
 			// give the new member 100 shekel
 
+		if(username.getText().equals("") || lastname.getText().equals("") || firstname.getText().equals("") || password.getText().equals(""))
+		{		JOptionPane.showInternalMessageDialog(this.getContentPane(), "please full all the fields! ", "", JOptionPane.ERROR_MESSAGE);
+		return;
+			
+	}
+			if(system.Players.containsKey(username.getText()))
+		{	JOptionPane.showInternalMessageDialog(this.getContentPane(), "User Name is already Exits! ", "", JOptionPane.ERROR_MESSAGE);
+		return;}
 		
-		
-		 if(  system.addUser(firstname.getText(), lastname.getText(), username.getText(), password.getText() ,100)){
+			else  if(  system.addUser(firstname.getText(), lastname.getText(), username.getText(), password.getText() ,100)){
 				JOptionPane.showInternalMessageDialog(this.getContentPane(), "The user " +  firstname.getText() +" "+ lastname.getText()+
 						"\nwas succesfully added to the system", "Sign Up", JOptionPane.INFORMATION_MESSAGE);
 			dispose();}
 		
-			else	if(system.Players.containsKey(username.getText()))
-		{	JOptionPane.showInternalMessageDialog(this.getContentPane(), "User Name is already Exits! ", "", JOptionPane.ERROR_MESSAGE);
-		return;}
+			
 		
 			else {
 				JOptionPane.showInternalMessageDialog(this.getContentPane(), "The user " + firstname.getText() +" "+ lastname.getText()+ 

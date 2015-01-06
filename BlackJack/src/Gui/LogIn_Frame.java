@@ -58,6 +58,8 @@ public final class LogIn_Frame extends JFrame  {
 		return instance;
 	}
 	
+	
+	
 	public Controler getSystem() {
 		return system;
 	}
@@ -87,9 +89,9 @@ setSize(500,400);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JLabel bjImage;
 	
-		final JLabel img = new JLabel(new ImageIcon("picturees/black.jpg"));
-		img.setBounds(0,0,this.getWidth(),this.getHeight());
-		JDP.add(img); 
+//		final JLabel img = new JLabel(new ImageIcon("picturees/black.jpg"));
+//		img.setBounds(0,0,this.getWidth(),this.getHeight());
+//		JDP.add(img); 
 		
 		JDP.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(JDP);
@@ -130,8 +132,6 @@ setSize(500,400);
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				String sondio = "/shuffling-cards-6.mp3";
-				//InputStream in = new FileInputStream(sondio);
 				
 					
 				log();				
@@ -158,10 +158,36 @@ setSize(500,400);
 		 bjImage = new JLabel(new ImageIcon(url1));
 			bjImage.setBounds(0,0,this.getWidth(),this.getHeight());
 			JDP.add(bjImage);
+			
+			
+			
+			java.net.URL url3 = LogIn_Frame.class.getResource("/pictures/reporte.png");
+			JButton report = new JButton ("",new ImageIcon(url3));
+			report.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+				PlayerReport_Frame frame= new PlayerReport_Frame(system);
+
+				frame.setVisible(true);
+					
+				}
+			});
+			report.setBounds(390, 5, 89, 23);
+			JDP.add(report);
+//			report.setVisible(true);
 	}
 	
 public void	log(){
 	int flag=0;
+	
+	if(username.getText().equals("") || pas.getText().equals(""))
+	{
+		JOptionPane.showMessageDialog(this,
+	
+				"Login faild \n Incorrect username/Password");
+	return;	
+	}
 	for(Map.Entry<String,Player>  x : system.getPlayers().entrySet())
 	{
 		
