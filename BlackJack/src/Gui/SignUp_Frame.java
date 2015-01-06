@@ -57,11 +57,11 @@ public class SignUp_Frame  extends JFrame implements ActionListener{
 	
 		//getContentPane().setBackground(Color.LIGHT_GRAY);  
 		
-		this.setSize(500,500);
+		this.setSize(500,480);
 	
 		final JLabel lable = new JLabel("Sign Up And Get Start To Play Black Jack!!!");
 		lable.setFont(new Font("", Font.BOLD, 20));
-		lable.setForeground(Color.BLACK);
+		lable.setForeground(Color.RED);
 		lable.setBounds(10, 20, 500, 25);
 		getContentPane().add(lable);
 		
@@ -71,7 +71,7 @@ public class SignUp_Frame  extends JFrame implements ActionListener{
 		final JLabel name_lable = new JLabel("Name:");
 		name_lable.setFont(new Font("", Font.BOLD, 12));
 		name_lable.setBounds(10, 100, 137, 16);
-		name_lable.setForeground(Color.BLACK);
+		name_lable.setForeground(Color.WHITE);
 		getContentPane().add(name_lable);
 
 		firstname.setFont(new Font("", Font.BOLD, 12));
@@ -83,7 +83,7 @@ public class SignUp_Frame  extends JFrame implements ActionListener{
 		pp_label.setFont(new Font("", Font.BOLD, 12));
 		pp_label.setBounds(10, 130, 137, 16);
 		getContentPane().add(pp_label);
-		pp_label.setForeground(Color.BLACK);
+		pp_label.setForeground(Color.WHITE);
 		
 		
 		lastname.setFont(new Font("", Font.BOLD, 12));
@@ -94,7 +94,7 @@ public class SignUp_Frame  extends JFrame implements ActionListener{
 		user_label.setFont(new Font("", Font.BOLD, 12));
 		user_label.setBounds(10, 160, 137, 16);
 		getContentPane().add(user_label);
-		user_label.setForeground(Color.BLACK);
+		user_label.setForeground(Color.WHITE);
 		
 		
 		username.setFont(new Font("", Font.BOLD, 12));
@@ -104,7 +104,7 @@ public class SignUp_Frame  extends JFrame implements ActionListener{
 		final JLabel password_label = new JLabel("Password:");
 		password_label.setFont(new Font("", Font.BOLD, 12));
 		password_label.setBounds(10, 190, 137, 16);
-		password_label.setForeground(Color.BLACK);
+		password_label.setForeground(Color.WHITE);
 		
 		getContentPane().add(password_label);
 		
@@ -114,20 +114,63 @@ public class SignUp_Frame  extends JFrame implements ActionListener{
 		
 		
 	
-		JButton addButton = new JButton ("",new ImageIcon("aad.png"));
+		JButton addButton = new JButton ("Add");
 
         addButton.setToolTipText("Add User");
-        addButton.setBorderPainted(false);
-        addButton.setFont(new Font("", Font.BOLD, 12));
+        addButton.setBorderPainted(true);
+        addButton.setFont(new Font("", Font.BOLD, 9));
 		addButton.addActionListener(this);
-		addButton.setBounds(200,320,55,55);
+		addButton.setBounds(200,320,70,40);
+		addButton.setForeground(Color.WHITE);
+		addButton.setBackground(Color.RED);
 		getContentPane().add(addButton);
 
      
+		JButton reset = new JButton ("Reset");
+
+        reset.setToolTipText("Reset");
+        reset.setBorderPainted(true);
+        reset.setFont(new Font("", Font.BOLD, 9));
+		reset.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+			firstname.setText("");
+				lastname.setText("");
+				username.setText("");
+			password.setText(""); 
+			}
+		});
+		reset.setBackground(Color.RED);
+		reset.setBounds(120,320,70,40);
+		reset.setForeground(Color.WHITE);
+		getContentPane().add(reset);
+	
+	
+		JButton close = new JButton ("Close");
+
+        close.setToolTipText("Close");
+        close.setBorderPainted(true);
+        close.setFont(new Font("", Font.BOLD, 9));
+        close.setForeground(Color.WHITE);
+        close.setBackground(Color.RED);
+
+        close.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+		dispose();
+			}
+		});
+	close.setBounds(280,320,70,40);
+		getContentPane().add(close);
+	
 		
-	
-	
-		java.net.URL url1 = LogIn_Frame.class.getResource("/pictures/black.jpg");
+		
+		
+		java.net.URL url1 = LogIn_Frame.class.getResource("/pictures/signupback.PNG");
 		 bjImage = new JLabel(new ImageIcon(url1));
 			bjImage.setBounds(0,0,this.getWidth(),this.getHeight());
 			getContentPane().add(bjImage);
@@ -173,4 +216,3 @@ public class SignUp_Frame  extends JFrame implements ActionListener{
 	
 		
 		}
-

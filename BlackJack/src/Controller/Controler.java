@@ -103,6 +103,12 @@ public final  class Controler implements IControler,Serializable {
 		return  chickIFOverOrEqual21();
 
 	}
+	
+	public String startTwoCards(){
+		
+		d.hit(true,true);	
+		return  chickIFOverOrEqual21();
+	}
 
 	@Override
 	public void start() {
@@ -114,18 +120,22 @@ public final  class Controler implements IControler,Serializable {
 			{
 			
 		d = new Deck(user,x.getValue().getMoney());
-			return;}
+			
+		
+		return;
+			}
 		}
 	}
 
 
+	
 	@Override
 	public String chickIFOverOrEqual21() {
 		int p=d.getchalenger().updateSomeOFCards();
 		int c= d.getComputer().updateSomeOFCards();
-		if(p>17 && p<21 && p>c)
+		if(p>=17 && p<21 && p>c)
 			return "the player win";
-			if(c>17 && c<21 && c>p)
+			if(c>=17 && c<21 && c>p)
 				return "the computer win";
 			
 		if (p  > 21) {
@@ -164,25 +174,25 @@ public final  class Controler implements IControler,Serializable {
 
 	
 	
-	public void UpdateCoinsOfPlayer(){
-		d.getchalenger().setMoney(d.getchalenger().getMoney()+20);
-		System.out.println("adding "+(d.getchalenger().getMoney()));
-		getPlayers().get(d.getchalenger().getUserName()).setMoney(d.getchalenger().getMoney());
-		System.out.println("**"+getPlayers().get(d.getchalenger().getUserName()).getMoney());
-
-		
-	}
-	public void removeCoinsFromPlayer(){
-		d.getchalenger().setMoney(d.getchalenger().getMoney()-20);
-System.out.println("removee "+(d.getchalenger().getMoney()));
-		
-getPlayers().get(d.getchalenger().getUserName()).setMoney(d.getchalenger().getMoney());
-System.out.println("**"+getPlayers().get(d.getchalenger().getUserName()).getMoney());
-
-
-		
-		
-	}
+//	public void UpdateCoinsOfPlayer(){
+//		d.getchalenger().setMoney(d.getchalenger().getMoney());
+//		System.out.println("adding "+(d.getchalenger().getMoney()));
+//		getPlayers().get(d.getchalenger().getUserName()).setMoney(d.getchalenger().getMoney());
+//		System.out.println("**"+getPlayers().get(d.getchalenger().getUserName()).getMoney());
+//
+//		
+//	}
+//	public void removeCoinsFromPlayer(){
+//		d.getchalenger().setMoney(d.getchalenger().getMoney());
+//System.out.println("removee "+(d.getchalenger().getMoney()));
+//		
+//getPlayers().get(d.getchalenger().getUserName()).setMoney(d.getchalenger().getMoney());
+//System.out.println("**"+getPlayers().get(d.getchalenger().getUserName()).getMoney());
+//
+//
+//		
+//		
+//	}
 	
 	
 

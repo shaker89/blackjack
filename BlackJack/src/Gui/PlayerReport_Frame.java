@@ -51,9 +51,9 @@ import model.Player;
 import Controller.Controler;
 
 
+//this report print the users with their details ordered by their money
 
-
-public class PlayerReport_Frame extends JFrame implements ActionListener  {
+public class PlayerReport_Frame extends JFrame   {
 
 	private static final long serialVersionUID = 1L;
 	protected JDesktopPane JDP = new JDesktopPane();
@@ -70,7 +70,7 @@ public class PlayerReport_Frame extends JFrame implements ActionListener  {
 		this.setContentPane(JDP);
 		
 		JDP.setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
-		JDP.setBorder(new LineBorder(Color.black, 1, false));
+		JDP.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, false));
 		JDP.setBackground(Color.LIGHT_GRAY);
 		JDP.setAutoscrolls(true);
 		
@@ -78,19 +78,20 @@ public class PlayerReport_Frame extends JFrame implements ActionListener  {
 	    setBounds(50, 50, screenSize.width  - 700, screenSize.height - 400);
 		setSize(700, 550);
 		
-		final JLabel subject_label = new JLabel("            the Best Player");
+		final JLabel subject_label = new JLabel(" Top Players");
 		subject_label.setFont(new Font("Dialog", Font.HANGING_BASELINE, 22));
 		subject_label.setBounds(198, 10, 500, 26);
 	
 		getContentPane().add(subject_label);
 		
-		table.setBackground(new Color (255, 250, 205));
+		table.setBackground(Color.LIGHT_GRAY);
 		table.setFont(new Font("", Font.BOLD, 12));
-		table.setBounds(30, 60, 600, 300);
-		table.setBorder(new LineBorder(Color.black, 1, false));
+		table.setBounds(30, 60, 600, 80);
+		table.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		table.setAutoscrolls(true); 
-		table.setSelectionBackground(new Color(174, 238, 238));
-		table.setLayout(null);
+		table.setBackground(Color.LIGHT_GRAY);
+		table.setSelectionBackground(Color.LIGHT_GRAY);
+		//table.setLayout(null);
 		JScrollPane pane = new JScrollPane(table);
 		table.setVisible(true);
 		pane.setBounds(table.getBounds());
@@ -108,16 +109,15 @@ public class PlayerReport_Frame extends JFrame implements ActionListener  {
 		header.setFont(new Font ("", Font.BOLD, 15));
 		header.setVisible(true);
 		java.net.URL url3 = LogIn_Frame.class.getResource("/pictures/rep.png");
-		JButton report = new JButton ("",new ImageIcon(url3));	
 		
-        report.setToolTipText("Report");
-        report.setBackground(JDP.getBackground());
-        report.setBorderPainted(false);
-        report.setFont(new Font("", Font.BOLD, 12));
-		report.addActionListener(this);
 
-		report.setBounds(250, 400,70 , 50);
-		getContentPane().add(report);
+		try {
+			updateReport();
+		}
+		catch (Exception e){
+			JOptionPane.showInternalMessageDialog(getContentPane(), "error", "ERROR", JOptionPane.ERROR_MESSAGE);
+		
+		}
 				
 	}
 
@@ -139,14 +139,5 @@ public class PlayerReport_Frame extends JFrame implements ActionListener  {
 		
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		try {
-			updateReport();
-		}
-		catch (Exception e){
-			JOptionPane.showInternalMessageDialog(getContentPane(), "error", "ERROR", JOptionPane.ERROR_MESSAGE);
-		
-		}
-	}
+
 }

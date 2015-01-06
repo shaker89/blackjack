@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.nio.file.CopyOption;
 import java.util.ArrayList;
 
-
+//class of the players that have a username in the game
 public class Player extends Computer implements Serializable,Comparable<Player>{
 	/**
 	 * 
@@ -48,7 +48,6 @@ public class Player extends Computer implements Serializable,Comparable<Player>{
 		this.lastName = lastName;
 	}
 
-//>>>>>>> branch 'master' of https://github.com/shaker89/blackjack
 	
 	
 	public String getUserName() {
@@ -81,6 +80,7 @@ public class Player extends Computer implements Serializable,Comparable<Player>{
 	
 public Player(String us,int i) {
 		// TODO Auto-generated constructor stub
+	
 	super();
 	setMoney(i);
 this.userName=us;	
@@ -102,7 +102,7 @@ this.userName=us;
 	public void setMoney(int money) {
 		this.Money = money;
 	}
-
+//for ordering the players 
 
 	@Override
 	public int compareTo(Player o) {
@@ -113,16 +113,6 @@ this.userName=us;
 		return 0;
 	}
 
-/*	private String ID;
-	
-private String SurName;
-private String Email;
-
-private int numberOfRoundVectorirs;
-private int numberOfLossing;
-private int numberOfRoundsPLaying;
-*/
-//	@override
 
 
 

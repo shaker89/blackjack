@@ -27,6 +27,9 @@ import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -41,7 +44,7 @@ import java.io.*;
 
 
 
-public final class LogIn_Frame extends JFrame  {
+public final class LogIn_Frame extends JFrame implements ActionListener {
 	/**
 	 * 
 	 */
@@ -89,23 +92,20 @@ setSize(500,400);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JLabel bjImage;
 	
-//		final JLabel img = new JLabel(new ImageIcon("picturees/black.jpg"));
-//		img.setBounds(0,0,this.getWidth(),this.getHeight());
-//		JDP.add(img); 
-		
+
 		JDP.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(JDP);
 		JDP.setLayout(null);
 
-	//	JDP.repaint();
 	
 		 lblInsertPassword = new JLabel("Password");
 		lblInsertPassword.setBounds(58, 50, 160, 30);
 		lblInsertPassword.setVisible(true);
 		
-		
-		JButton signup = new JButton("", new ImageIcon("signupnow.png")); 
-			
+		java.net.URL urrl= LogIn_Frame.class.getResource("/pictures/signupnow.png");
+
+		JButton signup = new JButton(new ImageIcon(urrl)); 
+		setJMenuBar(createMenuBar());		
 			
 		
         signup.setToolTipText("Sign Up");
@@ -161,23 +161,9 @@ setSize(500,400);
 			
 			
 			
-			java.net.URL url3 = LogIn_Frame.class.getResource("/pictures/reporte.png");
-			JButton report = new JButton ("",new ImageIcon(url3));
-			report.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-				PlayerReport_Frame frame= new PlayerReport_Frame(system);
-
-				frame.setVisible(true);
-					
-				}
-			});
-			report.setBounds(390, 5, 89, 23);
-			JDP.add(report);
-//			report.setVisible(true);
 	}
 	
+	//validate if the values that we entered  exists or are true
 public void	log(){
 	int flag=0;
 	
@@ -211,6 +197,50 @@ public void	log(){
 	return;
 }}
 
+@Override
+public void actionPerformed(ActionEvent ev) {
+	String  cmd = ev.getActionCommand(); 
+	
+	if(cmd.equals ("About the Game")) {
+		Help_Frame frame = new Help_Frame();			
+		frame.setVisible(true);
+			}
+	
+	if(cmd.equals ("Player's Hiscores")) {
+		PlayerReport_Frame frame = new PlayerReport_Frame(system);				
+		frame.setVisible(true);
+			}
+	if(cmd.equals ("Exit")) {
+		dispose();
+			}
+	
+	
+}
+private JMenuBar createMenuBar() {		
+	JMenuBar menuBar = new JMenuBar();
+	
+	JMenu fileMenu = new JMenu("File");
+	
+	JMenuItem about = new JMenuItem("About the Game");
+	about.addActionListener(this);
+	fileMenu.add(about);
+
+	JMenu Reports = new JMenu("Reports");
+	
+	JMenuItem r = new JMenuItem("Player's Hiscores");
+	r.addActionListener(this);
+	Reports.add(r);
+	JMenuItem exit_MI = new JMenuItem("Exit");
+	exit_MI.addActionListener(this);
+	fileMenu.add(exit_MI);
+	
+	
+	menuBar.add(fileMenu);
+	menuBar.add(Reports);
+	return menuBar;
+	
+	
+}
 	
 
 }

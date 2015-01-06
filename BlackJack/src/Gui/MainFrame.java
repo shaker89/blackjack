@@ -67,30 +67,37 @@ public class MainFrame extends JFrame implements ActionListener{
 	private JDesktopPane jdp = new JDesktopPane();
 	int counter=0;
 	int counter2=0;
-	
 	JPanel twoDPanel = new JPanel();
+	//the card that have to be turned later
 	JLabel ima;
+	//declare the buttons of the game
 	JButton startGame;
 	JButton hit;
 	JButton stand;
 	JButton shuffle;
+	
+	//declare the labels that are in the screen
 	JLabel rond;
 	JLabel lose;
 	JLabel win;
+	JLabel money ;
+	JLabel moneyForGambling ;
+	JLabel moneyForGamblingTitle ;
+	JLabel score ;
+	//declare arrays for the cards of the player and the dealer
 	ArrayList<JLabel> arrayOfPicturesForPlayer = new ArrayList<JLabel>();;
 	ArrayList<JLabel> arrayOfPicturesForDealer = new ArrayList<JLabel>();;
 	//ArrayList<JLabel> arrayOfPictures = new ArrayList<JLabel>();; 
-	JLabel money ;
+	
 	String userName;
 	JLabel bjImage;
-	JButton Image5;
-	JButton Image10;
-	JButton bjImage25;
-	JButton bjImage500;
-	JButton bjImage100;
-	JButton bjImage5000;
+	
+	
+	//for the cards movements
 	int StartPointXP=200;
 	int StartPointYP=300;
+	private int StartPointXD;
+	private int StartPointYD;
 	boolean CoordinatorXP;
 	boolean CoordinatorYP;
 	boolean CoordinatorXD;
@@ -99,25 +106,23 @@ public class MainFrame extends JFrame implements ActionListener{
 	int corYD;
 	int corXP;
 	int corYP;
-	int standPosition=0;
-	private int StartPointXD;
-private 	JButton chip1,chip5,chip25,chip10;
-	private int StartPointYD;
-private JLabel temo= new JLabel();
-JLabel moneyForGambling ;
-JLabel moneyForGamblingTitle ;
-JLabel score ;
 
-int monee;
+	//declare the chips buttons
+private 	JButton chip1,chip5,chip25,chip10;
+	
+
+
 	private static final long serialVersionUID = 1L;
      private final Controler system;
 
+     
+     
+     //make the frame of the game
 	  public MainFrame(final Controler system, String userN, int money1) {
 		  super("***  Black Jack 2014  ***");
 			this.system = system;
 	setSize(200, 200);	
 	userName=userN;
-	monee= money1;
 			setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 jdp.setLayout(null);
 		jdp.setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
@@ -141,7 +146,7 @@ jdp.setLayout(null);
 			jdp.add(twoDPanel, new Integer(1), 0);
 		
 		jdp.setVisible(true);
-		
+		//for exit
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(final WindowEvent arg0) {
 				 if(JOptionPane.showInternalConfirmDialog(jdp, 
@@ -173,6 +178,7 @@ jdp.setLayout(null);
 // if we press deal 
 		if(cmd.equals("Start Game"))
 		{	system.start();
+		//makeButtonNotEnabled();
 		setChipsTrue();
 		rond.setText("" +(1+Integer.parseInt(rond.getText())));
 		//if not the first round
@@ -216,7 +222,7 @@ jdp.setLayout(null);
 
 			//the method return "" if no one won
 			 
-			 
+			 makeButtonNotEnabled();
 			  
 				String x=  system.hit();
 				  
@@ -242,6 +248,7 @@ jdp.setLayout(null);
 		
 		 if(cmd.equals("stand")){
 			 
+			 makeButtonNotEnabled();
 			JLabel p=new JLabel("");
 					
 		moveCardUp(p.getText(),arrayOfPicturesForDealer.size()-1, 620+20*(system.getD().getComputer().getHandArray().size()-2), 0,0);		
@@ -289,13 +296,13 @@ jdp.setLayout(null);
 			repaint();
 			arrayOfPicturesForDealer.get(i).setVisible(true);
 				repaint();
-				System.out.println("cvcvcvc");
+				
 				twoDPanel.add(arrayOfPicturesForDealer.get(i));
 				repaint();
 //			
 				
 			}
-	ima.setVisible(true);
+//	ima.setVisible(true);
 	twoDPanel.add(ima);
 		repaint();
 	}
@@ -307,7 +314,7 @@ for(int i=arrayOfPicturesForPlayer.size()-1;i>0;i--){
 	repaint();
 	arrayOfPicturesForPlayer.get(i).setVisible(true);
 		repaint();
-		System.out.println("cvcvcvc");
+		
 		twoDPanel.add(arrayOfPicturesForPlayer.get(i));
 		repaint();
 
@@ -320,7 +327,7 @@ repaint();
 
 	
 }
-
+//move care after the user press stand
 public   void    moveCardUp(String xx, int indexx,int corXd,int corYd,int flg){
   
    
@@ -379,10 +386,7 @@ arrayOfPicturesForDealer.add(new JLabel(system.getD().getComputer().getHandArray
         			            	
 									
 
-        						temo.setText("b");
-        							hit.setVisible(false);
-        							stand.setVisible(false);
-        							shuffle.setVisible(false);
+        							makeButtonNotVisible();
         					startGame.setVisible(true);
         										
         						TurnTheCard();
@@ -391,32 +395,32 @@ arrayOfPicturesForDealer.add(new JLabel(system.getD().getComputer().getHandArray
         					JOptionPane.showInternalMessageDialog(getContentPane(), str+"");
 
         					
-
         										
         										if(str.equals("the computer busted") || str.equals("the player win"))
         										{
-        											system.UpdateCoinsOfPlayer();
-        											money.setText(system.getD().getchalenger().getMoney()+"");
+        											addChipsToPlayer();
+        											
         											
         											win.setText("" +(1+Integer.parseInt(win.getText())));
         										}
         										else if(str.equals("the player is busted") || str.equals("the computer win")){
-        											system.removeCoinsFromPlayer();
-        											money.setText(system.getD().getchalenger().getMoney()+"");
         											lose.setText("" +(1+Integer.parseInt(lose.getText())));
-
+        											removeChipsFromPlayer();
         										}
         										money.repaint();
         										system.getD().getComputer().removeHandArray();
         										system.getD().getchalenger().removeHandArray();
-        										  this.cancel();
+        							
+        								
+        										this.cancel();
         								
         			            
 setChipsTrue();
 moneyForGambling.setText(""+0);
         			            }
         			            else {
-        			            	
+            			             makeButtonVisible();
+
         			            	jl.setText("true");
         			            }
          
@@ -433,7 +437,89 @@ moneyForGambling.setText(""+0);
 	
 	
 
+//move the first two cards up
+public   boolean    moveCardUp1(String x, int index,int corXd,int corYd){
+	   
+	new java.util.Timer().schedule( 
+	        new java.util.TimerTask() {
+	            @Override
+	            
+	            public  void run() {
+	
+		
+	
+	            	if(index!=-1){
+	            	arrayOfPicturesForDealer.get(index).setVisible(false);
+	            	arrayOfPicturesForDealer.get(index).setBounds(StartPointXD,StartPointYD,100,100);
+	    			
+	    			arrayOfPicturesForDealer.get(index).setVisible(true);
+	            	
+	            	twoDPanel.add(arrayOfPicturesForDealer.get(index));
+	            	}
+	            	else {
+	            		ima.setVisible(false);
+	            		ima.setBounds(StartPointXD,StartPointYD,100,100);
+	            		ima.setVisible(true);
+	            		twoDPanel.add(ima);
+	            	}
+	            	twoDPanel.repaint();
+	            	
+	    			if(isCoordinatorXD()==true)
+	    			StartPointXD+=5;
+	    			if(StartPointXD>corXd){
+	    				arrangeTheCardsofDealer();
+	    				setCoordinatorXD(false);
+	    			StartPointYD-=5;
+	            	
+	            
+	    			}
+	    			
+	    			if(StartPointYD<corYd){
+			            setCoordinatorYD(false);
+			            if(!x.equals("")){
 
+						
+					startGame.setVisible(true);
+										
+						TurnTheCard();
+						twoDPanel.repaint();
+						
+				//	JOptionPane.showInternalMessageDialog(getContentPane(), x+"");
+
+										
+
+										
+										if(x.equals("the computer busted") || x.equals("the player win"))
+										{
+											win.setText("" +(1+Integer.parseInt(win.getText())));
+											addChipsToPlayer();
+										}
+										else if(x.equals("the player is busted") || x.equals("the computer win")){
+//									
+											lose.setText("" +(1+Integer.parseInt(lose.getText())));
+											removeChipsFromPlayer();
+										}
+										money.repaint();
+										system.getD().getComputer().removeHandArray();
+										system.getD().getchalenger().removeHandArray();
+										  this.cancel();
+								
+			            
+setChipsTrue();
+moneyForGambling.setText(""+0);
+       }
+			            else makeButtonNotVisible();
+			            this.cancel();
+			    			}
+			    			
+	} 			
+	            },0,10);
+    return true;
+
+}
+
+
+//move the card up
 public   boolean    moveCardUp(String x, int index,int corXd,int corYd){
    
         	new java.util.Timer().schedule( 
@@ -474,31 +560,25 @@ public   boolean    moveCardUp(String x, int index,int corXd,int corYd){
         			            setCoordinatorYD(false);
         			            if(!x.equals("")){
 
-        							hit.setVisible(false);
-        							stand.setVisible(false);
-        							shuffle.setVisible(false);
+        						makeButtonNotVisible();
         					startGame.setVisible(true);
         										
         						TurnTheCard();
         						twoDPanel.repaint();
         						
-        					JOptionPane.showInternalMessageDialog(getContentPane(), x+"");
 
-        										
+        								makeButtonNotVisible();		
 
         										
         										if(x.equals("the computer busted") || x.equals("the player win"))
         										{
-        											system.UpdateCoinsOfPlayer();
-        											money.setText(system.getD().getchalenger().getMoney()+"");
         											win.setText("" +(1+Integer.parseInt(win.getText())));
-
+        											addChipsToPlayer();
         										}
         										else if(x.equals("the player is busted") || x.equals("the computer win")){
-        											system.removeCoinsFromPlayer();
-        											money.setText(system.getD().getchalenger().getMoney()+"");
+//        									
         											lose.setText("" +(1+Integer.parseInt(lose.getText())));
-
+        											removeChipsFromPlayer();
         										}
         										money.repaint();
         										system.getD().getComputer().removeHandArray();
@@ -508,7 +588,8 @@ public   boolean    moveCardUp(String x, int index,int corXd,int corYd){
         			            
 setChipsTrue();
 moneyForGambling.setText(""+0);
-        			            }
+makeButtonNotVisible();        }
+        			            else makeButtonVisible();
         			            this.cancel();
         			    			}
         			    			
@@ -544,9 +625,93 @@ CoordinatorXD=true;
 CoordinatorYD=true;
 }
 
+
+// move the first two cards of the player
+public  boolean    moveCardDown1(String x, int index,int corXp,int corYp){
+
+	 
+	new java.util.Timer().schedule( 
+	        new java.util.TimerTask() {
+	            @Override
+	            public void run() {
+	             
+	            	arrayOfPicturesForPlayer.get(index).setVisible(false);
+	            	arrayOfPicturesForPlayer.get(index).setBounds(StartPointXP,StartPointYP,100,100);
+	    			
+	    			arrayOfPicturesForPlayer.get(index).setVisible(true);
+	            	
+	            	twoDPanel.add(arrayOfPicturesForPlayer.get(index));
+	            	
+twoDPanel.repaint();
+	    			
+	    			if(isCoordinatorXP()==true)
+	    			StartPointXP+=5;
+	    			if(StartPointXP>corXp){
+	    				setCoordinatorXP(false);
+	    			StartPointYP+=5;
+	    			
+	    			}
+	    			if(StartPointYP>corYp){
+	            setCoordinatorYP(false);
+	            arrangeTheCardsofPlayer();
+    			if(x!=""){
+
+					
+					startGame.setVisible(true);
+					
+					
+					TurnTheCard();
+					
+					twoDPanel.repaint();
+					
+
+
+				      
+						JOptionPane.showInternalMessageDialog(getContentPane(), x+"");
+					if(x.equals("the computer busted") || x.equals("the player win"))
+					{
+			
+						win.setText("" +(1+Integer.parseInt(win.getText())));
+
+						addChipsToPlayer();
+
+					}
+					else if(x.equals("the player is busted") || x.equals("the computer win")){
+						lose.setText("" +(1+Integer.parseInt(lose.getText())));
+
+						
+						removeChipsFromPlayer();
+
+					}
+					money.repaint();
+					system.getD().getComputer().removeHandArray();
+					system.getD().getchalenger().removeHandArray();
+					
+				setChipsTrue();
+				moneyForGambling.setText(""+0);
+				}
+    		        			            else makeButtonNotVisible();
+
+    			makeButtonEnabled();
+	            this.cancel();
+	            
+	    			}
+	    			
+	    			
+	        		
+	            	
+		    		
+	            }
+	            
+	            	
+	        },0,10);
 	
+
+return true;
+	    	
+}
 	
-	
+	// move the card to player
 public  boolean    moveCardDown(String x, int index,int corXp,int corYp){
 
 		 
@@ -576,32 +741,31 @@ public  boolean    moveCardDown(String x, int index,int corXp,int corYp){
 		            arrangeTheCardsofPlayer();
 	    			if(x!=""){
 
-    					hit.setVisible(false);
-    		stand.setVisible(false);
-    		shuffle.setVisible(false);
+    					
     					startGame.setVisible(true);
     					
     					
     					TurnTheCard();
-    				 
+    					
+						twoDPanel.repaint();
+						
+
+makeButtonNotVisible();
     				      
     						JOptionPane.showInternalMessageDialog(getContentPane(), x+"");
     					if(x.equals("the computer busted") || x.equals("the player win"))
     					{
-    						system.UpdateCoinsOfPlayer();
-    						money.setText(system.getD().getchalenger().getMoney()+"");
+//    					
 							win.setText("" +(1+Integer.parseInt(win.getText())));
 
-    		
+							addChipsToPlayer();
 
     					}
     					else if(x.equals("the player is busted") || x.equals("the computer win")){
-    						system.removeCoinsFromPlayer();
-    						money.setText(system.getD().getchalenger().getMoney()+"");
 							lose.setText("" +(1+Integer.parseInt(lose.getText())));
 
     						
-
+							removeChipsFromPlayer();
 
     					}
     					money.repaint();
@@ -610,7 +774,10 @@ public  boolean    moveCardDown(String x, int index,int corXp,int corYp){
     					
     				setChipsTrue();
     				moneyForGambling.setText(""+0);
-	    			}
+    				}
+	    		        			            else makeButtonVisible();
+
+	    			makeButtonEnabled();
 		            this.cancel();
 		            
 		    			}
@@ -692,8 +859,10 @@ public  boolean    moveCardDown(String x, int index,int corXp,int corYp){
 		CoordinatorYD = coordinatorYD;
 	}
 
-
+// fly the first card to the player and the dealer
 	public void FlyTheFirstCard(){
+		
+	system.startTwoCards();
 		arrayOfPicturesForPlayer.add(new JLabel(system.getD().getchalenger().getHandArray().get(0).getCardpic()));
 		
 		arrayOfPicturesForPlayer.get(0).setBounds(200,300,100,100);
@@ -703,10 +872,11 @@ public  boolean    moveCardDown(String x, int index,int corXp,int corYp){
 
 		arrayOfPicturesForDealer.add(new JLabel(system.getD().getComputer().getHandArray().get(0).getCardpic()));
 
+		
 		//		twoDPanel.add(arrayOfPicturesForPlayer.get(0));
 		restartAll();
 	 
-		moveCardDown("",0,(corXP=600),(corYP=468));
+		moveCardDown1("",0,(corXP=600),(corYP=468));
 
 		 java.net.URL hide = MainFrame.class.getResource("/pictures/cardd.jpg");
 		    ImageIcon hidden = new ImageIcon(hide);
@@ -715,7 +885,7 @@ public  boolean    moveCardDown(String x, int index,int corXp,int corYp){
 			twoDPanel.add(ima);
 			twoDPanel.repaint();
 		
-		moveCardUp("",-1,(corXD=600),(corYD=0));
+		moveCardUp1("",-1,(corXD=600),(corYD=0));
 
 	
 		
@@ -731,10 +901,14 @@ public  boolean    moveCardDown(String x, int index,int corXp,int corYp){
 		
 	}
 	
-public void FlyTheSecondCard(){
 	
+	// fly the second card to the player and the dealer
+
+public void FlyTheSecondCard(){
+	  
 	ActionListener listener = new ActionListener(){
 		  public void actionPerformed(ActionEvent event){
+			  String	x=system.startTwoCards();
 			
 				arrayOfPicturesForPlayer.add(new JLabel(system.getD().getchalenger().getHandArray().get(1).getCardpic()));
   			arrayOfPicturesForPlayer.get(1).setBounds(200,300,100,100);
@@ -752,8 +926,8 @@ public void FlyTheSecondCard(){
   			twoDPanel.repaint();
 		twoDPanel.add(arrayOfPicturesForDealer.get(1));
 			
-			moveCardDown("",1,(corXP=620),(corYP=468));
-	  moveCardUp("",1,(corXD=620),(corYD=0));
+			moveCardDown(x,1,(corXP=620),(corYP=468));
+	  moveCardUp(x,1,(corXD=620),(corYD=0));
 	  		   twoDPanel.repaint();
 	  		
 		  }
@@ -763,25 +937,28 @@ public void FlyTheSecondCard(){
     timer.setRepeats(false);
     timer.start();
     
-	ActionListener listener2 = new ActionListener(){
-		  public void actionPerformed(ActionEvent event){
-			  arrangeTheCardsofPlayer();
-			  arrangeTheCardsofDealer();
-			  hit.setVisible(true);
-				stand.setVisible(true);
-				shuffle.setVisible(true);
-		  }
-	    
-	};
-		
-		
-		 Timer timer2 = new Timer(6000, listener2);
-		    timer2.setRepeats(false);
-		    timer2.start();
+    
+//	ActionListener listener2 = new ActionListener(){
+//		  public void actionPerformed(ActionEvent event){
+//			  arrangeTheCardsofPlayer();
+//			  arrangeTheCardsofDealer();
+//				makeButtonEnabled();
+//
+//			  makeButtonVisible();
+//		  }
+//	    
+//	};
+//		
+//		
+//		 Timer timer2 = new Timer(6000, listener2);
+//		    timer2.setRepeats(false);
+//		    timer2.start();
 		    
 	
 }
 
+
+//make the chips
 private void setchips(){
 		java.net.URL url1 = MainFrame.class.getResource("/pictures/1.png");
 	 chip1 = new JButton ("",new ImageIcon(url1));
@@ -799,10 +976,7 @@ public void actionPerformed(ActionEvent e) {
 	 much =Integer.parseInt(moneyForGambling.getText())+1; 
 moneyForGambling.setText(String.valueOf(much));	
 
-//int  mon =Integer.parseInt(money.getText());
-//mon-=1;
-//money.setText(String.valueOf(mon));
-//
+
 int  mon =Integer.parseInt(money.getText());
 mon-=1;
 money.setText(String.valueOf(mon));
@@ -828,7 +1002,6 @@ chip5.addActionListener(new ActionListener() {
 @Override
 public void actionPerformed(ActionEvent e) {
 int much=0;
-	//chip5.setVisible(false);
 		 much =Integer.parseInt(moneyForGambling.getText())+5; 
 	moneyForGambling.setText(String.valueOf(much));	
 	int  mon =Integer.parseInt(money.getText());
@@ -922,7 +1095,7 @@ private void  setChipsTrue(){
 
 
 
-
+///make the buttons and the labels
 private void addButtonsAndLabels() {
 	// TODO Auto-generated method stub
 	
@@ -956,8 +1129,8 @@ private void addButtonsAndLabels() {
 	jdp.add(shuffle);
 	
 	
-	JLabel round= new JLabel("Rounds:");
-	round.setBounds(200,80,100,32);
+	JLabel round= new JLabel("Round number:");
+	round.setBounds(200,80,150,32);
 	round.setFont(new Font("", Font.BOLD, 15));
 	
 	jdp.add(round);
@@ -1003,7 +1176,6 @@ private void addButtonsAndLabels() {
 	 		jdp.add(money);		
 	 		
 	
-	 		java.net.URL url1 = MainFrame.class.getResource("/pictures/10.jpg");
 			
 	 		
 	 		
@@ -1047,7 +1219,6 @@ private void addButtonsAndLabels() {
 		moneyForGamblingTitle = new JLabel("Chips Amount: ");
 		moneyForGamblingTitle.setBounds(180, 460, 150, 40);
 		moneyForGamblingTitle.setFont(new Font("", Font.BOLD, 14));
-//		moneyForGamblingTitle.setBackground(Color.GREEN);
 		moneyForGamblingTitle.setVisible(true);
 		jdp.add(moneyForGamblingTitle);
 	
@@ -1056,15 +1227,70 @@ private void addButtonsAndLabels() {
 		score = new JLabel("SCORE:");
 		score.setBounds(600, 580,70 , 40);
 		score.setFont(new Font("", Font.BOLD, 14));
-//		moneyForGamblingTitle.setBackground(Color.GREEN);
 	score.setVisible(true);
 		jdp.add(score);		
 		
 	jdp.add(exit);
+	makeButtonNotVisible();
+
+}
+
+private void makeButtonNotVisible(){
 	hit.setVisible(false);
 	stand.setVisible(false);
-	shuffle.setVisible(false);
+	shuffle.setVisible(false);	
+	
+	
+}
 
+private void makeButtonVisible(){
+	hit.setVisible(true);
+	stand.setVisible(true);
+	shuffle.setVisible(true);	
+	
+	
+}
+
+private void makeButtonNotEnabled(){
+	hit.setEnabled(false);
+	stand.setEnabled(false);
+	shuffle.setEnabled(false);	
+	
+	
+}
+
+private void makeButtonEnabled(){
+	hit.setEnabled(true);
+	stand.setEnabled(true);
+	shuffle.setEnabled(true);	
+	
+	
+}
+
+
+
+//add the chips to the player if he win or the dealer busted
+private void addChipsToPlayer(){
+	int i = Integer.parseInt(rond.getText());
+	int mo =Integer.parseInt(moneyForGambling.getText());
+	int summ = Integer.parseInt(money.getText());
+
+	if(i%2==1){
+		mo*=2;
+	
+	}
+	else mo*=3;
+	int addMoToSum= mo+summ;
+	money.setText(""+addMoToSum);
+	system.getPlayers().get(userName).setMoney(addMoToSum);
+
+}
+
+// remove chips from the player if the player busted or the dealer won
+private void removeChipsFromPlayer(){
+	int i = Integer.parseInt(rond.getText());
+	system.getPlayers().get(userName).setMoney(Integer.parseInt(money.getText())-i);
+	
 }
 
 }

@@ -8,9 +8,10 @@ public class Computer implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	//array of cards that the player have (dealer or player)
 	private ArrayList<Card> HandArray;
+	
 	protected int sumOfCards=0;
-	private String status;
 	public ArrayList<Card> getHandArray() {
 		return HandArray;
 	}
@@ -29,22 +30,17 @@ public class Computer implements Serializable {
 	public Computer() {
 		super();
 		HandArray = new ArrayList<Card>();
-		status="Playing";
+		
 	}
 	public void setSumOfCards(int sumOfCards) {
 		this.sumOfCards = sumOfCards;
 	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
-	}
+	// add card to hand of the player 
 	public void addToHandArray(Card card){
 		System.out.println("card --"+card.getValue());
 	HandArray.add(card);
 	}
-
+// update the sum of the cards 
 	public int updateSomeOFCards(){
 		sumOfCards=0;
 		for(Card i : getHandArray())

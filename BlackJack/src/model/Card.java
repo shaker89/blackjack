@@ -37,6 +37,7 @@ public Card(ImageIcon cardpic,int number, String suit, String value ) {
 	super();
 	this.number = number;
 	this.suit = suit;
+	// set the value of the card by rules
 	SetValue();
 	this.cardpic = cardpic;
 }
@@ -50,25 +51,18 @@ public int getNumber() {
 	return number;
 }
 
+// set the value of the card by rules
 
 private void SetValue() {
 	
 	// TODO Auto-generated method stub
-if(number>1 && number<=10)
+	if(number==1)
+		value=11;
+if(number>1 && number<11)
 	value=number;
 if(number==11 || number==12 || number==13)
 	value=10;
-if(number==1)
-{
-	
-Random r = new Random(2);
 
-if(r.nextInt()==1) number=1;
-else number=2;
-
-	
-	
-}
 	
 	
 	

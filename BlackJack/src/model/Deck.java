@@ -21,10 +21,13 @@ public class Deck implements Serializable  {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	//  ArrayList<Card> deckSet = new ArrayList<Card>(); 
+//array that started with 52 cards 
 	private  ArrayList<Card>  cards;
+	//the player
 	private  Player chalenger;
+//the dealer
 	private Player computer;
+	
 	int numberOfCards;
 	private int mony;
 	boolean moreThan17;
@@ -47,7 +50,7 @@ public class Deck implements Serializable  {
 		standFlag2=false;
 		
 		this.mony=mony;
-		
+		// make the table -(52 cards)
 		StartGame();
 	}
 	
@@ -135,16 +138,16 @@ public class Deck implements Serializable  {
 	    Card tens = new Card(card50, 10,"spade", "Ten");
 	    java.net.URL urljacks = MainFrame.class.getResource("/pictures/jacks.jpg");
 	    ImageIcon card26 = new ImageIcon(urljacks);
-	    Card jacks = new Card(card26, 10, "spade", "Jack");
+	    Card jacks = new Card(card26, 11, "spade", "Jack");
 	    java.net.URL urlqueens = MainFrame.class.getResource("/pictures/queens.jpg");
 	    ImageIcon card33 = new ImageIcon(urlqueens);
-	    Card queens = new Card(card33, 10,"spade", "Queen");
+	    Card queens = new Card(card33, 12,"spade", "Queen");
 	    java.net.URL urlkings = MainFrame.class.getResource("/pictures/kings.jpg");
 	    ImageIcon card18 = new ImageIcon(urlkings);
-	    Card kings = new Card(card18, 10, "spade", "King");
+	    Card kings = new Card(card18, 13, "spade", "King");
 	    java.net.URL urlaces = MainFrame.class.getResource("/pictures/aces.jpg");
 	    ImageIcon card15 = new ImageIcon(urlaces);
-	    Card aces = new Card(card15, 11, "spade", "Ace");
+	    Card aces = new Card(card15, 1, "spade", "Ace");
 	    java.net.URL url2h = MainFrame.class.getResource("/pictures/2h.jpg");
 	    ImageIcon card39 = new ImageIcon(url2h);
 	    Card twoh = new Card(card39, 2,"heart", "Two");
@@ -174,16 +177,16 @@ public class Deck implements Serializable  {
 	    Card tenh = new Card(card7, 10,"heart", "Ten");
 	    java.net.URL urljackh = MainFrame.class.getResource("/pictures/jackh.jpg");
 	    ImageIcon card3 = new ImageIcon(urljackh);
-	    Card jackh = new Card(card3, 10, "heart","Jack");
+	    Card jackh = new Card(card3, 11, "heart","Jack");
 	    java.net.URL urlqueenh = MainFrame.class.getResource("/pictures/queenh.jpg");
 	    ImageIcon card25 = new ImageIcon(urlqueenh);
-	    Card queenh = new Card(card25, 10,"heart", "Queen");
+	    Card queenh = new Card(card25, 12,"heart", "Queen");
 	    java.net.URL urlkingh = MainFrame.class.getResource("/pictures/kingh.jpg");
 	    ImageIcon card36 = new ImageIcon(urlkingh);
-	    Card kingh = new Card(card36, 10,"heart", "King");
+	    Card kingh = new Card(card36, 13,"heart", "King");
 	    java.net.URL urlaceh = MainFrame.class.getResource("/pictures/aceh.jpg");
 	    ImageIcon card10 = new ImageIcon(urlaceh);
-	    Card aceh = new Card(card10, 11, "heart", "Ace");
+	    Card aceh = new Card(card10, 1, "heart", "Ace");
 
 	    java.net.URL url2d = MainFrame.class.getResource("/pictures/2d.jpg");
 	    ImageIcon card31 = new ImageIcon(url2d);
@@ -214,16 +217,16 @@ public class Deck implements Serializable  {
 	    Card tend = new Card(card12, 10, "diamond", "Ten");    
 	    java.net.URL urljackd = MainFrame.class.getResource("/pictures/jackd.jpg");
 	    ImageIcon card11 = new ImageIcon(urljackd);
-	    Card jackd = new Card(card11, 10, "diamond", "Jack");
+	    Card jackd = new Card(card11, 11, "diamond", "Jack");
 	    java.net.URL urlqueend = MainFrame.class.getResource("/pictures/queend.jpg");
 	    ImageIcon card6 = new ImageIcon(urlqueend);
-	    Card queend = new Card(card6, 10, "diamond", "Queen");
+	    Card queend = new Card(card6, 12, "diamond", "Queen");
 	    java.net.URL urlkingd = MainFrame.class.getResource("/pictures/kingd.jpg");
 	    ImageIcon card47 = new ImageIcon(urlkingd);
-	    Card kingd = new Card(card47, 10,"diamond", "King");
+	    Card kingd = new Card(card47, 13,"diamond", "King");
 	    java.net.URL urlaced = MainFrame.class.getResource("/pictures/aced.jpg");
 	    ImageIcon card20 = new ImageIcon(urlaced);
-	    Card aced = new Card(card20, 11,"diamond", "Ace");
+	    Card aced = new Card(card20, 1,"diamond", "Ace");
 	    java.net.URL url2c = MainFrame.class.getResource("/pictures/2c.jpg");
 	    ImageIcon card28 = new ImageIcon(url2c);
 	    Card twoc = new Card(card28, 2,"club", "Two");
@@ -253,16 +256,16 @@ public class Deck implements Serializable  {
 	    Card tenc = new Card(card44, 10,"club", "Ten");   
 	    java.net.URL urljackc = MainFrame.class.getResource("/pictures/jackc.jpg");
 	    ImageIcon card29 = new ImageIcon(urljackc);
-	    Card jackc = new Card(card29, 10,"club", "Jack");
+	    Card jackc = new Card(card29, 11,"club", "Jack");
 	    java.net.URL urlqueenc = MainFrame.class.getResource("/pictures/queenc.jpg");
 	    ImageIcon card52 = new ImageIcon(urlqueenc);
-	    Card queenc = new Card(card52, 10,"club", "Queen");
+	    Card queenc = new Card(card52, 12,"club", "Queen");
 	    java.net.URL urlkingc = MainFrame.class.getResource("/pictures/kingc.jpg");
 	    ImageIcon card46 = new ImageIcon(urlkingc);
-	    Card kingc = new Card(card46, 10,"club", "King");
+	    Card kingc = new Card(card46, 13,"club", "King");
 	    java.net.URL urlacec = MainFrame.class.getResource("/pictures/acec.jpg");
 	    ImageIcon card37 = new ImageIcon(urlacec);
-	    Card acec = new Card(card37, 11,"club", "Ace");
+	    Card acec = new Card(card37, 1,"club", "Ace");
 
 	  
 	    cards.add(acec);
@@ -324,8 +327,7 @@ public class Deck implements Serializable  {
 		 computer= new Player();
 		 
 	//give each players two cards
-		hit(true,true);
-		hit(true,true);
+		
 		
 	}
 	
@@ -344,8 +346,8 @@ public class Deck implements Serializable  {
 		
 		
 	}
-	
-
+	//the function take two  boolean values, if the first flag is true  -> the player take another card 
+//if the second flag  is true  -> the computer take another card
 	public void hit(boolean hitFlag1, boolean hitFlag2) {
 	
 		int temp1 = -1;
