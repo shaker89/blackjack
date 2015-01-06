@@ -358,10 +358,10 @@ public class Deck implements Serializable  {
 		 temp1=rand.nextInt(getNumberOfCards()-1);
 		 Card c= cards.get(temp1);
 		 //check if we have aces before
-		 if(c.getNumber()==11){
+		 if(c.getNumber()==1){
 		 for(int i = 0 ; i<chalenger.getHandArray().size();i++){
 			 if(chalenger.getHandArray().get(i).getNumber()==c.getNumber())
-			 c.setNumber(1);
+			 c.setValue(1);
 		 }}
 		chalenger.addToHandArray(c);
 		System.out.println("card :"+cards.get(temp1));
@@ -373,9 +373,37 @@ public class Deck implements Serializable  {
 		
 	
 		temp2=rand.nextInt(getNumberOfCards()-1);
-			computer.addToHandArray(cards.get(temp2));
+		 Card c= cards.get(temp2);
+		 if(c.getNumber()==1 && computer.getSumOfCards()+11>21)
+		 {
+			
+					 c.setValue(1);
+					 computer.addToHandArray(cards.get(temp2));
+						System.out.println("card :"+cards.get(temp2));
+						cards.remove(temp2);
+						return;
+				 
+			
+		 }
+		 
+		 if(c.getNumber()==1 )
+		 {
+			 for(int i = 0 ; i<computer.getHandArray().size();i++){
+				 if(computer.getHandArray().get(i).getNumber()==c.getNumber())
+				 {
+					 c.setValue(1);
+					 computer.addToHandArray(cards.get(temp2));
+						System.out.println("card :"+cards.get(temp2));
+						cards.remove(temp2);
+						return;
+				 }
+			 }
+			
+		 }
+		 computer.addToHandArray(cards.get(temp2));
 			System.out.println("card :"+cards.get(temp2));
 			cards.remove(temp2);
+			return;	
 	}
 	
 	

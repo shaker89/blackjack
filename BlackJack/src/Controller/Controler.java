@@ -174,26 +174,7 @@ public final  class Controler implements IControler,Serializable {
 
 	
 	
-//	public void UpdateCoinsOfPlayer(){
-//		d.getchalenger().setMoney(d.getchalenger().getMoney());
-//		System.out.println("adding "+(d.getchalenger().getMoney()));
-//		getPlayers().get(d.getchalenger().getUserName()).setMoney(d.getchalenger().getMoney());
-//		System.out.println("**"+getPlayers().get(d.getchalenger().getUserName()).getMoney());
-//
-//		
-//	}
-//	public void removeCoinsFromPlayer(){
-//		d.getchalenger().setMoney(d.getchalenger().getMoney());
-//System.out.println("removee "+(d.getchalenger().getMoney()));
-//		
-//getPlayers().get(d.getchalenger().getUserName()).setMoney(d.getchalenger().getMoney());
-//System.out.println("**"+getPlayers().get(d.getchalenger().getUserName()).getMoney());
-//
-//
-//		
-//		
-//	}
-	
+
 	
 
 	/**
