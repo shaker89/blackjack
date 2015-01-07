@@ -11,10 +11,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
@@ -52,6 +56,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.xml.soap.Text;
 
@@ -149,6 +154,7 @@ jdp.setLayout(null);
 		//for exit
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(final WindowEvent arg0) {
+				playSound("shuffling-cards-1.wav");
 				 if(JOptionPane.showInternalConfirmDialog(jdp, 
 							"you are sure you want to exit " 
 							, "",
@@ -178,6 +184,8 @@ jdp.setLayout(null);
 // if we press deal 
 		if(cmd.equals("Start Game"))
 		{	system.start();
+		playSound("shuffling-cards-1.wav");
+		 
 		//makeButtonNotEnabled();
 		setChipsTrue();
 		rond.setText("" +(1+Integer.parseInt(rond.getText())));
@@ -220,6 +228,7 @@ jdp.setLayout(null);
 		
 		 if(cmd.equals("hit")){
 
+			 playSound("shuffling-cards-1.wav");
 			//the method return "" if no one won
 			 
 			 makeButtonNotEnabled();
@@ -247,7 +256,7 @@ jdp.setLayout(null);
 	
 		
 		 if(cmd.equals("stand")){
-			 
+			 playSound("shuffling-cards-1.wav");
 			 makeButtonNotEnabled();
 			JLabel p=new JLabel("");
 					
@@ -262,9 +271,12 @@ jdp.setLayout(null);
 		 if(cmd.equals("shuffle cards")){
 				system.shuffle();
 				
-			}
+				 
+					    	playSound("shuffling-cards-1.wav");
+					
+
 		 
-		 
+		 }
 	
 		 
 		 
@@ -273,6 +285,27 @@ jdp.setLayout(null);
 	
 	
 	
+	private void playSound(String file) {
+		// TODO Auto-generated method stub
+		try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(file));
+            Clip clip = AudioSystem.getClip( );
+            clip.open(audioInputStream);
+            clip.start( );
+        }
+        catch(Exception e)  {
+            e.printStackTrace( );
+        }
+	}
+
+
+
+
+
+
+
+
+
 	public void TurnTheCard(){
 		
 		ima.setVisible(false);
@@ -973,6 +1006,7 @@ chip1.addActionListener(new ActionListener() {
 public void actionPerformed(ActionEvent e) {
 //chip1.setVisible(false);	
 	int much = 0;
+	playSound("shuffling-cards-1.wav");
 	
 	 much =Integer.parseInt(moneyForGambling.getText())+1; 
 moneyForGambling.setText(String.valueOf(much));	
@@ -1003,6 +1037,7 @@ chip5.addActionListener(new ActionListener() {
 @Override
 public void actionPerformed(ActionEvent e) {
 int much=0;
+playSound("shuffling-cards-1.wav");
 		 much =Integer.parseInt(moneyForGambling.getText())+5; 
 	moneyForGambling.setText(String.valueOf(much));	
 	int  mon =Integer.parseInt(money.getText());
@@ -1028,6 +1063,7 @@ chip10.addActionListener(new ActionListener() {
 
 @Override
 public void actionPerformed(ActionEvent e) {
+	playSound("shuffling-cards-1.wav");
 //chip10.setVisible(false);	
 	int much=0;
 	//chip5.setVisible(false);
@@ -1058,6 +1094,7 @@ chip25.addActionListener(new ActionListener() {
 @Override
 public void actionPerformed(ActionEvent e) {
 //chip25.setVisible(false);	
+	playSound("shuffling-cards-1.wav");
 	int much=0;
 	//chip5.setVisible(false);
 	
@@ -1190,6 +1227,8 @@ private void addButtonsAndLabels() {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			
+			playSound("shuffling-cards-1.wav");
 			 if(JOptionPane.showInternalConfirmDialog(jdp, 
 						"you are sure you want to exit " 
 						, "",
