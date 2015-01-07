@@ -438,7 +438,7 @@ moneyForGambling.setText(""+0);
 	
 
 //move the first two cards up
-public   boolean    moveCardUp1(String x, int index,int corXd,int corYd){
+public   boolean    moveCardUp1(String x, int index,int corXd,int corYd , int cardNumber){
 	   
 	new java.util.Timer().schedule( 
 	        new java.util.TimerTask() {
@@ -476,7 +476,7 @@ public   boolean    moveCardUp1(String x, int index,int corXd,int corYd){
 	    			
 	    			if(StartPointYD<corYd){
 			            setCoordinatorYD(false);
-			            if(!x.equals("")){
+			            if(x.equals("the player wins") || x.equals("the computer wins") ){
 
 						
 					startGame.setVisible(true);
@@ -489,12 +489,12 @@ public   boolean    moveCardUp1(String x, int index,int corXd,int corYd){
 										
 
 										
-										if(x.equals("the computer busted") || x.equals("the player win"))
+										if( x.equals("the player wins"))
 										{
 											win.setText("" +(1+Integer.parseInt(win.getText())));
 											addChipsToPlayer();
 										}
-										else if(x.equals("the player is busted") || x.equals("the computer win")){
+										else if( x.equals("the computer wins")){
 //									
 											lose.setText("" +(1+Integer.parseInt(lose.getText())));
 											removeChipsFromPlayer();
@@ -508,7 +508,8 @@ public   boolean    moveCardUp1(String x, int index,int corXd,int corYd){
 setChipsTrue();
 moneyForGambling.setText(""+0);
        }
-			            else makeButtonNotVisible();
+			            if(cardNumber==1) makeButtonNotVisible();
+			            else makeButtonVisible();
 			            this.cancel();
 			    			}
 			    			
@@ -627,7 +628,7 @@ CoordinatorYD=true;
 
 
 // move the first two cards of the player
-public  boolean    moveCardDown1(String x, int index,int corXp,int corYp){
+public  boolean    moveCardDown1(String x, int index,int corXp,int corYp , int cardNum){
 
 	 
 	new java.util.Timer().schedule( 
@@ -654,7 +655,7 @@ twoDPanel.repaint();
 	    			if(StartPointYP>corYp){
 	            setCoordinatorYP(false);
 	            arrangeTheCardsofPlayer();
-    			if(x!=""){
+    			if(x.equals("the player wins")||  x.equals("the computer wins")){
 
 					
 					startGame.setVisible(true);
@@ -668,7 +669,7 @@ twoDPanel.repaint();
 
 				      
 						JOptionPane.showInternalMessageDialog(getContentPane(), x+"");
-					if(x.equals("the computer busted") || x.equals("the player win"))
+					if(x.equals("the player wins"))
 					{
 			
 						win.setText("" +(1+Integer.parseInt(win.getText())));
@@ -676,7 +677,7 @@ twoDPanel.repaint();
 						addChipsToPlayer();
 
 					}
-					else if(x.equals("the player is busted") || x.equals("the computer win")){
+					else if( x.equals("the computer wins")){
 						lose.setText("" +(1+Integer.parseInt(lose.getText())));
 
 						
@@ -690,8 +691,8 @@ twoDPanel.repaint();
 				setChipsTrue();
 				moneyForGambling.setText(""+0);
 				}
-    		        			            else makeButtonNotVisible();
-
+    			if(cardNum==1) makeButtonNotVisible();
+    			else makeButtonVisible();
     			makeButtonEnabled();
 	            this.cancel();
 	            
@@ -876,7 +877,7 @@ makeButtonNotVisible();
 		//		twoDPanel.add(arrayOfPicturesForPlayer.get(0));
 		restartAll();
 	 
-		moveCardDown1("",0,(corXP=600),(corYP=468));
+		moveCardDown1("",0,(corXP=600),(corYP=468),1);
 
 		 java.net.URL hide = MainFrame.class.getResource("/pictures/cardd.jpg");
 		    ImageIcon hidden = new ImageIcon(hide);
@@ -885,7 +886,7 @@ makeButtonNotVisible();
 			twoDPanel.add(ima);
 			twoDPanel.repaint();
 		
-		moveCardUp1("",-1,(corXD=600),(corYD=0));
+		moveCardUp1("",-1,(corXD=600),(corYD=0),1);
 
 	
 		
@@ -908,7 +909,7 @@ public void FlyTheSecondCard(){
 	  
 	ActionListener listener = new ActionListener(){
 		  public void actionPerformed(ActionEvent event){
-			  String	x=system.startTwoCards();
+			  system.startTwoCards();
 			
 				arrayOfPicturesForPlayer.add(new JLabel(system.getD().getchalenger().getHandArray().get(1).getCardpic()));
   			arrayOfPicturesForPlayer.get(1).setBounds(200,300,100,100);
@@ -926,8 +927,8 @@ public void FlyTheSecondCard(){
   			twoDPanel.repaint();
 		twoDPanel.add(arrayOfPicturesForDealer.get(1));
 			
-			moveCardDown(x,1,(corXP=620),(corYP=468));
-	  moveCardUp(x,1,(corXD=620),(corYD=0));
+			moveCardDown1("",1,(corXP=620),(corYP=468),2);
+	  moveCardUp1("",1,(corXD=620),(corYD=0),2);
 	  		   twoDPanel.repaint();
 	  		
 		  }

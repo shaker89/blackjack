@@ -146,13 +146,13 @@ public final  class Controler implements IControler,Serializable {
 		
 		
 		if (p == 21)
-			return "the player win";
+			return "the player wins";
 		if (c  > 21) {
 
 			return "the computer busted";
 		}
 		if (c == 21)
-			return "the computer win";
+			return "the computer wins";
 		
 		return "";
 	}
