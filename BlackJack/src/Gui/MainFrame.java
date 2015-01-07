@@ -154,7 +154,7 @@ jdp.setLayout(null);
 		//for exit
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(final WindowEvent arg0) {
-				playSound("shuffling-cards-1.wav");
+				playSound("goodbye.wav");
 				 if(JOptionPane.showInternalConfirmDialog(jdp, 
 							"you are sure you want to exit " 
 							, "",
@@ -184,7 +184,7 @@ jdp.setLayout(null);
 // if we press deal 
 		if(cmd.equals("Start Game"))
 		{	system.start();
-		playSound("shuffling-cards-1.wav");
+		playSound("startgame.wav");
 		 
 		//makeButtonNotEnabled();
 		setChipsTrue();
@@ -228,7 +228,7 @@ jdp.setLayout(null);
 		
 		 if(cmd.equals("hit")){
 
-			 playSound("shuffling-cards-1.wav");
+			 playSound("hit.wav");
 			//the method return "" if no one won
 			 
 			 makeButtonNotEnabled();
@@ -256,7 +256,7 @@ jdp.setLayout(null);
 	
 		
 		 if(cmd.equals("stand")){
-			 playSound("shuffling-cards-1.wav");
+			 playSound("stand.wav");
 			 makeButtonNotEnabled();
 			JLabel p=new JLabel("");
 					
@@ -1006,7 +1006,7 @@ chip1.addActionListener(new ActionListener() {
 public void actionPerformed(ActionEvent e) {
 //chip1.setVisible(false);	
 	int much = 0;
-	playSound("shuffling-cards-1.wav");
+	playSound("chips.wav");
 	
 	 much =Integer.parseInt(moneyForGambling.getText())+1; 
 moneyForGambling.setText(String.valueOf(much));	
@@ -1037,7 +1037,7 @@ chip5.addActionListener(new ActionListener() {
 @Override
 public void actionPerformed(ActionEvent e) {
 int much=0;
-playSound("shuffling-cards-1.wav");
+playSound("chips.wav");
 		 much =Integer.parseInt(moneyForGambling.getText())+5; 
 	moneyForGambling.setText(String.valueOf(much));	
 	int  mon =Integer.parseInt(money.getText());
@@ -1063,7 +1063,7 @@ chip10.addActionListener(new ActionListener() {
 
 @Override
 public void actionPerformed(ActionEvent e) {
-	playSound("shuffling-cards-1.wav");
+	playSound("chips.wav");
 //chip10.setVisible(false);	
 	int much=0;
 	//chip5.setVisible(false);
@@ -1094,7 +1094,7 @@ chip25.addActionListener(new ActionListener() {
 @Override
 public void actionPerformed(ActionEvent e) {
 //chip25.setVisible(false);	
-	playSound("shuffling-cards-1.wav");
+	playSound("chips.wav");
 	int much=0;
 	//chip5.setVisible(false);
 	
@@ -1240,7 +1240,7 @@ private void addButtonsAndLabels() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
-			playSound("shuffling-cards-1.wav");
+			playSound("goodbye.wav");
 			 if(JOptionPane.showInternalConfirmDialog(jdp, 
 						"you are sure you want to exit " 
 						, "",
