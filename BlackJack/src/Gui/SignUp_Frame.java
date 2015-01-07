@@ -148,24 +148,7 @@ public class SignUp_Frame  extends JFrame implements ActionListener{
 		getContentPane().add(reset);
 	
 	
-		JButton close = new JButton ("Close");
-
-        close.setToolTipText("Close");
-        close.setBorderPainted(true);
-        close.setFont(new Font("", Font.BOLD, 9));
-        close.setForeground(Color.WHITE);
-        close.setBackground(Color.RED);
-
-        close.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				
-		dispose();
-			}
-		});
-	close.setBounds(280,320,70,40);
-		getContentPane().add(close);
+	 
 	
 		
 		

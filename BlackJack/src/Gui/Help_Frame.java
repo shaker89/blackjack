@@ -3,10 +3,13 @@ package Gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -55,7 +58,24 @@ public class Help_Frame extends JFrame{
 				topPanel.setLayout( new BorderLayout() );
 				getContentPane().add( topPanel, BorderLayout.CENTER );
 				
-				
+				JButton close = new JButton ("Close");
+
+		        close.setToolTipText("Close");
+		        close.setBorderPainted(true);
+		        close.setFont(new Font("", Font.BOLD, 9));
+		        close.setForeground(Color.WHITE);
+		        close.setBackground(Color.RED);
+
+		        close.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						
+				dispose();
+					}
+				});
+			close.setBounds(860,566,70,40);
+				getContentPane().add(close);
 				JTextArea area = new JTextArea();
 area.setFont(new Font("", Font.BOLD, 13));
 		       JScrollPane scrollPane = new JScrollPane();

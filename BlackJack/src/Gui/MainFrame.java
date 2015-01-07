@@ -1140,6 +1140,8 @@ private void addButtonsAndLabels() {
 	 startGame = new JButton("Start Game");
 	startGame.setBounds(400,339,120,40);
 	startGame.setFont(new Font("", Font.BOLD, 9));
+	startGame.setBackground(Color.GREEN.darker());
+	startGame.setForeground(Color.WHITE);
 	startGame.addActionListener(this);
 
 	jdp.add(startGame);
@@ -1149,6 +1151,8 @@ private void addButtonsAndLabels() {
 	 hit = new JButton("hit");
 	hit.setBounds(200,200,80,40);
 	hit.setFont(new Font("", Font.BOLD, 9));
+	hit.setBackground(Color.GREEN.darker());
+	hit.setForeground(Color.WHITE);
 	hit.addActionListener(this);
 	jdp.add(hit);
 	
@@ -1156,13 +1160,17 @@ private void addButtonsAndLabels() {
 	 stand = new JButton("stand");
 	stand.setBounds(200,250,80,40);
 	stand.setFont(new Font("", Font.BOLD, 9));
+	stand.setBackground(Color.GREEN.darker());
+	stand.setForeground(Color.WHITE);
 	stand.addActionListener(this);
 	jdp.add(stand);
 
 	
-	 shuffle = new JButton("shuffle cards");
-	shuffle.setBounds(200,300,140,40);
+	 shuffle = new JButton("shuffle");
+	shuffle.setBounds(200,300,80,40);
 	shuffle.setFont(new Font("", Font.BOLD, 9));
+	shuffle.setBackground(Color.GREEN.darker());
+	shuffle.setForeground(Color.WHITE);
 	shuffle.addActionListener(this);
 	jdp.add(shuffle);
 	
@@ -1170,7 +1178,7 @@ private void addButtonsAndLabels() {
 	JLabel round= new JLabel("Round number:");
 	round.setBounds(200,80,150,32);
 	round.setFont(new Font("", Font.BOLD, 15));
-	
+	round.setForeground(Color.WHITE);
 	jdp.add(round);
 	
 	
@@ -1178,31 +1186,34 @@ private void addButtonsAndLabels() {
 	rond.setBounds(310,80,100,32);
 	rond.setFont(new Font("", Font.BOLD, 15));
 	rond.setText(""+0);
+	rond.setForeground(Color.WHITE);
 	jdp.add(rond);
 	
 	JLabel wins= new JLabel("Wins:");
 	wins.setBounds(200,110,100,32);
 	wins.setFont(new Font("", Font.BOLD, 15));
-	
+	wins.setForeground(Color.WHITE);
 	jdp.add(wins);
 	
 	 win= new JLabel("");
 	win.setBounds(310,110,100,32);
 	win.setFont(new Font("", Font.BOLD, 15));
 	win.setText(""+0);
+	win.setForeground(Color.WHITE);
 	jdp.add(win);
 	
 	
 	JLabel loses= new JLabel("Losses:");
 	loses.setBounds(200,140,100,32);
 	loses.setFont(new Font("", Font.BOLD, 15));
-	
+	loses.setForeground(Color.WHITE);
 	jdp.add(loses);
 	
 	 lose= new JLabel("");
 	lose.setBounds(310,140,100,32);
 	lose.setFont(new Font("", Font.BOLD, 15));
 	lose.setText(""+0);
+	lose.setForeground(Color.WHITE);
 	jdp.add(lose);
 
 	 		money =  new JLabel();
@@ -1210,6 +1221,7 @@ private void addButtonsAndLabels() {
 	 		money.setBounds(680, 580, 80, 40);
 	 		money.setFont(new Font("", Font.BOLD, 15));
 	 		money.setText(system.getPlayers().get(userName).getMoney()+"");
+	 		money.setForeground(Color.WHITE);
 	 		money.setVisible(true);
 	 		jdp.add(money);		
 	 		
@@ -1218,10 +1230,10 @@ private void addButtonsAndLabels() {
 	 		
 	 		
 	 		
-	 		java.net.URL url = MainFrame.class.getResource("/pictures/exxit.png");
+	 		java.net.URL url = MainFrame.class.getResource("/pictures/exIt.png");
 			JButton exit = new JButton ("",new ImageIcon(url));
 	
-	exit.setBounds(1000,600,90,80);
+	exit.setBounds(1150,650,44,44);
 	exit.setFont(new Font("", Font.BOLD, 9));
 	exit.addActionListener(new ActionListener() {
 		
@@ -1250,7 +1262,8 @@ private void addButtonsAndLabels() {
 		moneyForGambling.setFont(new Font("", Font.BOLD, 15));
 	moneyForGambling.setText(0+"");
 //		moneyForGambling.setBackground(Color.GREEN);
-		moneyForGambling.setVisible(true);
+	moneyForGambling.setForeground(Color.WHITE);
+	moneyForGambling.setVisible(true);
 		jdp.add(moneyForGambling);
 		
 	
@@ -1259,15 +1272,19 @@ private void addButtonsAndLabels() {
 		moneyForGamblingTitle = new JLabel("Chips Amount: ");
 		moneyForGamblingTitle.setBounds(180, 460, 150, 40);
 		moneyForGamblingTitle.setFont(new Font("", Font.BOLD, 14));
+		moneyForGamblingTitle.setForeground(Color.WHITE);
 		moneyForGamblingTitle.setVisible(true);
+		
 		jdp.add(moneyForGamblingTitle);
 	
 
 		
 		score = new JLabel("SCORE:");
 		score.setBounds(600, 580,70 , 40);
+		
 		score.setFont(new Font("", Font.BOLD, 14));
-	score.setVisible(true);
+	score.setForeground(Color.WHITE);
+		score.setVisible(true);
 		jdp.add(score);		
 		
 	jdp.add(exit);
