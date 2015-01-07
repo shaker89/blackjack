@@ -268,7 +268,7 @@ jdp.setLayout(null);
 		 }
 
 		 
-		 if(cmd.equals("shuffle cards")){
+		 if(cmd.equals("shuffle")){
 				system.shuffle();
 				
 				 
